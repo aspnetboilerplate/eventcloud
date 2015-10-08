@@ -86,9 +86,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\EventCloudSettingNames.cs" />
+    <Compile Include="Configuration\EventCloudSettingProvider.cs" />
     <Compile Include="EventCloudConsts.cs" />
     <Compile Include="EventCloudCoreModule.cs" />
     <Compile Include="Authorization\PermissionChecker.cs" />
+    <Compile Include="Events\Event.cs" />
+    <Compile Include="Events\EventCloudServiceBase.cs" />
+    <Compile Include="Events\EventManager.cs" />
+    <Compile Include="Events\EventRegistration.cs" />
+    <Compile Include="Events\EventRegistrationPolicy.cs" />
+    <Compile Include="Events\IEventManager.cs" />
+    <Compile Include="Events\IEventRegistrationPolicy.cs" />
     <Compile Include="MultiTenancy\Tenant.cs" />
     <Compile Include="MultiTenancy\TenantManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

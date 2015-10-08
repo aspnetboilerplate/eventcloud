@@ -150,9 +150,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\EventRegistrationAppService_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sessions\SessionAppService_Tests.cs" />
     <Compile Include="Sessions\EventCloudTestBase.cs" />
+    <Compile Include="Data\TestDataBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

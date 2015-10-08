@@ -1,6 +1,8 @@
 ﻿using System.Data.Common;
+using System.Data.Entity;
 using Abp.Zero.EntityFramework;
 using EventCloud.Authorization.Roles;
+using EventCloud.Events;
 using EventCloud.MultiTenancy;
 using EventCloud.Users;
 
@@ -8,7 +10,9 @@ namespace EventCloud.EntityFramework
 {
     public class EventCloudDbContext : AbpZeroDbContext<Tenant, Role, User>
     {
-        //TODO: Define an IDbSet for your Entities...
+        public virtual IDbSet<Event> Events { get; set; }
+
+        public virtual IDbSet<EventRegistration> EventRegistrations { get; set; }
 
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.

@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
 using Abp.Localization.Dictionaries;
 using Abp.Localization.Dictionaries.Xml;
-using Abp.Localization.Sources;
-using Abp.Localization.Sources.Xml;
 using Abp.Modules;
+using Abp.Timing;
 using Abp.Zero;
+using EventCloud.Configuration;
 
 namespace EventCloud
 {
@@ -26,6 +26,10 @@ namespace EventCloud
                         )
                     )
                 );
+
+            Configuration.Settings.Providers.Add<EventCloudSettingProvider>();
+
+            Clock.Provider = new UtcClockProvider();
         }
 
         public override void Initialize()

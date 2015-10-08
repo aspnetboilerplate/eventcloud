@@ -14,6 +14,7 @@ using EventCloud.MultiTenancy;
 using EventCloud.Users;
 using Castle.MicroKernel.Registration;
 using EntityFramework.DynamicFilters;
+using EventCloud.Tests.Data;
 
 namespace EventCloud.Tests.Sessions
 {
@@ -30,6 +31,7 @@ namespace EventCloud.Tests.Sessions
 
             //Seed initial data
             UsingDbContext(context => new InitialDataBuilder(context).Build());
+            UsingDbContext(context => new TestDataBuilder(context).Build());
 
             LoginAsDefaultTenantAdmin();
         }
