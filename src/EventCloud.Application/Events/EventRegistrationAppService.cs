@@ -31,14 +31,17 @@ namespace EventCloud.Events
                 throw new UserFriendlyException("Could not found the event, maybe it's deleted!");
             }
 
-            return await RegisterEventForUserInternal(@event, await GetCurrentUserAsync());
+            return new EventRegisterOutput
+            {
+                RegistrationId = (await RegisterAndSaveAsync(@event, await GetCurrentUserAsync())).Id
+            };
         }
 
-        private async Task<EventRegisterOutput> RegisterEventForUserInternal(Event @event, User user)
+        private async Task<EventRegistration> RegisterAndSaveAsync(Event @event, User user)
         {
             var registration = await _eventManager.RegisterAsync(@event, user);
             await CurrentUnitOfWork.SaveChangesAsync();
-            return new EventRegisterOutput { RegistrationId = registration.Id };
+            return registration;
         }
     }
 }
