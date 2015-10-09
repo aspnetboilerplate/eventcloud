@@ -55,6 +55,17 @@ namespace EventCloud.Tests.Sessions
             }
         }
 
+
+        public async Task UsingDbContext(Func<EventCloudDbContext, Task> action)
+        {
+            using (var context = LocalIocManager.Resolve<EventCloudDbContext>())
+            {
+                context.DisableAllFilters();
+                await action(context);
+                await context.SaveChangesAsync();
+            }
+        }
+
         public T UsingDbContext<T>(Func<EventCloudDbContext, T> func)
         {
             T result;

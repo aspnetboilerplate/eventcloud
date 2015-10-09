@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Domain.Repositories;
 using Abp.UI;
@@ -23,18 +24,36 @@ namespace EventCloud.Events
             _eventManager = eventManager;
         }
 
-        public async Task<EventRegisterOutput> Register(EventRegisterInput input)
+        public async Task<EventRegisterOutput> Register(EntityRequestInput<Guid> input)
         {
-            var @event = await _eventRepository.FirstOrDefaultAsync(input.EventId);
+            var registration = await RegisterAndSaveAsync(
+                await GetEventAsync(input.Id),
+                await GetCurrentUserAsync()
+                );
+
+            return new EventRegisterOutput
+            {
+                RegistrationId = registration.Id
+            };
+        }
+
+        public async Task CancelRegistration(EntityRequestInput<Guid> input)
+        {
+            await _eventManager.CancelRegistrationAsync(
+                await GetEventAsync(input.Id),
+                await GetCurrentUserAsync()
+                );
+        }
+
+        private async Task<Event> GetEventAsync(Guid id)
+        {
+            var @event = await _eventRepository.FirstOrDefaultAsync(id);
             if (@event == null)
             {
                 throw new UserFriendlyException("Could not found the event, maybe it's deleted!");
             }
 
-            return new EventRegisterOutput
-            {
-                RegistrationId = (await RegisterAndSaveAsync(@event, await GetCurrentUserAsync())).Id
-            };
+            return @event;
         }
 
         private async Task<EventRegistration> RegisterAndSaveAsync(Event @event, User user)

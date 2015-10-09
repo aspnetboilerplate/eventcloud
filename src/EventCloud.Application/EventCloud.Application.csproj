@@ -96,7 +96,6 @@
   <ItemGroup>
     <Compile Include="EventCloudApplicationModule.cs" />
     <Compile Include="EventCloudAppServiceBase.cs" />
-    <Compile Include="Events\Dtos\EventRegisterInput.cs" />
     <Compile Include="Events\EventRegistrationAppService.cs" />
     <Compile Include="Events\Dtos\EventRegisterOutput.cs" />
     <Compile Include="Events\IEventRegistrationAppService.cs" />

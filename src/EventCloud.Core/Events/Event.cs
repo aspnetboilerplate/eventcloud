@@ -50,5 +50,10 @@ namespace EventCloud.Events
         {
             return Date < Clock.Now;
         }
+
+        public bool IsAllowedCancellationTimeEnded()
+        {
+            return Date.Subtract(Clock.Now).TotalHours <= 2.0; //2 hours can be defined as Event property and determined per event
+        }
     }
 }

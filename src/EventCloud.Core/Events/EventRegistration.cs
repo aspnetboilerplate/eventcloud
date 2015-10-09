@@ -2,6 +2,8 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
 using Abp.Domain.Entities.Auditing;
+using Abp.Domain.Repositories;
+using Abp.UI;
 using EventCloud.Users;
 
 namespace EventCloud.Events
@@ -41,6 +43,23 @@ namespace EventCloud.Events
                 UserId = @user.Id,
                 User = user
             };
+        }
+
+        public async Task CancelAsync(IRepository<EventRegistration> repository)
+        {
+            if (repository == null) { throw new ArgumentNullException(nameof(repository)); }
+
+            if (Event.IsInPast())
+            {
+                throw new UserFriendlyException("Can not cancel event which is in the past!"); //TODO: Localize
+            }
+
+            if (Event.IsAllowedCancellationTimeEnded())
+            {
+                throw new UserFriendlyException("It's too late to cancel your registration!"); //TODO: Localize
+            }
+
+            await repository.DeleteAsync(this);
         }
     }
 }

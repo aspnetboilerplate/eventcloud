@@ -23,5 +23,17 @@ namespace EventCloud.Events
                 await EventRegistration.CreateAsync(@event, user, _registrationPolicy)
                 );
         }
+
+        public async Task CancelRegistrationAsync(Event @event, User user)
+        {
+            var registration = await _eventRegistrationRepository.FirstOrDefaultAsync(r => r.EventId == @event.Id && r.UserId == user.Id);
+            if (registration == null)
+            {
+                //No need to cancel since there is no such a registration
+                return;
+            }
+
+            await registration.CancelAsync(_eventRegistrationRepository);
+        }
     }
 }

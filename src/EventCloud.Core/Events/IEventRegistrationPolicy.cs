@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using Abp;
 using Abp.Domain.Services;
 using EventCloud.Users;
 

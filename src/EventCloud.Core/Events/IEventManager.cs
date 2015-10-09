@@ -7,5 +7,7 @@ namespace EventCloud.Events
     public interface IEventManager : IDomainService
     {
         Task<EventRegistration> RegisterAsync(Event @event, User user);
+
+        Task CancelRegistrationAsync(Event @event, User user);
     }
 }
