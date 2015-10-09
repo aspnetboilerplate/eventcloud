@@ -2,8 +2,7 @@
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
-using Abp.Domain.Repositories;
-using Abp.UI;
+using Abp.Runtime.Session;
 using EventCloud.Events.Dtos;
 using EventCloud.Users;
 
@@ -12,34 +11,29 @@ namespace EventCloud.Events
     [AbpAuthorize]
     public class EventAppService : EventCloudAppServiceBase, IEventAppService
     {
-        private readonly IRepository<Event, Guid> _eventRepository;
         private readonly IEventManager _eventManager;
 
-        public EventAppService(
-            IRepository<Event, Guid> eventRepository,
-            IEventManager eventManager
-            )
+        public EventAppService(IEventManager eventManager)
         {
-            _eventRepository = eventRepository;
             _eventManager = eventManager;
         }
 
         public async Task Create(CreateEventInput input)
         {
-            var @event = Event.Create(input.Title, input.Date, input.Description, input.MinAgeToRegister);
-            await _eventRepository.InsertAsync(@event);
+            var @event = Event.Create(AbpSession.GetTenantId(), input.Title, input.Date, input.Description, input.MinAgeToRegister);
+            await _eventManager.CreateAsync(@event);
         }
 
         public async Task Cancel(EntityRequestInput<Guid> input)
         {
-            var @event = await _eventRepository.GetAsync(input.Id);
-            @event.Cancel();
+            var @event = await _eventManager.GetAsync(input.Id);
+            _eventManager.Cancel(@event);
         }
 
         public async Task<EventRegisterOutput> Register(EntityRequestInput<Guid> input)
         {
             var registration = await RegisterAndSaveAsync(
-                await GetEventAsync(input.Id),
+                await _eventManager.GetAsync(input.Id),
                 await GetCurrentUserAsync()
                 );
 
@@ -52,20 +46,9 @@ namespace EventCloud.Events
         public async Task CancelRegistration(EntityRequestInput<Guid> input)
         {
             await _eventManager.CancelRegistrationAsync(
-                await GetEventAsync(input.Id),
+                await _eventManager.GetAsync(input.Id),
                 await GetCurrentUserAsync()
                 );
-        }
-
-        private async Task<Event> GetEventAsync(Guid id)
-        {
-            var @event = await _eventRepository.FirstOrDefaultAsync(id);
-            if (@event == null)
-            {
-                throw new UserFriendlyException("Could not found the event, maybe it's deleted!");
-            }
-
-            return @event;
         }
 
         private async Task<EventRegistration> RegisterAndSaveAsync(Event @event, User user)

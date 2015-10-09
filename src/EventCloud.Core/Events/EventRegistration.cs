@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
+using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using Abp.Domain.Repositories;
 using Abp.UI;
@@ -9,8 +10,10 @@ using EventCloud.Users;
 namespace EventCloud.Events
 {
     [Table("AppEventRegistrations")]
-    public class EventRegistration : CreationAuditedEntity
+    public class EventRegistration : CreationAuditedEntity, IMustHaveTenant
     {
+        public int TenantId { get; set; }
+
         [ForeignKey("EventId")]
         public virtual Event Event { get; protected set; }
         public virtual Guid EventId { get; protected set; }
@@ -38,6 +41,7 @@ namespace EventCloud.Events
 
             return new EventRegistration
             {
+                TenantId = @event.TenantId,
                 EventId = @event.Id,
                 Event = @event,
                 UserId = @user.Id,

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using Abp.Timing;
 using Abp.UI;
@@ -9,10 +10,12 @@ using EventCloud.Domain.Events;
 namespace EventCloud.Events
 {
     [Table("AppEvents")]
-    public class Event : FullAuditedEntity<Guid>
+    public class Event : FullAuditedEntity<Guid>, IMustHaveTenant
     {
         public const int MaxTitleLength = 128;
         public const int MaxDescriptionLength = 128;
+
+        public int TenantId { get; set; }
 
         [Required]
         [StringLength(MaxTitleLength)]
@@ -38,11 +41,12 @@ namespace EventCloud.Events
 
         }
 
-        public static Event Create(string title, DateTime date, string description = null, int minAgeToRegister = 0)
+        public static Event Create(int tenantId, string title, DateTime date, string description = null, int minAgeToRegister = 0)
         {
             var @event = new Event
             {
                 Id = Guid.NewGuid(),
+                TenantId = tenantId,
                 Title = title,
                 Description = description,
                 MinAgeToRegister = minAgeToRegister,
@@ -63,7 +67,25 @@ namespace EventCloud.Events
             return Date.Subtract(Clock.Now).TotalHours <= 2.0; //2 hours can be defined as Event property and determined per event
         }
 
-        public void SetDate(DateTime date)
+        public void ChangeDate(DateTime date)
+        {
+            if (date == Date)
+            {
+                return;
+            }
+
+            SetDate(date);
+
+            DomainEvents.EventBus.Trigger(new EventDateChangedEvent(this));
+        }
+
+        internal void Cancel()
+        {
+            AssertNotInPast();
+            IsCancelled = true;
+        }
+
+        private void SetDate(DateTime date)
         {
             AssertNotCancelled();
 
@@ -78,14 +100,8 @@ namespace EventCloud.Events
             }
 
             Date = date;
-        }
 
-        public void Cancel()
-        {
-            AssertNotInPast();
-            IsCancelled = true;
-
-            DomainEvents.EventBus.Trigger(new EventCancelledEvent(this));
+            DomainEvents.EventBus.Trigger(new EventDateChangedEvent(this));
         }
 
         private void AssertNotInPast()

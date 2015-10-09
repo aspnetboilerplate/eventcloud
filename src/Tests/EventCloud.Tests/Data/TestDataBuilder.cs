@@ -1,6 +1,8 @@
+using System.Linq;
 using Abp.Timing;
 using EventCloud.EntityFramework;
 using EventCloud.Events;
+using EventCloud.MultiTenancy;
 
 namespace EventCloud.Tests.Data
 {
@@ -22,7 +24,9 @@ namespace EventCloud.Tests.Data
 
         private void CreateTestEvent()
         {
-            _context.Events.Add(Event.Create(TestEventTitle, Clock.Now.AddDays(1)));
+            var defaultTenant = _context.Tenants.Single(t => t.TenancyName == Tenant.DefaultTenantName);
+            _context.Events.Add(Event.Create(defaultTenant.Id, TestEventTitle, Clock.Now.AddDays(1)));
+            _context.SaveChanges();
         }
     }
 }
