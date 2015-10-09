@@ -30,6 +30,12 @@ namespace EventCloud.Events
             await _eventRepository.InsertAsync(@event);
         }
 
+        public async Task Cancel(EntityRequestInput<Guid> input)
+        {
+            var @event = await _eventRepository.GetAsync(input.Id);
+            @event.Cancel();
+        }
+
         public async Task<EventRegisterOutput> Register(EntityRequestInput<Guid> input)
         {
             var registration = await RegisterAndSaveAsync(

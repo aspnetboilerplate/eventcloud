@@ -10,6 +10,8 @@ namespace EventCloud.Events
     {
         Task Create(CreateEventInput input);
 
+        Task Cancel(EntityRequestInput<Guid> input);
+
         Task<EventRegisterOutput> Register(EntityRequestInput<Guid> input);
 
         Task CancelRegistration(EntityRequestInput<Guid> input);

@@ -52,6 +52,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
@@ -88,10 +96,13 @@
   <ItemGroup>
     <Compile Include="Configuration\EventCloudSettingNames.cs" />
     <Compile Include="Configuration\EventCloudSettingProvider.cs" />
+    <Compile Include="Domain\Events\DomainEvents.cs" />
     <Compile Include="EventCloudConsts.cs" />
     <Compile Include="EventCloudCoreModule.cs" />
     <Compile Include="Authorization\PermissionChecker.cs" />
     <Compile Include="Events\Event.cs" />
+    <Compile Include="Events\Notifications\EventCancellationUserEmailer.cs" />
+    <Compile Include="Events\EventCancelledEvent.cs" />
     <Compile Include="Events\EventCloudServiceBase.cs" />
     <Compile Include="Events\EventManager.cs" />
     <Compile Include="Events\EventRegistration.cs" />

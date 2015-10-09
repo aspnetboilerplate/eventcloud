@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Abp.Collections;
 using Abp.Configuration.Startup;
+using Abp.Events.Bus;
 using Abp.Modules;
 using Abp.Runtime.Session;
 using Abp.TestBase;
@@ -14,12 +15,19 @@ using EventCloud.MultiTenancy;
 using EventCloud.Users;
 using Castle.MicroKernel.Registration;
 using EntityFramework.DynamicFilters;
+using EventCloud.Domain.Events;
 using EventCloud.Tests.Data;
 
 namespace EventCloud.Tests.Sessions
 {
     public abstract class EventCloudTestBase : AbpIntegratedTestBase
     {
+        static EventCloudTestBase()
+        {
+            //Disable global event bus for unit tests
+            DomainEvents.EventBus = NullEventBus.Instance;
+        }
+
         protected EventCloudTestBase()
         {
             //Fake DbConnection using Effort!

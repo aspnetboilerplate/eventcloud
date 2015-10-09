@@ -65,6 +65,16 @@ namespace EventCloud.Tests.Events
         }
 
         [Fact]
+        public async Task Should_Cancel_Event()
+        {
+            //Act
+            await _eventAppService.Cancel(new EntityRequestInput<Guid>(GetTestEvent().Id));
+
+            //Assert
+            GetTestEvent().IsCancelled.ShouldBeTrue();
+        }
+
+        [Fact]
         public async Task Should_Register_To_Events()
         {
             //Arrange

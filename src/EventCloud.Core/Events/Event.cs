@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Domain.Entities.Auditing;
 using Abp.Timing;
 using Abp.UI;
+using EventCloud.Domain.Events;
 
 namespace EventCloud.Events
 {
@@ -24,6 +25,8 @@ namespace EventCloud.Events
 
         [Range(0, 60)]
         public virtual int MinAgeToRegister { get; protected set; }
+
+        public virtual bool IsCancelled { get; protected set; }
 
         /// <summary>
         /// We don't make constructor public and forcing to create events using <see cref="Create"/> method.
@@ -62,6 +65,8 @@ namespace EventCloud.Events
 
         public void SetDate(DateTime date)
         {
+            AssertNotCancelled();
+
             if (date < Clock.Now)
             {
                 throw new UserFriendlyException("Can not set an event's date in the past!");
@@ -73,6 +78,30 @@ namespace EventCloud.Events
             }
 
             Date = date;
+        }
+
+        public void Cancel()
+        {
+            AssertNotInPast();
+            IsCancelled = true;
+
+            DomainEvents.EventBus.Trigger(new EventCancelledEvent(this));
+        }
+
+        private void AssertNotInPast()
+        {
+            if (IsInPast())
+            {
+                throw new UserFriendlyException("This event was in the past");
+            }
+        }
+
+        private void AssertNotCancelled()
+        {
+            if (IsCancelled)
+            {
+                throw new UserFriendlyException("This event is canceled!");
+            }
         }
     }
 }
