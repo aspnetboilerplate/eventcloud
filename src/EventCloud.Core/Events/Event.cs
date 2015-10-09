@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Domain.Entities.Auditing;
 using Abp.Timing;
+using Abp.UI;
 
 namespace EventCloud.Events
 {
@@ -21,7 +22,7 @@ namespace EventCloud.Events
 
         public virtual DateTime Date { get; protected set; }
 
-        [Range(0, 128)]
+        [Range(0, 60)]
         public virtual int MinAgeToRegister { get; protected set; }
 
         /// <summary>
@@ -36,6 +37,13 @@ namespace EventCloud.Events
 
         public static Event Create(string title, DateTime date, string description = null, int minAgeToRegister = 0)
         {
+            if (string.IsNullOrWhiteSpace(title)) { throw new ArgumentException("title should not be null or empty or whitespace", nameof(title));}
+
+            if (date <= Clock.Now.AddHours(3)) //3 can be configurable per tenant
+            {
+                throw new UserFriendlyException("Should create an event 3 hours before at least!");
+            }
+
             return new Event
             {
                 Id = Guid.NewGuid(),

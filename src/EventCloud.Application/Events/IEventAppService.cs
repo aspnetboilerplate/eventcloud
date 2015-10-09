@@ -6,8 +6,10 @@ using EventCloud.Events.Dtos;
 
 namespace EventCloud.Events
 {
-    public interface IEventRegistrationAppService : IApplicationService
+    public interface IEventAppService : IApplicationService
     {
+        Task Create(CreateEventInput input);
+
         Task<EventRegisterOutput> Register(EntityRequestInput<Guid> input);
 
         Task CancelRegistration(EntityRequestInput<Guid> input);

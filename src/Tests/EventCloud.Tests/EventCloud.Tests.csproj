@@ -154,7 +154,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events\EventRegistrationAppService_Tests.cs" />
+    <Compile Include="Events\EventAppService_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sessions\SessionAppService_Tests.cs" />
     <Compile Include="Sessions\EventCloudTestBase.cs" />

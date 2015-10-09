@@ -96,9 +96,10 @@
   <ItemGroup>
     <Compile Include="EventCloudApplicationModule.cs" />
     <Compile Include="EventCloudAppServiceBase.cs" />
-    <Compile Include="Events\EventRegistrationAppService.cs" />
+    <Compile Include="Events\CreateEventInput.cs" />
+    <Compile Include="Events\EventAppService.cs" />
     <Compile Include="Events\Dtos\EventRegisterOutput.cs" />
-    <Compile Include="Events\IEventRegistrationAppService.cs" />
+    <Compile Include="Events\IEventAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles\IRoleAppService.cs" />
     <Compile Include="Roles\Dto\UpdateRolePermissionsInput.cs" />

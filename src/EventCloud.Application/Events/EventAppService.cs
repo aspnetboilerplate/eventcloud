@@ -10,18 +10,24 @@ using EventCloud.Users;
 namespace EventCloud.Events
 {
     [AbpAuthorize]
-    public class EventRegistrationAppService : EventCloudAppServiceBase, IEventRegistrationAppService
+    public class EventAppService : EventCloudAppServiceBase, IEventAppService
     {
         private readonly IRepository<Event, Guid> _eventRepository;
         private readonly IEventManager _eventManager;
 
-        public EventRegistrationAppService(
+        public EventAppService(
             IRepository<Event, Guid> eventRepository,
             IEventManager eventManager
             )
         {
             _eventRepository = eventRepository;
             _eventManager = eventManager;
+        }
+
+        public async Task Create(CreateEventInput input)
+        {
+            var @event = Event.Create(input.Title, input.Date, input.Description, input.MinAgeToRegister);
+            await _eventRepository.InsertAsync(@event);
         }
 
         public async Task<EventRegisterOutput> Register(EntityRequestInput<Guid> input)

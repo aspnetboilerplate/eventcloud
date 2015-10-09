@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.Runtime.Session;
+using Abp.Timing;
+using Abp.UI;
 using EventCloud.EntityFramework;
 using EventCloud.Events;
 using EventCloud.Tests.Data;
@@ -14,13 +16,52 @@ using Xunit;
 
 namespace EventCloud.Tests.Events
 {
-    public class EventRegistrationAppService_Tests : EventCloudTestBase
+    public class EventAppService_Tests : EventCloudTestBase
     {
-        private readonly IEventRegistrationAppService _eventRegistrationAppService;
+        private readonly IEventAppService _eventAppService;
 
-        public EventRegistrationAppService_Tests()
+        public EventAppService_Tests()
         {
-            _eventRegistrationAppService = Resolve<IEventRegistrationAppService>();
+            _eventAppService = Resolve<IEventAppService>();
+        }
+
+        [Fact]
+        public async Task Should_Create_Event()
+        {
+            //Arrange
+            var eventTitle = Guid.NewGuid().ToString();
+
+            //Act
+            await _eventAppService.Create(new CreateEventInput
+            {
+                Title = eventTitle,
+                Description = "A description",
+                Date = Clock.Now.AddDays(2)
+            });
+
+            //Assert
+            UsingDbContext(context =>
+            {
+                context.Events.FirstOrDefault(e => e.Title == eventTitle).ShouldNotBe(null);
+            });
+        }
+
+        [Fact]
+        public async Task Should_Not_Create_Events_In_The_Past()
+        {
+            //Arrange
+            var eventTitle = Guid.NewGuid().ToString();
+
+            //Act
+            await Assert.ThrowsAsync<UserFriendlyException>(async () =>
+            {
+                await _eventAppService.Create(new CreateEventInput
+                {
+                    Title = eventTitle,
+                    Description = "A description",
+                    Date = Clock.Now.AddDays(-1)
+                });
+            });
         }
 
         [Fact]
@@ -30,7 +71,7 @@ namespace EventCloud.Tests.Events
             var testEvent = GetTestEvent();
 
             //Act
-            var output = await _eventRegistrationAppService.Register(new EntityRequestInput<Guid>(testEvent.Id));
+            var output = await _eventAppService.Register(new EntityRequestInput<Guid>(testEvent.Id));
 
             //Assert
             output.RegistrationId.ShouldBeGreaterThan(0);
@@ -62,7 +103,7 @@ namespace EventCloud.Tests.Events
             });
 
             //Act
-            await _eventRegistrationAppService.CancelRegistration(new EntityRequestInput<Guid>(GetTestEvent().Id));
+            await _eventAppService.CancelRegistration(new EntityRequestInput<Guid>(GetTestEvent().Id));
 
             //Assert
             UsingDbContext(context =>
