@@ -37,21 +37,17 @@ namespace EventCloud.Events
 
         public static Event Create(string title, DateTime date, string description = null, int minAgeToRegister = 0)
         {
-            if (string.IsNullOrWhiteSpace(title)) { throw new ArgumentException("title should not be null or empty or whitespace", nameof(title));}
-
-            if (date <= Clock.Now.AddHours(3)) //3 can be configurable per tenant
-            {
-                throw new UserFriendlyException("Should create an event 3 hours before at least!");
-            }
-
-            return new Event
+            var @event = new Event
             {
                 Id = Guid.NewGuid(),
                 Title = title,
-                Date = date,
                 Description = description,
                 MinAgeToRegister = minAgeToRegister,
             };
+
+            @event.SetDate(date);
+
+            return @event;
         }
 
         public bool IsInPast()
@@ -62,6 +58,21 @@ namespace EventCloud.Events
         public bool IsAllowedCancellationTimeEnded()
         {
             return Date.Subtract(Clock.Now).TotalHours <= 2.0; //2 hours can be defined as Event property and determined per event
+        }
+
+        public void SetDate(DateTime date)
+        {
+            if (date < Clock.Now)
+            {
+                throw new UserFriendlyException("Can not set an event's date in the past!");
+            }
+
+            if (date <= Clock.Now.AddHours(3)) //3 can be configurable per tenant
+            {
+                throw new UserFriendlyException("Should set an event's date 3 hours before at least!");
+            }
+
+            Date = date;
         }
     }
 }
