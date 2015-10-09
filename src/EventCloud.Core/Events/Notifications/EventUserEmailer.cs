@@ -10,7 +10,7 @@ using EventCloud.Users;
 namespace EventCloud.Events.Notifications
 {
     public class EventUserEmailer : 
-        //IEventHandler<EntityCreatedEventData<Event>>,
+        IEventHandler<EntityCreatedEventData<Event>>,
         IEventHandler<EventDateChangedEvent>, 
         IEventHandler<EventCancelledEvent>,
         ITransientDependency
