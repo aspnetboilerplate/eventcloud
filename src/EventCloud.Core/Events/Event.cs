@@ -13,7 +13,7 @@ namespace EventCloud.Events
     public class Event : FullAuditedEntity<Guid>, IMustHaveTenant
     {
         public const int MaxTitleLength = 128;
-        public const int MaxDescriptionLength = 128;
+        public const int MaxDescriptionLength = 2048;
 
         public int TenantId { get; set; }
 
