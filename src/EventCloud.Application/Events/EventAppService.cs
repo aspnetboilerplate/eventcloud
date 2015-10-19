@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
+using Abp.Domain.Repositories;
 using Abp.Runtime.Session;
 using EventCloud.Events.Dtos;
 using EventCloud.Users;
+using Abp.AutoMapper;
 
 namespace EventCloud.Events
 {
@@ -12,10 +17,26 @@ namespace EventCloud.Events
     public class EventAppService : EventCloudAppServiceBase, IEventAppService
     {
         private readonly IEventManager _eventManager;
+        private readonly IRepository<Event, Guid> _eventRepository;
 
-        public EventAppService(IEventManager eventManager)
+        public EventAppService(
+            IEventManager eventManager, 
+            IRepository<Event, Guid> eventRepository)
         {
             _eventManager = eventManager;
+            _eventRepository = eventRepository;
+        }
+
+        public async Task<ListResultOutput<EventListDto>> GetList(GetEventListInput input)
+        {
+            var events = await _eventRepository
+                .GetAll()
+                .Include(e => e.Registrations)
+                .Where(e => !e.IsCancelled) //don't get canceled events
+                .OrderByDescending(e => e.CreationTime)
+                .ToListAsync();
+
+            return new ListResultOutput<EventListDto>(events.MapTo<List<EventListDto>>());
         }
 
         public async Task Create(CreateEventInput input)

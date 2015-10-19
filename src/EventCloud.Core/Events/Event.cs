@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Domain.Entities;
@@ -15,7 +16,7 @@ namespace EventCloud.Events
         public const int MaxTitleLength = 128;
         public const int MaxDescriptionLength = 2048;
 
-        public int TenantId { get; set; }
+        public virtual int TenantId { get; set; }
 
         [Required]
         [StringLength(MaxTitleLength)]
@@ -32,13 +33,21 @@ namespace EventCloud.Events
         public virtual bool IsCancelled { get; protected set; }
 
         /// <summary>
+        /// Gets or sets the maximum registration count.
+        /// 0: Unlimited.
+        /// </summary>
+        public virtual int MaxRegistrationCount { get; protected set; }
+
+        [ForeignKey("EventId")]
+        public virtual ICollection<EventRegistration> Registrations { get; set; }
+
+        /// <summary>
         /// We don't make constructor public and forcing to create events using <see cref="Create"/> method.
         /// But constructor can not be private since it's used by EntityFramework.
         /// Thats why we did it protected.
         /// </summary>
         protected Event()
         {
-
         }
 
         public static Event Create(int tenantId, string title, DateTime date, string description = null, int minAgeToRegister = 0)

@@ -16,12 +16,12 @@
     app.config([
         '$stateProvider', '$urlRouterProvider',
         function($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.otherwise('/');
+            $urlRouterProvider.otherwise('/events');
             $stateProvider
-                .state('home', {
-                    url: '/',
-                    templateUrl: '/App/Main/views/home/home.cshtml',
-                    menu: 'Home' //Matches to name of 'Home' menu in EventCloudNavigationProvider
+                .state('events', {
+                    url: '/events',
+                    templateUrl: '/App/Main/views/events/index.cshtml',
+                    menu: 'Events' //Matches to name of 'Events' menu in EventCloudNavigationProvider
                 })
                 .state('about', {
                     url: '/about',

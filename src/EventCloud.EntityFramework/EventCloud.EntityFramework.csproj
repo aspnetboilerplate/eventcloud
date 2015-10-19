@@ -120,6 +120,14 @@
     <Compile Include="Migrations\201509290947427_Upgrade_To_ModuleZero_0_7_1.Designer.cs">
       <DependentUpon>201509290947427_Upgrade_To_ModuleZero_0_7_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510191316051_Added_Event_Classes.cs" />
+    <Compile Include="Migrations\201510191316051_Added_Event_Classes.Designer.cs">
+      <DependentUpon>201510191316051_Added_Event_Classes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510191355136_Adde_Event_MaxRegistrationCount.cs" />
+    <Compile Include="Migrations\201510191355136_Adde_Event_MaxRegistrationCount.Designer.cs">
+      <DependentUpon>201510191355136_Adde_Event_MaxRegistrationCount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EventCloudDataModule.cs" />
     <Compile Include="Migrations\SeedData\DefaultTenantRoleAndUserBuilder.cs" />
@@ -145,6 +153,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509290947427_Upgrade_To_ModuleZero_0_7_1.resx">
       <DependentUpon>201509290947427_Upgrade_To_ModuleZero_0_7_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510191316051_Added_Event_Classes.resx">
+      <DependentUpon>201510191316051_Added_Event_Classes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510191355136_Adde_Event_MaxRegistrationCount.resx">
+      <DependentUpon>201510191355136_Adde_Event_MaxRegistrationCount.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

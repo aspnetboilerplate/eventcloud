@@ -1,0 +1,9 @@
+﻿<div ng-controller="app.views.events.index as vm">
+    <h2>Events</h2>
+    <div>
+        <div ng-repeat="event in vm.events">
+            <h3>{{event.title}}</h3>
+            <h4>{{event.date}}</h4>
+        </div>
+    </div>
+</div>

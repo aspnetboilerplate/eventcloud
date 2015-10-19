@@ -9,6 +9,7 @@ using Abp.Localization.Sources;
 using Abp.Localization.Sources.Xml;
 using Abp.Modules;
 using EventCloud.Api;
+using EventCloud.Web.Navigation;
 
 namespace EventCloud.Web
 {
@@ -20,7 +21,6 @@ namespace EventCloud.Web
             //Add/remove languages for your application
             Configuration.Localization.Languages.Add(new LanguageInfo("en", "English", "famfamfam-flag-england", true));
             Configuration.Localization.Languages.Add(new LanguageInfo("tr", "Türkçe", "famfamfam-flag-tr"));
-            Configuration.Localization.Languages.Add(new LanguageInfo("zh-CN", "简体中文", "famfamfam-flag-cn"));
 
             //Configure navigation/menu
             Configuration.Navigation.Providers.Add<EventCloudNavigationProvider>();

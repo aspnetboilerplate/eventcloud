@@ -125,7 +125,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Localization\Source\EventCloud-zh-CN.xml" />
     <EmbeddedResource Include="Localization\Source\EventCloud-tr.xml" />
     <EmbeddedResource Include="Localization\Source\EventCloud.xml" />
   </ItemGroup>

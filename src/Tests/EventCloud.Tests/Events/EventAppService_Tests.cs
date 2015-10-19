@@ -8,6 +8,7 @@ using Abp.Timing;
 using Abp.UI;
 using EventCloud.EntityFramework;
 using EventCloud.Events;
+using EventCloud.Events.Dtos;
 using EventCloud.Tests.Data;
 using EventCloud.Tests.Sessions;
 using NSubstitute;
@@ -23,6 +24,13 @@ namespace EventCloud.Tests.Events
         public EventAppService_Tests()
         {
             _eventAppService = Resolve<IEventAppService>();
+        }
+
+        [Fact]
+        public async Task Should_Get_Test_Events()
+        {
+            var output = await _eventAppService.GetList(new GetEventListInput());
+            output.Items.Count.ShouldBe(1);
         }
 
         [Fact]

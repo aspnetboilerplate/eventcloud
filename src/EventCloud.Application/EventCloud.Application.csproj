@@ -60,6 +60,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
@@ -96,9 +104,12 @@
   <ItemGroup>
     <Compile Include="EventCloudApplicationModule.cs" />
     <Compile Include="EventCloudAppServiceBase.cs" />
-    <Compile Include="Events\CreateEventInput.cs" />
+    <Compile Include="Events\Dtos\CreateEventInput.cs" />
     <Compile Include="Events\EventAppService.cs" />
     <Compile Include="Events\Dtos\EventRegisterOutput.cs" />
+    <Compile Include="Events\Dtos\EventListDto.cs" />
+    <Compile Include="Events\Dtos\EventRegistrationDto.cs" />
+    <Compile Include="Events\Dtos\GetEventListInput.cs" />
     <Compile Include="Events\IEventAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles\IRoleAppService.cs" />
@@ -114,7 +125,9 @@
     <Compile Include="Users\UserAppService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

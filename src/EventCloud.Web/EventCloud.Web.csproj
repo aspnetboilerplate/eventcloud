@@ -271,7 +271,7 @@
     <Content Include="App\Main\services\appSession.js" />
     <Content Include="App\Main\views\layout\header.js" />
     <Content Include="App\Main\views\layout\layout.js" />
-    <Content Include="App\Main\views\home\home.js" />
+    <Content Include="App\Main\views\events\index.js" />
     <Content Include="App\Main\views\about\about.js" />
     <Content Include="Content\bootstrap-cosmo.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -324,7 +324,7 @@
     <Content Include="Global.asax" />
     <Content Include="App\Main\main.less" />
     <Content Include="App\Main\views\layout\layout.cshtml" />
-    <Content Include="App\Main\views\home\home.cshtml" />
+    <Content Include="App\Main\views\events\index.cshtml" />
     <Content Include="App\Main\views\about\about.cshtml" />
     <Content Include="App\Main\web.config" />
     <Content Include="log4net.config" />
@@ -1179,7 +1179,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\EventCloudNavigationProvider.cs" />
+    <Compile Include="Navigation\AppPageNames.cs" />
+    <Compile Include="Navigation\EventCloudNavigationProvider.cs" />
     <Compile Include="App_Start\EventCloudWebModule.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Abp.Application.Services.Dto;
 
-namespace EventCloud.Events
+namespace EventCloud.Events.Dtos
 {
     public class CreateEventInput : IInputDto
     {
