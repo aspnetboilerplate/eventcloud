@@ -1,17 +1,8 @@
-﻿@using Abp.Extensions
-@model EventCloud.Web.Models.Account.RegisterViewModel
-@section Styles
-{
-    <link href="~/Views/Account/Login.css" rel="stylesheet" />
-}
-<div class="container">
+﻿@model EventCloud.Web.Models.Account.RegisterViewModel
+<div class="container entrance-container">
     <div id="LoginArea" class="row">
         <div class="col-lg-12">
-
-            <div class="text-center">
-                <img src="~/App/Main/images/eventcloud-logo.png" width="220" height="169"/>
-            </div>
-
+            @Html.Partial("_EntranceLogo")
             <div class="well bs-component">
                 <form class="form-horizontal" action="@(Url.Action("Register", "Account"))" method="POST">
                     <fieldset>

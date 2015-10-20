@@ -1,0 +1,22 @@
+﻿body {
+  background-image: url(/App/Main/images/istanbul_night.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.logo-area {
+  text-align: center;
+}
+.logo-area h1 {
+  color: white;
+}
+.entrance-container > .row {
+  max-width: 400px;
+  margin: 40px auto 10px auto;
+  background-color: black;
+  opacity: 0.9;
+}
+#TenantCreateHint {
+  margin-top: 10px;
+}
+/*# sourceMappingURL=Layout.css.map */

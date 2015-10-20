@@ -270,6 +270,8 @@
     <Content Include="App\Main\filters\momentjs-filters.js" />
     <Content Include="App\Main\images\abp-logo.png" />
     <Content Include="App\Main\images\eventcloud-logo.png" />
+    <Content Include="App\Main\images\istanbul_night.jpg" />
+    <Content Include="App\Main\images\istiklal_caddesi.jpg" />
     <Content Include="App\Main\main.css">
       <DependentUpon>main.less</DependentUpon>
     </Content>
@@ -1208,12 +1210,12 @@
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
-    <Content Include="Views\Account\Login.css">
-      <DependentUpon>Login.less</DependentUpon>
-    </Content>
     <Content Include="Views\Account\Login.js" />
-    <Content Include="Views\Account\Login.min.css">
-      <DependentUpon>Login.css</DependentUpon>
+    <Content Include="Views\Shared\Layout.css">
+      <DependentUpon>Layout.less</DependentUpon>
+    </Content>
+    <Content Include="Views\Shared\Layout.min.css">
+      <DependentUpon>Layout.css</DependentUpon>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -1248,16 +1250,17 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\sweetalert\sweet-alert.scss" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Login.less" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\RegisterResult.cshtml" />
     <Content Include="Views\Account\TenantSelection.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Scripts\underscore.min.map" />
-    <Content Include="Views\Account\Login.css.map">
-      <DependentUpon>Login.css</DependentUpon>
-    </Content>
     <Content Include="Views\Account\RegisterTenant.cshtml" />
+    <Content Include="Views\Shared\Layout.less" />
+    <Content Include="Views\Shared\Layout.css.map">
+      <DependentUpon>Layout.css</DependentUpon>
+    </Content>
+    <Content Include="Views\Account\_EntranceLogo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

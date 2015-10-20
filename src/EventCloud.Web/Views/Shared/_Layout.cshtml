@@ -1,13 +1,4 @@
 ﻿@using Abp.Web.Mvc.Extensions
-@*
-    IMPORTANT NOTES FROM ASP.NET BOILERPLATE:
-
-    This _Layout.cshtml is not used actually. It's left here if you want to add some classic style (MPA)
-    pages to your application.
-
-    See App/Main/views/layout/layout.cshtml for Angular application's layout page.
-*@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +18,8 @@
     @Html.IncludeStyle("~/Content/toastr.min.css")
     @Html.IncludeStyle("~/Content/flags/famfamfam-flags.css")
     @Html.IncludeStyle("~/Scripts/sweetalert/sweet-alert.css")
+
+    @Html.IncludeStyle("~/Views/Shared/Layout.min.css")
 
     @RenderSection("Styles", false)
 

@@ -1,22 +1,14 @@
 ﻿@using Abp.Web.Mvc.Extensions
 @using Microsoft.Owin.Security
 @model EventCloud.Web.Models.Account.LoginFormViewModel
-@section Styles
-{
-    @Html.IncludeStyle("~/Views/Account/Login.css")
-}
 @section Scripts
 {
     @Html.IncludeScript("~/Views/Account/Login.js")
 }
-<div class="container">
+<div class="container entrance-container">
     <div id="LoginArea" class="row">
         <div class="col-lg-12">
-
-            <div class="text-center">
-                <img src="~/App/Main/images/eventcloud-logo.png" width="220" height="169" />
-            </div>
-
+            @Html.Partial("_EntranceLogo")
             <div class="well bs-component">
                 <form id="LoginForm" class="form-horizontal" action="@(Url.Action("Login", "Account"))?returnUrl=@(Model.ReturnUrl)" method="POST">
                     <fieldset>
@@ -76,8 +68,8 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl"/>
-                        <input type="hidden" name="provider" value=""/>
+                        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+                        <input type="hidden" name="provider" value="" />
 
                         foreach (var provider in loginProviders)
                         {
@@ -93,7 +85,8 @@
             </div>
 
             <a href="@Url.Action("RegisterTenant", "Account")" class="btn btn-info">BECOME A TENANT *</a>
-            <p id="TenantCreateHint" class="text-muted"><small>* A tenant can have it's own users, roles and events. Create now, it's free!</small>
+            <p id="TenantCreateHint" class="text-muted">
+                <small>* A tenant can have it's own users and events. It's free!</small>
             </p>
         </div>
     </div>
