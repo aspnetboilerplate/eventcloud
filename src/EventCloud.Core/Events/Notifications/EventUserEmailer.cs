@@ -42,8 +42,8 @@ namespace EventCloud.Events.Notifications
 
             foreach (var user in users)
             {
-                var message = $"Hey! There is a new event '{eventData.Entity.Title}' on {eventData.Entity.Date}! Want to register?";
-                Logger.Debug($"TODO: Send email to {user.EmailAddress} -> {message}");
+                var message = string.Format("Hey! There is a new event '{0}' on {1}! Want to register?",eventData.Entity.Title, eventData.Entity.Date);
+                Logger.Debug(string.Format("TODO: Send email to {0} -> {1}", user.EmailAddress, message));
             }
         }
 
@@ -55,7 +55,7 @@ namespace EventCloud.Events.Notifications
             foreach (var user in registeredUsers)
             {
                 var message = eventData.Entity.Title + " event's date is changed! New date is: " + eventData.Entity.Date;
-                Logger.Debug($"TODO: Send email to {user.EmailAddress} -> {message}");
+                Logger.Debug(string.Format("TODO: Send email to {0} -> {1}",user.EmailAddress, message));
             }
         }
 
@@ -67,7 +67,7 @@ namespace EventCloud.Events.Notifications
             foreach (var user in registeredUsers)
             {
                 var message = eventData.Entity.Title + " event is canceled!";
-                Logger.Debug($"TODO: Send email to {user.EmailAddress} -> {message}");
+                Logger.Debug(string.Format("TODO: Send email to {0} -> {1}", user.EmailAddress, message));
             }
         }
     }

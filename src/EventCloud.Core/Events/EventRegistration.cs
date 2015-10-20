@@ -34,8 +34,8 @@ namespace EventCloud.Events
 
         public async static Task<EventRegistration> CreateAsync(Event @event, User user, IEventRegistrationPolicy registrationPolicy)
         {
-            if (@event == null) { throw new ArgumentNullException(nameof(@event)); }
-            if (user == null) { throw new ArgumentNullException(nameof(user)); }
+            if (@event == null) { throw new ArgumentNullException("event"); }
+            if (user == null) { throw new ArgumentNullException("user"); }
 
             await registrationPolicy.CheckRegistrationAttemptAsync(@event, user);
 
@@ -51,7 +51,7 @@ namespace EventCloud.Events
 
         public async Task CancelAsync(IRepository<EventRegistration> repository)
         {
-            if (repository == null) { throw new ArgumentNullException(nameof(repository)); }
+            if (repository == null) { throw new ArgumentNullException("repository"); }
 
             if (Event.IsInPast())
             {
