@@ -1,8 +1,4 @@
-﻿h2 {
-  padding-bottom: 8px;
-  border-bottom: 1px solid #9954bb;
-}
-#EventsIndex .event-list-item {
+﻿#EventsIndex .event-list-item {
   position: relative;
 }
 #EventsIndex .event-list-item .event-body {
@@ -35,12 +31,5 @@
 }
 #EventsIndex .event-list-item:hover .event-body {
   background-color: #dadada;
-}
-#EventDetail .event-date {
-  font-size: 0.5em;
-  color: #999;
-}
-#EventDetail .event-actions {
-  margin-top: 10px;
 }
 /*# sourceMappingURL=index.css.map */

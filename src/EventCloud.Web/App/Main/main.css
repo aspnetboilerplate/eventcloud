@@ -2,6 +2,10 @@
 body {
   padding-top: 80px;
 }
+h2 {
+  padding-bottom: 8px;
+  border-bottom: 1px solid #9954bb;
+}
 /* Styles for angular ui transition animations */
 .angular-animation-container {
   position: relative;
@@ -34,3 +38,4 @@ body {
   left: 2em;
   opacity: 0;
 }
+/*# sourceMappingURL=main.css.map */

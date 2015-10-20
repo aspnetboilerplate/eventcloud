@@ -261,6 +261,12 @@
     <Content Include="Abp\Framework\styles\abp.mixings.min.css" />
     <Content Include="Abp\Framework\styles\utils\ie10fix.css" />
     <Content Include="App\Main\app.js" />
+    <Content Include="App\Main\colors.css">
+      <DependentUpon>colors.less</DependentUpon>
+    </Content>
+    <Content Include="App\Main\colors.min.css">
+      <DependentUpon>colors.css</DependentUpon>
+    </Content>
     <Content Include="App\Main\filters\momentjs-filters.js" />
     <Content Include="App\Main\images\abp-logo.png" />
     <Content Include="App\Main\main.css">
@@ -270,7 +276,13 @@
       <DependentUpon>main.css</DependentUpon>
     </Content>
     <Content Include="App\Main\services\appSession.js" />
+    <Content Include="App\Main\views\events\detail.css">
+      <DependentUpon>detail.less</DependentUpon>
+    </Content>
     <Content Include="App\Main\views\events\detail.js" />
+    <Content Include="App\Main\views\events\detail.min.css">
+      <DependentUpon>detail.css</DependentUpon>
+    </Content>
     <Content Include="App\Main\views\events\index.css">
       <DependentUpon>index.less</DependentUpon>
     </Content>
@@ -407,6 +419,17 @@
       <DependentUpon>index.css</DependentUpon>
     </Content>
     <Content Include="App\Main\views\events\detail.cshtml" />
+    <Content Include="App\Main\views\events\detail.less" />
+    <Content Include="App\Main\views\events\detail.css.map">
+      <DependentUpon>detail.css</DependentUpon>
+    </Content>
+    <Content Include="App\Main\colors.less" />
+    <Content Include="App\Main\colors.css.map">
+      <DependentUpon>colors.css</DependentUpon>
+    </Content>
+    <Content Include="App\Main\main.css.map">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
