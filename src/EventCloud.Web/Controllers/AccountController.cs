@@ -292,6 +292,15 @@ namespace EventCloud.Web.Controllers
 
         #endregion
 
+        #region Tenant Registration
+
+        public ActionResult RegisterTenant()
+        {
+            return View("RegisterTenant", new RegisterTenantViewModel());
+        }
+
+        #endregion
+
         #region External Login
 
         [HttpPost]

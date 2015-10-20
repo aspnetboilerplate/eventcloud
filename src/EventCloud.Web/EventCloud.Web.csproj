@@ -269,6 +269,7 @@
     </Content>
     <Content Include="App\Main\filters\momentjs-filters.js" />
     <Content Include="App\Main\images\abp-logo.png" />
+    <Content Include="App\Main\images\eventcloud-logo.png" />
     <Content Include="App\Main\main.css">
       <DependentUpon>main.less</DependentUpon>
     </Content>
@@ -1219,6 +1220,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Models\Account\RegisterTenantViewModel.cs" />
     <Compile Include="Navigation\AppPageNames.cs" />
     <Compile Include="Navigation\EventCloudNavigationProvider.cs" />
     <Compile Include="App_Start\EventCloudWebModule.cs" />
@@ -1252,6 +1254,10 @@
     <Content Include="Views\Account\TenantSelection.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Scripts\underscore.min.map" />
+    <Content Include="Views\Account\Login.css.map">
+      <DependentUpon>Login.css</DependentUpon>
+    </Content>
+    <Content Include="Views\Account\RegisterTenant.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

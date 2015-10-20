@@ -12,6 +12,11 @@
 <div class="container">
     <div id="LoginArea" class="row">
         <div class="col-lg-12">
+
+            <div class="text-center">
+                <img src="~/App/Main/images/eventcloud-logo.png" width="220" height="169" />
+            </div>
+
             <div class="well bs-component">
                 <form id="LoginForm" class="form-horizontal" action="@(Url.Action("Login", "Account"))?returnUrl=@(Model.ReturnUrl)" method="POST">
                     <fieldset>
@@ -22,7 +27,7 @@
                             <div class="form-group">
                                 <div class="col-lg-12">
                                     <input type="text" class="form-control" id="TenancyName" placeholder="Tenancy name" required maxlength="@EventCloud.MultiTenancy.Tenant.MaxTenancyNameLength">
-                                    <span class="text-muted">Can be empty to login as host.</span>
+                                    @*<span class="text-muted">Can be empty to login as host.</span>*@
                                 </div>
                             </div>
                         }
@@ -71,8 +76,8 @@
                     {
                         @Html.AntiForgeryToken()
 
-                        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
-                        <input type="hidden" name="provider" value="" />
+                        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl"/>
+                        <input type="hidden" name="provider" value=""/>
 
                         foreach (var provider in loginProviders)
                         {
@@ -86,6 +91,10 @@
                 }
 
             </div>
+
+            <a href="@Url.Action("RegisterTenant", "Account")" class="btn btn-info">BECOME A TENANT *</a>
+            <p id="TenantCreateHint" class="text-muted"><small>* A tenant can have it's own users, roles and events. Create now, it's free!</small>
+            </p>
         </div>
     </div>
 </div>

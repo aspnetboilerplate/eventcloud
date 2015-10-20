@@ -5621,3 +5621,252 @@ WARN  2015-10-20 17:12:15,254 [184  ] Default                                  -
 DEBUG 2015-10-20 17:12:29,537 [201  ] ud.Events.Notifications.EventUserEmailer - TODO: Send email to admin@aspnetboilerplate.com -> Hey! There is a new event 'sad' on 10/21/2015 9:00:00 AM! Want to register?
 DEBUG 2015-10-20 17:12:29,537 [201  ] ud.Events.Notifications.EventUserEmailer - TODO: Send email to hikalkan@gmail.com -> Hey! There is a new event 'sad' on 10/21/2015 9:00:00 AM! Want to register?
 DEBUG 2015-10-20 17:12:36,971 [198  ] ud.Events.Notifications.EventUserEmailer - TODO: Send email to hikalkan@gmail.com -> sad event is canceled!
+DEBUG 2015-10-20 17:13:55,263 [14   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2015-10-20 17:13:57,091 [14   ] Abp.Modules.AbpModuleManager             - Found 13 ABP modules in total.
+DEBUG 2015-10-20 17:13:57,094 [14   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:13:57,096 [14   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:13:57,096 [14   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:13:57,096 [14   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:13:57,096 [14   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:13:57,096 [14   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:13:57,096 [14   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:13:57,096 [14   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:13:57,096 [14   ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudApplicationModule, EventCloud.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:13:57,097 [14   ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudCoreModule, EventCloud.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:13:57,097 [14   ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudDataModule, EventCloud.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:13:57,097 [14   ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.Web.EventCloudWebModule, EventCloud.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:13:57,097 [14   ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.Api.EventCloudWebApiModule, EventCloud.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:13:57,102 [14   ] Abp.Modules.AbpModuleManager             - 13 modules loaded.
+DEBUG 2015-10-20 17:13:57,824 [14   ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2015-10-20 17:13:57,828 [14   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2015-10-20 17:13:57,828 [14   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2015-10-20 17:13:57,829 [14   ] Abp.Localization.LocalizationManager     - Initialized localization source: EventCloud
+DEBUG 2015-10-20 17:13:57,829 [14   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2015-10-20 17:13:58,480 [14   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 6 classes defines auto mapping attributes
+DEBUG 2015-10-20 17:13:58,480 [14   ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventListDto
+DEBUG 2015-10-20 17:13:58,529 [14   ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventRegistrationDto
+DEBUG 2015-10-20 17:13:58,534 [14   ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventDetailOutput
+DEBUG 2015-10-20 17:13:58,535 [14   ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2015-10-20 17:13:58,538 [14   ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Sessions.Dto.UserLoginInfoDto
+DEBUG 2015-10-20 17:13:58,538 [14   ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2015-10-20 17:13:58,564 [14   ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Events.IEventAppService' with service name 'app/event'.
+DEBUG 2015-10-20 17:13:58,565 [14   ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2015-10-20 17:13:58,566 [14   ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2015-10-20 17:13:58,566 [14   ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Sessions.ISessionAppService' with service name 'app/session'.
+WARN  2015-10-20 17:14:00,336 [97   ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:15:16,371 [172  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:15:32,738 [157  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:16:25,386 [207  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:16:51,104 [27   ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+DEBUG 2015-10-20 17:17:52,524 [177  ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2015-10-20 17:17:54,572 [177  ] Abp.Modules.AbpModuleManager             - Found 13 ABP modules in total.
+DEBUG 2015-10-20 17:17:54,575 [177  ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:17:54,576 [177  ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:17:54,576 [177  ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:17:54,576 [177  ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:17:54,576 [177  ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:17:54,576 [177  ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:17:54,577 [177  ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:17:54,577 [177  ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:17:54,577 [177  ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudApplicationModule, EventCloud.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:17:54,577 [177  ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudCoreModule, EventCloud.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:17:54,577 [177  ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudDataModule, EventCloud.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:17:54,577 [177  ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.Web.EventCloudWebModule, EventCloud.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:17:54,577 [177  ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.Api.EventCloudWebApiModule, EventCloud.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:17:54,581 [177  ] Abp.Modules.AbpModuleManager             - 13 modules loaded.
+DEBUG 2015-10-20 17:17:55,348 [177  ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2015-10-20 17:17:55,348 [177  ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2015-10-20 17:17:55,349 [177  ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2015-10-20 17:17:55,349 [177  ] Abp.Localization.LocalizationManager     - Initialized localization source: EventCloud
+DEBUG 2015-10-20 17:17:55,349 [177  ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2015-10-20 17:17:56,087 [177  ] Abp.AutoMapper.AbpAutoMapperModule       - Found 6 classes defines auto mapping attributes
+DEBUG 2015-10-20 17:17:56,087 [177  ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventListDto
+DEBUG 2015-10-20 17:17:56,112 [177  ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventRegistrationDto
+DEBUG 2015-10-20 17:17:56,118 [177  ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventDetailOutput
+DEBUG 2015-10-20 17:17:56,118 [177  ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2015-10-20 17:17:56,121 [177  ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Sessions.Dto.UserLoginInfoDto
+DEBUG 2015-10-20 17:17:56,121 [177  ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2015-10-20 17:17:56,138 [177  ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Events.IEventAppService' with service name 'app/event'.
+DEBUG 2015-10-20 17:17:56,138 [177  ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2015-10-20 17:17:56,139 [177  ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2015-10-20 17:17:56,139 [177  ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Sessions.ISessionAppService' with service name 'app/session'.
+WARN  2015-10-20 17:17:58,213 [162  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+DEBUG 2015-10-20 17:24:36,159 [51   ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2015-10-20 17:24:38,173 [51   ] Abp.Modules.AbpModuleManager             - Found 13 ABP modules in total.
+DEBUG 2015-10-20 17:24:38,176 [51   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:24:38,178 [51   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:24:38,178 [51   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:24:38,178 [51   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:24:38,178 [51   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:24:38,178 [51   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:24:38,178 [51   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:24:38,178 [51   ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:24:38,178 [51   ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudApplicationModule, EventCloud.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:24:38,179 [51   ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudCoreModule, EventCloud.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:24:38,179 [51   ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudDataModule, EventCloud.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:24:38,179 [51   ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.Web.EventCloudWebModule, EventCloud.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:24:38,179 [51   ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.Api.EventCloudWebApiModule, EventCloud.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:24:38,182 [51   ] Abp.Modules.AbpModuleManager             - 13 modules loaded.
+DEBUG 2015-10-20 17:24:38,939 [51   ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2015-10-20 17:24:38,940 [51   ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2015-10-20 17:24:38,940 [51   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2015-10-20 17:24:38,940 [51   ] Abp.Localization.LocalizationManager     - Initialized localization source: EventCloud
+DEBUG 2015-10-20 17:24:38,941 [51   ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2015-10-20 17:24:39,651 [51   ] Abp.AutoMapper.AbpAutoMapperModule       - Found 6 classes defines auto mapping attributes
+DEBUG 2015-10-20 17:24:39,651 [51   ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventListDto
+DEBUG 2015-10-20 17:24:39,678 [51   ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventRegistrationDto
+DEBUG 2015-10-20 17:24:39,684 [51   ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventDetailOutput
+DEBUG 2015-10-20 17:24:39,684 [51   ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2015-10-20 17:24:39,687 [51   ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Sessions.Dto.UserLoginInfoDto
+DEBUG 2015-10-20 17:24:39,687 [51   ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2015-10-20 17:24:39,704 [51   ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Events.IEventAppService' with service name 'app/event'.
+DEBUG 2015-10-20 17:24:39,704 [51   ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2015-10-20 17:24:39,705 [51   ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2015-10-20 17:24:39,705 [51   ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Sessions.ISessionAppService' with service name 'app/session'.
+WARN  2015-10-20 17:24:41,656 [204  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:25:17,182 [218  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:25:38,833 [9    ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:25:41,761 [32   ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:25:54,572 [190  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:26:23,728 [226  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:26:33,655 [213  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:27:22,034 [109  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:27:27,006 [188  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:27:30,583 [107  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+ERROR 2015-10-20 17:28:09,603 [174  ] lers.Filters.AbpExceptionFilterAttribute - Abp.AbpException: Session.TenantId is null! Possible problems: User is not logged in, current user in not tenant user or this is not a multi-tenant application.
+   at Abp.Runtime.Session.AbpSessionExtensions.GetTenantId(IAbpSession session)
+   at EventCloud.Events.EventAppService.<Create>d__a.MoveNext() in d:\Halil\GitHub\sample-eventcloud\src\EventCloud.Application\Events\EventAppService.cs:line 61
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Abp.Threading.InternalAsyncHelper.<AwaitTaskWithPostActionAndFinally>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Abp.Threading.InternalAsyncHelper.<AwaitTaskWithFinally>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Threading.Tasks.TaskHelpersExtensions.<CastToObject>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Abp.WebApi.Controllers.Dynamic.Selectors.DynamicHttpActionDescriptor.<ExecuteAsync>b__0(Task`1 task)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.AuthenticationFilterResult.<ExecuteAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__0.MoveNext()
+Abp.AbpException: Session.TenantId is null! Possible problems: User is not logged in, current user in not tenant user or this is not a multi-tenant application.
+   at Abp.Runtime.Session.AbpSessionExtensions.GetTenantId(IAbpSession session)
+   at EventCloud.Events.EventAppService.<Create>d__a.MoveNext() in d:\Halil\GitHub\sample-eventcloud\src\EventCloud.Application\Events\EventAppService.cs:line 61
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Abp.Threading.InternalAsyncHelper.<AwaitTaskWithPostActionAndFinally>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Abp.Threading.InternalAsyncHelper.<AwaitTaskWithFinally>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Threading.Tasks.TaskHelpersExtensions.<CastToObject>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at Abp.WebApi.Controllers.Dynamic.Selectors.DynamicHttpActionDescriptor.<ExecuteAsync>b__0(Task`1 task)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.AuthenticationFilterResult.<ExecuteAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__0.MoveNext()
+WARN  2015-10-20 17:28:14,414 [174  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:33:46,653 [33   ] Default                                  - Can not find 'Name' in localization source 'EventCloud'!
+WARN  2015-10-20 17:33:46,653 [33   ] Default                                  - Can not find 'Surname' in localization source 'EventCloud'!
+WARN  2015-10-20 17:33:46,653 [33   ] Default                                  - Can not find 'EmailAddress' in localization source 'EventCloud'!
+WARN  2015-10-20 17:33:46,653 [33   ] Default                                  - Can not find 'UserName' in localization source 'EventCloud'!
+WARN  2015-10-20 17:33:46,926 [203  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+DEBUG 2015-10-20 17:38:19,437 [8    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2015-10-20 17:38:20,444 [8    ] Abp.Modules.AbpModuleManager             - Found 13 ABP modules in total.
+DEBUG 2015-10-20 17:38:20,447 [8    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:38:20,449 [8    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:38:20,449 [8    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:38:20,449 [8    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:38:20,450 [8    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:38:20,450 [8    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:38:20,450 [8    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:38:20,450 [8    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:38:20,450 [8    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudApplicationModule, EventCloud.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:38:20,450 [8    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudCoreModule, EventCloud.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:38:20,450 [8    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudDataModule, EventCloud.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:38:20,450 [8    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.Web.EventCloudWebModule, EventCloud.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:38:20,450 [8    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.Api.EventCloudWebApiModule, EventCloud.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-10-20 17:38:20,454 [8    ] Abp.Modules.AbpModuleManager             - 13 modules loaded.
+DEBUG 2015-10-20 17:38:21,300 [8    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2015-10-20 17:38:21,303 [8    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2015-10-20 17:38:21,304 [8    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2015-10-20 17:38:21,304 [8    ] Abp.Localization.LocalizationManager     - Initialized localization source: EventCloud
+DEBUG 2015-10-20 17:38:21,304 [8    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2015-10-20 17:38:22,001 [8    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 6 classes defines auto mapping attributes
+DEBUG 2015-10-20 17:38:22,001 [8    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventListDto
+DEBUG 2015-10-20 17:38:22,048 [8    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventRegistrationDto
+DEBUG 2015-10-20 17:38:22,053 [8    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventDetailOutput
+DEBUG 2015-10-20 17:38:22,054 [8    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2015-10-20 17:38:22,057 [8    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Sessions.Dto.UserLoginInfoDto
+DEBUG 2015-10-20 17:38:22,057 [8    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2015-10-20 17:38:22,084 [8    ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Events.IEventAppService' with service name 'app/event'.
+DEBUG 2015-10-20 17:38:22,084 [8    ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2015-10-20 17:38:22,085 [8    ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2015-10-20 17:38:22,085 [8    ] Default                                  - Dynamic web api controller is created for type 'EventCloud.Sessions.ISessionAppService' with service name 'app/session'.
+WARN  2015-10-20 17:38:25,397 [225  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:38:32,774 [225  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:38:35,885 [221  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:38:53,069 [187  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:38:55,213 [187  ] Default                                  - Can not find 'Name' in localization source 'EventCloud'!
+WARN  2015-10-20 17:38:55,213 [187  ] Default                                  - Can not find 'Surname' in localization source 'EventCloud'!
+WARN  2015-10-20 17:38:55,213 [187  ] Default                                  - Can not find 'EmailAddress' in localization source 'EventCloud'!
+WARN  2015-10-20 17:38:55,213 [187  ] Default                                  - Can not find 'Admin password' in localization source 'EventCloud'!
+WARN  2015-10-20 17:38:55,518 [223  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:43:38,815 [102  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:43:42,735 [170  ] Default                                  - Can not find 'Name' in localization source 'EventCloud'!
+WARN  2015-10-20 17:43:42,735 [170  ] Default                                  - Can not find 'Surname' in localization source 'EventCloud'!
+WARN  2015-10-20 17:43:42,735 [170  ] Default                                  - Can not find 'EmailAddress' in localization source 'EventCloud'!
+WARN  2015-10-20 17:43:42,736 [170  ] Default                                  - Can not find 'UserName' in localization source 'EventCloud'!
+WARN  2015-10-20 17:43:43,028 [194  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:43:44,695 [172  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:44:19,016 [205  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:44:20,480 [205  ] Default                                  - Can not find 'Name' in localization source 'EventCloud'!
+WARN  2015-10-20 17:44:20,480 [205  ] Default                                  - Can not find 'Surname' in localization source 'EventCloud'!
+WARN  2015-10-20 17:44:20,481 [205  ] Default                                  - Can not find 'EmailAddress' in localization source 'EventCloud'!
+WARN  2015-10-20 17:44:20,481 [205  ] Default                                  - Can not find 'Admin password' in localization source 'EventCloud'!
+WARN  2015-10-20 17:44:20,776 [165  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:44:23,344 [7    ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:44:25,292 [7    ] Default                                  - Can not find 'Name' in localization source 'EventCloud'!
+WARN  2015-10-20 17:44:25,292 [7    ] Default                                  - Can not find 'Surname' in localization source 'EventCloud'!
+WARN  2015-10-20 17:44:25,292 [7    ] Default                                  - Can not find 'EmailAddress' in localization source 'EventCloud'!
+WARN  2015-10-20 17:44:25,292 [7    ] Default                                  - Can not find 'UserName' in localization source 'EventCloud'!
+WARN  2015-10-20 17:44:25,586 [157  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+WARN  2015-10-20 17:44:29,246 [203  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
