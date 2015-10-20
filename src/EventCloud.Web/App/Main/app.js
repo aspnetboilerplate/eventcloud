@@ -23,6 +23,11 @@
                     templateUrl: '/App/Main/views/events/index.cshtml',
                     menu: 'Events' //Matches to name of 'Events' menu in EventCloudNavigationProvider
                 })
+                .state('eventDetail', {
+                    url: '/events/:id',
+                    templateUrl: '/App/Main/views/events/detail.cshtml',
+                    menu: 'Events' //Matches to name of 'Events' menu in EventCloudNavigationProvider
+                })
                 .state('about', {
                     url: '/about',
                     templateUrl: '/App/Main/views/about/about.cshtml',

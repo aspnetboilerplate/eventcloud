@@ -10,6 +10,7 @@ using Abp.Runtime.Session;
 using EventCloud.Events.Dtos;
 using EventCloud.Users;
 using Abp.AutoMapper;
+using Abp.UI;
 
 namespace EventCloud.Events
 {
@@ -37,6 +38,21 @@ namespace EventCloud.Events
                 .ToListAsync();
 
             return new ListResultOutput<EventListDto>(events.MapTo<List<EventListDto>>());
+        }
+
+        public async Task<EventDetailOutput> GetDetail(EntityRequestInput<Guid> input)
+        {
+            var @event = await _eventRepository
+                .GetAll()
+                .Include(e => e.Registrations)
+                .FirstOrDefaultAsync();
+
+            if (@event == null)
+            {
+                throw new UserFriendlyException("Could not found the event, maybe it's deleted.");
+            }
+
+            return @event.MapTo<EventDetailOutput>();
         }
 
         public async Task Create(CreateEventInput input)

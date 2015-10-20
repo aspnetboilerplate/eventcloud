@@ -1,0 +1,68 @@
+﻿@import "../../../../Abp/Framework/styles/abp.mixings.less";
+
+@primaryColor: #9954bb;
+
+h2 {
+    padding-bottom: 8px;
+    border-bottom: 1px solid @primaryColor;
+}
+
+#EventsIndex {
+
+    .event-list-item {
+        position: relative;
+
+        .event-body {
+            background-color: #f1f1f1;
+            border-left: 4px solid @primaryColor;
+            padding: 10px;
+            margin-bottom: 10px;
+            -moz-transition: all linear 0.2s;
+            -o-transition: all linear 0.2s;
+            -webkit-transition: all linear 0.2s;
+            transition: all linear 0.2s;
+
+            .event-title {
+                margin-top: 0;
+                font-size: 1.4em;
+            }
+
+            .event-description {
+            }
+
+            .event-registration-info {
+                color: #999;
+                font-size: 0.8em;
+            }
+
+            .event-actions {
+                position: absolute;
+                right: 22px;
+                bottom: 18px;
+            }
+
+            .event-date {
+                position: absolute;
+                right: 22px;
+                top: 10px;
+            }
+        }
+
+        &:hover {
+            .event-body {
+                background-color: #dadada;
+            }
+        }
+    }
+}
+
+#EventDetail {
+    .event-date {
+        font-size: 0.5em;
+        color:#999;
+    }
+
+    .event-actions{
+        margin-top: 10px;
+    }
+}
