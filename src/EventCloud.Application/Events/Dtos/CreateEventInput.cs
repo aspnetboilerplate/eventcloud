@@ -14,8 +14,5 @@ namespace EventCloud.Events.Dtos
         public string Description { get; set; }
 
         public DateTime Date { get; set; }
-
-        [Range(0, 60)]
-        public int MinAgeToRegister { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿(function () {
     var controllerId = 'app.views.events.detail';
     angular.module('app').controller(controllerId, [
-        '$scope','$stateParams', 'abp.services.app.event',
-        function ($scope, $stateParams, eventService) {
+        '$scope', '$state','$stateParams', 'abp.services.app.event',
+        function ($scope, $state, $stateParams, eventService) {
             var vm = this;
 
             function loadEvent() {
@@ -35,7 +35,7 @@
                 eventService.register({
                     id: vm.event.id
                 }).success(function (result) {
-                    abp.notify.info('Successfully registered to event. Your registration id: ' + result.registrationId + ".");
+                    abp.notify.success('Successfully registered to event. Your registration id: ' + result.registrationId + ".");
                     loadEvent();
                 });
             };
@@ -44,13 +44,18 @@
                 eventService.cancelRegistration({
                     id: vm.event.id
                 }).success(function () {
-                    abp.notify.info('Cancelled your registration.');
+                    abp.notify.info('Canceled your registration.');
                     loadEvent();
                 });
             };
 
             vm.cancelEvent = function() {
-
+                eventService.cancel({
+                    id: vm.event.id
+                }).success(function () {
+                    abp.notify.info('Canceled the event.');
+                    $state.go('events');
+                });
             };
 
             loadEvent();

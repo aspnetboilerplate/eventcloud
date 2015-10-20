@@ -27,9 +27,6 @@ namespace EventCloud.Events
 
         public virtual DateTime Date { get; protected set; }
 
-        [Range(0, 60)]
-        public virtual int MinAgeToRegister { get; protected set; }
-
         public virtual bool IsCancelled { get; protected set; }
 
         /// <summary>
@@ -50,15 +47,14 @@ namespace EventCloud.Events
         {
         }
 
-        public static Event Create(int tenantId, string title, DateTime date, string description = null, int minAgeToRegister = 0)
+        public static Event Create(int tenantId, string title, DateTime date, string description = null)
         {
             var @event = new Event
             {
                 Id = Guid.NewGuid(),
                 TenantId = tenantId,
                 Title = title,
-                Description = description,
-                MinAgeToRegister = minAgeToRegister,
+                Description = description
             };
 
             @event.SetDate(date);

@@ -1,9 +1,14 @@
 ﻿<div id="EventsIndex" ng-controller="app.views.events.index as vm">
-    <h2>Events</h2>
+    <h2>
+        Events
+        <a ng-click="vm.openNewEventDialog()" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New event</a>
+    </h2>
     <div class="row">
         <div ng-repeat="event in vm.events" class="event-list-item col-md-6">
             <div class="event-body">
-                <h3 class="event-title">{{event.title}}</h3>
+                <h3 class="event-title">
+                    {{event.title}}
+                </h3>
                 <p class="event-description">{{event.description}}</p>
                 <div class="event-registration-info">
                     <span ng-if="event.registrationsCount < event.maxRegistrationCount">

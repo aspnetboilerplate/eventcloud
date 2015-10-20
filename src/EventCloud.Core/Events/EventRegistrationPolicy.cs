@@ -24,7 +24,6 @@ namespace EventCloud.Events
             if (user == null) { throw new ArgumentNullException("event"); }
 
             CheckEventDate(@event);
-            CheckUserAge(@event, user);
             await CheckEventRegistrationFrequencyAsync(user);
         }
 
@@ -33,18 +32,6 @@ namespace EventCloud.Events
             if (@event.IsInPast())
             {
                 throw new UserFriendlyException("Can not register event in the past!"); //TODO: Localize
-            }
-        }
-
-        private static void CheckUserAge(Event @event, User user)
-        {
-            if (@event.MinAgeToRegister > 0)
-            {
-                var userAge = Clock.Now.Year - user.BirthYear;
-                if (userAge < @event.MinAgeToRegister)
-                {
-                    throw new UserFriendlyException("Can not register to the event since user's age is not sufficient!"); //TODO: Localize
-                }
             }
         }
 

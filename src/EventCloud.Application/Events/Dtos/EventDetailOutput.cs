@@ -14,8 +14,6 @@ namespace EventCloud.Events.Dtos
 
         public DateTime Date { get; set; }
 
-        public int MinAgeToRegister { get; set; }
-
         public bool IsCancelled { get; set; }
 
         public virtual int MaxRegistrationCount { get; protected set; }

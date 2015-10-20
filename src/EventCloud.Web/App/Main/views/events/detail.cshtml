@@ -13,7 +13,7 @@
     <hr/>
 
     <div>
-        <h5>{{vm.event.registrationsCount}} registered users (of total {{vm.event.maxRegistrationCount}} available registration)</h5>
+        <h5>{{vm.event.registrationsCount}} registered users (of {{vm.event.maxRegistrationCount}} available registrations)</h5>
         <div class="registrar" ng-repeat="registration in vm.event.registrations">
             <div class="registrar-thumbnail">{{vm.getUserThumbnail(registration)}}</div>
             <div class="registrar-body">

@@ -276,6 +276,7 @@
       <DependentUpon>main.css</DependentUpon>
     </Content>
     <Content Include="App\Main\services\appSession.js" />
+    <Content Include="App\Main\views\events\createDialog.js" />
     <Content Include="App\Main\views\events\detail.css">
       <DependentUpon>detail.less</DependentUpon>
     </Content>
@@ -430,6 +431,7 @@
     <Content Include="App\Main\main.css.map">
       <DependentUpon>main.css</DependentUpon>
     </Content>
+    <Content Include="App\Main\views\events\createDialog.cshtml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
