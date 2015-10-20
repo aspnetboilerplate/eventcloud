@@ -3,6 +3,7 @@
     <h2>{{vm.event.title}} <span class="event-date"><i class="fa fa-calendar-times-o"></i> {{vm.event.date | momentFormat:'DD.MM.YYYY'}}</span></h2>
 
     <div class="event-actions">
+        <a class="btn btn-sm btn-default" ng-click="vm.backToEventsPage()"><i class="fa fa-arrow-circle-left"></i> back to events</a>
         <a class="btn btn-sm btn-primary" ng-if="!vm.isRegistered()" ng-click="vm.register()">Register</a>
         <a class="btn btn-sm btn-warning" ng-if="vm.isRegistered()" ng-click="vm.cancelRegistertration()">Cancel registration</a>
         <a class="btn btn-sm btn-danger" ng-if="vm.isEventCreator()" ng-click="vm.cancelEvent()">Cancel the event</a>

@@ -54,8 +54,12 @@
                     id: vm.event.id
                 }).success(function () {
                     abp.notify.info('Canceled the event.');
-                    $state.go('events');
+                    vm.backToEventsPage();
                 });
+            };
+
+            vm.backToEventsPage = function() {
+                $state.go('events');
             };
 
             loadEvent();
