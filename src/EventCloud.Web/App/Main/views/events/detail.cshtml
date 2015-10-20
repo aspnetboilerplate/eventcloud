@@ -2,21 +2,25 @@
 
     <h2>{{vm.event.title}} <span class="event-date"><i class="fa fa-calendar-times-o"></i> {{vm.event.date | momentFormat:'DD.MM.YYYY'}}</span></h2>
 
-    <p>{{vm.event.description}}</p>
-
-    <div class="event-registration-info">
-        <span ng-if="vm.event.registrationsCount < vm.event.maxRegistrationCount">
-            {{vm.event.registrationsCount}} of {{vm.event.maxRegistrationCount}} registred.
-        </span>
-        <span ng-if="vm.event.registrationsCount >= vm.event.maxRegistrationCount">
-            No registration available
-        </span>
+    <div class="event-actions">
+        <a class="btn btn-sm btn-primary" ng-if="!vm.isRegistered()" ng-click="vm.register()">Register</a>
+        <a class="btn btn-sm btn-warning" ng-if="vm.isRegistered()" ng-click="vm.cancelRegistertration()">Cancel registration</a>
+        <a class="btn btn-sm btn-danger" ng-if="vm.isEventCreator()" ng-click="vm.cancelEvent()">Cancel the event</a>
     </div>
 
-    <div class="event-actions">
-        <a class="btn btn-sm btn-primary" ng-click="register()">Register</a>
-        <a class="btn btn-sm btn-warning" ng-click="cancelRegistertration()">Cancel registration</a>
-        <a class="btn btn-sm btn-danger" ng-click="cancelRegistertration()">Cancel the event</a>
+    <p>{{vm.event.description}}</p>
+
+    <hr/>
+
+    <div>
+        <h5>{{vm.event.registrationsCount}} registered users (of total {{vm.event.maxRegistrationCount}} available registration)</h5>
+        <div class="registrar" ng-repeat="registration in vm.event.registrations">
+            <div class="registrar-thumbnail">{{vm.getUserThumbnail(registration)}}</div>
+            <div class="registrar-body">
+                <span class="registrar-name">{{registration.userName}} {{registration.userSurname}}</span>
+                <span class="registrar-time">{{registration.creationTime | fromNow}}</span>
+            </div>
+        </div>
     </div>
 
 </div>

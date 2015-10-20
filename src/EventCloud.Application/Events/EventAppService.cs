@@ -45,6 +45,7 @@ namespace EventCloud.Events
             var @event = await _eventRepository
                 .GetAll()
                 .Include(e => e.Registrations)
+                .Where(e => e.Id == input.Id)
                 .FirstOrDefaultAsync();
 
             if (@event == null)

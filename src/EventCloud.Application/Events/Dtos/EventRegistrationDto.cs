@@ -11,8 +11,8 @@ namespace EventCloud.Events.Dtos
 
         public virtual long UserId { get; protected set; }
 
-        public virtual long UserName { get; protected set; }
+        public virtual string UserName { get; protected set; }
 
-        public virtual long UserSurname { get; protected set; }
+        public virtual string UserSurname { get; protected set; }
     }
 }

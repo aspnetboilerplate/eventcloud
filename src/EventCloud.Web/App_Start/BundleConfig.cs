@@ -37,6 +37,8 @@ namespace EventCloud.Web
 
                         "~/Scripts/bootstrap.min.js",
 
+                        "~/Scripts/underscore.min.js",
+
                         "~/Scripts/moment-with-locales.min.js",
                         "~/Scripts/jquery.blockUI.js",
                         "~/Scripts/toastr.min.js",
