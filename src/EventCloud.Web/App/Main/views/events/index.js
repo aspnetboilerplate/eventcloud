@@ -6,9 +6,12 @@
             var vm = this;
 
             vm.events = [];
+            vm.filters = {
+                includeCanceledEvents: false
+            };
 
             function loadEvents() {
-                eventService.getList({}).success(function (result) {
+                eventService.getList(vm.filters).success(function (result) {
                     vm.events = result.items;
                 });
             };
@@ -24,6 +27,12 @@
                     loadEvents();
                 });
             };
+
+            $scope.$watch('vm.filters.includeCanceledEvents', function (newValue, oldValue) {
+                if (newValue != oldValue) {
+                    loadEvents();
+                }
+            });
 
             loadEvents();
         }

@@ -268,6 +268,7 @@
       <DependentUpon>colors.css</DependentUpon>
     </Content>
     <Content Include="App\Main\filters\momentjs-filters.js" />
+    <Content Include="App\Main\filters\truncate.js" />
     <Content Include="App\Main\images\abp-logo.png" />
     <Content Include="App\Main\images\eventcloud-logo.png" />
     <Content Include="App\Main\images\istanbul_night.jpg" />

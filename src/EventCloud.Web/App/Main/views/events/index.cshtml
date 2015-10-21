@@ -1,7 +1,10 @@
 ﻿<div id="EventsIndex" ng-controller="app.views.events.index as vm">
     <h2>
-        Events
+        <span>Events</span>
         <a ng-click="vm.openNewEventDialog()" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> New event</a>
+        <span class="pull-right event-filters">
+            <input type="checkbox" ng-model="vm.filters.includeCanceledEvents" /> show canceled events
+        </span>
     </h2>
     <div class="row">
         <div ng-repeat="event in vm.events" class="event-list-item col-md-6">
@@ -9,7 +12,8 @@
                 <h3 class="event-title">
                     {{event.title}}
                 </h3>
-                <p class="event-description">{{event.description}}</p>
+                <p class="event-description">{{event.description | characters:100}}</p>
+                <div ng-if="event.isCancelled" class="event-canceled-info">This event is canceled!</div>
                 <div class="event-registration-info">
                     <span ng-if="event.registrationsCount < event.maxRegistrationCount">
                         {{event.registrationsCount}} of {{event.maxRegistrationCount}} registred.

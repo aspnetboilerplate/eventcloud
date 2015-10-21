@@ -4,6 +4,6 @@ namespace EventCloud.Events.Dtos
 {
     public class GetEventListInput : IInputDto
     {
-        //we can add some filters...
+        public bool IncludeCanceledEvents { get; set; }
     }
 }

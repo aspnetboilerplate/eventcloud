@@ -10,6 +10,7 @@ using Abp.Runtime.Session;
 using EventCloud.Events.Dtos;
 using EventCloud.Users;
 using Abp.AutoMapper;
+using Abp.Linq.Extensions;
 using Abp.UI;
 
 namespace EventCloud.Events
@@ -33,7 +34,7 @@ namespace EventCloud.Events
             var events = await _eventRepository
                 .GetAll()
                 .Include(e => e.Registrations)
-                .Where(e => !e.IsCancelled) //don't get canceled events
+                .WhereIf(!input.IncludeCanceledEvents, e => !e.IsCancelled)
                 .OrderByDescending(e => e.CreationTime)
                 .ToListAsync();
 
