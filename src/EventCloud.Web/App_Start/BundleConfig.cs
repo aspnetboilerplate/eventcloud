@@ -13,14 +13,12 @@ namespace EventCloud.Web
             //~/Bundles/App/vendor/css
             bundles.Add(
                 new StyleBundle("~/Bundles/App/vendor/css")
-                    .Include(
-                        "~/Content/themes/base/all.css",
-                        "~/Content/bootstrap-cosmo.min.css",
-                        "~/Content/toastr.min.css",
-                        "~/Scripts/sweetalert/sweet-alert.css",
-                        "~/Content/flags/famfamfam-flags.css",
-                        "~/Content/font-awesome.min.css"
-                    )
+                    .Include("~/Content/themes/base/all.css", new CssRewriteUrlTransform())
+                    .Include("~/Content/bootstrap-cosmo.min.css", new CssRewriteUrlTransform())
+                    .Include("~/Content/toastr.min.css", new CssRewriteUrlTransform())
+                    .Include("~/Scripts/sweetalert/sweet-alert.css", new CssRewriteUrlTransform())
+                    .Include("~/Content/flags/famfamfam-flags.css", new CssRewriteUrlTransform())
+                    .Include("~/Content/font-awesome.min.css", new CssRewriteUrlTransform())
                 );
 
             //~/Bundles/App/vendor/js
