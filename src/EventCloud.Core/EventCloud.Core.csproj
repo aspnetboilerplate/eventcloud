@@ -105,7 +105,7 @@
     <Compile Include="Events\EventDateChangedEvent.cs" />
     <Compile Include="Events\Notifications\EventUserEmailer.cs" />
     <Compile Include="Events\EventCancelledEvent.cs" />
-    <Compile Include="Events\EventCloudServiceBase.cs" />
+    <Compile Include="EventCloudServiceBase.cs" />
     <Compile Include="Events\EventManager.cs" />
     <Compile Include="Events\EventRegistration.cs" />
     <Compile Include="Events\EventRegistrationPolicy.cs" />

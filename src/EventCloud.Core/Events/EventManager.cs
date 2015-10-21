@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Abp.Domain.Repositories;
 using Abp.Events.Bus;
 using Abp.UI;
-using EventCloud.Domain.Events;
 using EventCloud.Users;
 
 namespace EventCloud.Events
