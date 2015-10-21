@@ -23,6 +23,13 @@
                         <input ng-model="vm.event.date" type="text" class="form-control" name="EventDate" placeholder="YYYY-MM-DD HH:MM">
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Count:</label>
+                    <div class="col-lg-10">
+                        <input ng-model="vm.event.maxRegistrationCount" type="number" class="form-control" name="EventMaxRegistrationCount" placeholder="Max registration count">
+                        <small class="text-muted">0: Unlimited.</small>
+                    </div>
+                </div>
             </fieldset>
         </form>
     </div>

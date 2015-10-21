@@ -14,8 +14,11 @@
                     <span ng-if="event.registrationsCount < event.maxRegistrationCount">
                         {{event.registrationsCount}} of {{event.maxRegistrationCount}} registred.
                     </span>
-                    <span ng-if="event.registrationsCount >= event.maxRegistrationCount">
-                        No registration available.
+                    <span ng-if="event.maxRegistrationCount > 0 && event.registrationsCount >= event.maxRegistrationCount">
+                        {{event.registrationsCount}} registered. No new registration available.
+                    </span>
+                    <span ng-if="event.maxRegistrationCount <= 0">
+                        {{event.registrationsCount}} registered. Unlimited registrations.
                     </span>
                 </div>
                 <div class="event-actions">

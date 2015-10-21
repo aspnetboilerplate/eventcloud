@@ -2,8 +2,11 @@
 using Abp.Localization.Dictionaries;
 using Abp.Localization.Dictionaries.Xml;
 using Abp.Modules;
+using Abp.MultiTenancy;
 using Abp.Timing;
 using Abp.Zero;
+using Abp.Zero.Configuration;
+using EventCloud.Authorization.Roles;
 using EventCloud.Configuration;
 
 namespace EventCloud
@@ -13,10 +16,8 @@ namespace EventCloud
     {
         public override void PreInitialize()
         {
-            //Remove the following line to disable multi-tenancy.
             Configuration.MultiTenancy.IsEnabled = true;
 
-            //Add/remove localization sources here
             Configuration.Localization.Sources.Add(
                 new DictionaryBasedLocalizationSource(
                     EventCloudConsts.LocalizationSourceName,
@@ -28,6 +29,10 @@ namespace EventCloud
                 );
 
             Configuration.Settings.Providers.Add<EventCloudSettingProvider>();
+
+            Configuration.Modules.Zero().RoleManagement.StaticRoles.Add(new StaticRoleDefinition(StaticRoleNames.Tenant.Admin, MultiTenancySides.Host));
+            Configuration.Modules.Zero().RoleManagement.StaticRoles.Add(new StaticRoleDefinition(StaticRoleNames.Tenant.Admin, MultiTenancySides.Tenant));
+            Configuration.Modules.Zero().RoleManagement.StaticRoles.Add(new StaticRoleDefinition(StaticRoleNames.Tenant.Member, MultiTenancySides.Tenant));
 
             Clock.Provider = new UtcClockProvider();
         }

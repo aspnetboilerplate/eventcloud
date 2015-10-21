@@ -7,7 +7,8 @@
             vm.event = {
                 title: '',
                 description: '',
-                date: moment().add('day', 1).format('YYYY-MM-DD') + ' 09:00'
+                date: moment().add('day', 1).format('YYYY-MM-DD') + ' 09:00',
+                maxRegistrationCount: 0
             };
 
             vm.save = function() {

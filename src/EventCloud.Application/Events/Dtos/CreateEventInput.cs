@@ -14,5 +14,8 @@ namespace EventCloud.Events.Dtos
         public string Description { get; set; }
 
         public DateTime Date { get; set; }
+
+        [Range(0, int.MaxValue)]
+        public int MaxRegistrationCount { get; set; }
     }
 }

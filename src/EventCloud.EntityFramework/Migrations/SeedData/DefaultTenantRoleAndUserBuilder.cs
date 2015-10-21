@@ -23,12 +23,12 @@ namespace EventCloud.Migrations.SeedData
 
         private void CreateUserAndRoles()
         {
-            //Admin role for tenancy owner
+            //Admin role for host
 
-            var adminRoleForTenancyOwner = _context.Roles.FirstOrDefault(r => r.TenantId == null && r.Name == "Admin");
+            var adminRoleForTenancyOwner = _context.Roles.FirstOrDefault(r => r.TenantId == null && r.Name == StaticRoleNames.Host.Admin);
             if (adminRoleForTenancyOwner == null)
             {
-                adminRoleForTenancyOwner = _context.Roles.Add(new Role { Name = "Admin", DisplayName = "Admin", IsStatic = true });
+                adminRoleForTenancyOwner = _context.Roles.Add(new Role { Name = StaticRoleNames.Host.Admin, DisplayName = StaticRoleNames.Host.Admin, IsStatic = true });
                 _context.SaveChanges();
             }
 
@@ -47,7 +47,6 @@ namespace EventCloud.Migrations.SeedData
                         EmailAddress = "admin@aspnetboilerplate.com",
                         IsEmailConfirmed = true,
                         Password = "AM4OLBpptxBYmM79lGOX9egzZk3vIQU3d/gFCJzaBjAPXzYIK3tQ2N7X4fcrHtElTw==", //123qwe
-                        BirthYear = 1983
                     });
 
                 _context.SaveChanges();
@@ -59,23 +58,31 @@ namespace EventCloud.Migrations.SeedData
 
             //Default tenant
 
-            var defaultTenant = _context.Tenants.FirstOrDefault(t => t.TenancyName == "Default");
+            var defaultTenant = _context.Tenants.FirstOrDefault(t => t.TenancyName == Tenant.DefaultTenantName);
             if (defaultTenant == null)
             {
-                defaultTenant = _context.Tenants.Add(new Tenant { TenancyName = "Default", Name = "Default" });
+                defaultTenant = _context.Tenants.Add(new Tenant { TenancyName = Tenant.DefaultTenantName, Name = Tenant.DefaultTenantName });
                 _context.SaveChanges();
             }
 
             //Admin role for 'Default' tenant
 
-            var adminRoleForDefaultTenant = _context.Roles.FirstOrDefault(r => r.TenantId == defaultTenant.Id && r.Name == "Admin");
+            var adminRoleForDefaultTenant = _context.Roles.FirstOrDefault(r => r.TenantId == defaultTenant.Id && r.Name == StaticRoleNames.Tenant.Admin);
             if (adminRoleForDefaultTenant == null)
             {
-                adminRoleForDefaultTenant = _context.Roles.Add(new Role { TenantId = defaultTenant.Id, Name = "Admin", DisplayName = "Admin", IsStatic = true });
+                adminRoleForDefaultTenant = _context.Roles.Add(new Role { TenantId = defaultTenant.Id, Name = StaticRoleNames.Tenant.Admin, DisplayName = StaticRoleNames.Tenant.Admin, IsStatic = true });
                 _context.SaveChanges();
             }
 
-            //Admin for 'Default' tenant
+            //Member role for 'Default' tenant
+            var memberRoleForDefaultTenant = _context.Roles.FirstOrDefault(r => r.TenantId == defaultTenant.Id && r.Name == StaticRoleNames.Tenant.Member);
+            if (memberRoleForDefaultTenant == null)
+            {
+                _context.Roles.Add(new Role { TenantId = defaultTenant.Id, Name = StaticRoleNames.Tenant.Member, DisplayName = StaticRoleNames.Tenant.Member, IsStatic = true });
+                _context.SaveChanges();
+            }
+
+            //Admin user for 'Default' tenant
 
             var adminUserForDefaultTenant = _context.Users.FirstOrDefault(u => u.TenantId == defaultTenant.Id && u.UserName == "admin");
             if (adminUserForDefaultTenant == null)
@@ -90,7 +97,6 @@ namespace EventCloud.Migrations.SeedData
                         EmailAddress = "admin@aspnetboilerplate.com",
                         IsEmailConfirmed = true,
                         Password = "AM4OLBpptxBYmM79lGOX9egzZk3vIQU3d/gFCJzaBjAPXzYIK3tQ2N7X4fcrHtElTw==", //123qwe
-                        BirthYear = 1983
                     });
                 _context.SaveChanges();
 

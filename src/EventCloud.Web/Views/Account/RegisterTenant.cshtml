@@ -1,10 +1,10 @@
 ﻿@model EventCloud.Web.Models.Account.RegisterTenantViewModel
 <div class="container entrance-container">
-    <div id="LoginArea" class="row">
+    <div class="row">
         <div class="col-lg-12">
             @Html.Partial("_EntranceLogo")
             <div class="well bs-component">
-                <form class="form-horizontal" action="@(Url.Action("Register", "Account"))" method="POST">
+                <form class="form-horizontal" action="@(Url.Action("RegisterTenant", "Account"))" method="POST">
                     <fieldset>
                         <legend>Become a Tenant</legend>
 

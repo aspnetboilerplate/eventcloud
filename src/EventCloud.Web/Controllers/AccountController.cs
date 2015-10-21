@@ -299,6 +299,70 @@ namespace EventCloud.Web.Controllers
             return View("RegisterTenant", new RegisterTenantViewModel());
         }
 
+        [HttpPost]
+        [UnitOfWork]
+        public virtual async Task<ActionResult> RegisterTenant(RegisterTenantViewModel model)
+        {
+            try
+            {
+                CheckModelState();
+
+                //Create tenant
+                var tenant = new Tenant
+                {
+                    TenancyName = model.TenancyName,
+                    Name = model.TenancyName
+                };
+
+                CheckErrors(await _tenantManager.CreateAsync(tenant));
+                await _unitOfWorkManager.Current.SaveChangesAsync(); //To get new tenant's id.
+
+                //We are working entities of new tenant, so changing tenant filter
+                using (_unitOfWorkManager.Current.SetFilterParameter(AbpDataFilters.MayHaveTenant, AbpDataFilters.Parameters.TenantId, tenant.Id))
+                {
+                    //Create static roles for new tenant
+                    CheckErrors(await _roleManager.CreateStaticRoles(tenant.Id));
+
+                    await _unitOfWorkManager.Current.SaveChangesAsync(); //To get static role ids
+
+                    //grant all permissions to admin role
+                    var adminRole = _roleManager.Roles.Single(r => r.Name == StaticRoleNames.Tenant.Admin);
+                    await _roleManager.GrantAllPermissionsAsync(adminRole);
+
+                    //Member role should be default
+                    var memberRole = _roleManager.Roles.Single(r => r.Name == StaticRoleNames.Tenant.Member);
+                    memberRole.IsDefault = true;
+                    CheckErrors(await _roleManager.UpdateAsync(memberRole));
+
+                    //Create admin user for the tenant
+
+                    var adminUser = Users.User.CreateTenantAdminUser(tenant.Id, model.EmailAddress, model.Password);
+
+                    CheckErrors(await _userManager.CreateAsync(adminUser));
+                    await _unitOfWorkManager.Current.SaveChangesAsync(); //To get admin user's id
+
+                    //Assign admin user to role!
+                    CheckErrors(await _userManager.AddToRoleAsync(adminUser.Id, adminRole.Name));
+                    await _unitOfWorkManager.Current.SaveChangesAsync();
+
+                    //Login!
+                    var loginResult = await GetLoginResultAsync(model.EmailAddress, model.Password, tenant.TenancyName);
+                    if (loginResult.Result == AbpLoginResultType.Success)
+                    {
+                        await SignInAsync(loginResult.User, loginResult.Identity);
+                        return Redirect(Url.Action("Index", "Home"));
+                    }
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
+            catch (UserFriendlyException ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View("RegisterTenant", model);
+            }
+        }
+
         #endregion
 
         #region External Login

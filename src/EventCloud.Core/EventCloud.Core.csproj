@@ -94,6 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authorization\Roles\StaticRoleNames.cs" />
     <Compile Include="Configuration\EventCloudSettingNames.cs" />
     <Compile Include="Configuration\EventCloudSettingProvider.cs" />
     <Compile Include="Domain\Events\DomainEvents.cs" />

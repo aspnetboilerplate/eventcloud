@@ -33,6 +33,7 @@ namespace EventCloud.Events
         /// Gets or sets the maximum registration count.
         /// 0: Unlimited.
         /// </summary>
+        [Range(0, int.MaxValue)]
         public virtual int MaxRegistrationCount { get; protected set; }
 
         [ForeignKey("EventId")]
@@ -45,16 +46,18 @@ namespace EventCloud.Events
         /// </summary>
         protected Event()
         {
+
         }
 
-        public static Event Create(int tenantId, string title, DateTime date, string description = null)
+        public static Event Create(int tenantId, string title, DateTime date, string description = null, int maxRegistrationCount = 0)
         {
             var @event = new Event
             {
                 Id = Guid.NewGuid(),
                 TenantId = tenantId,
                 Title = title,
-                Description = description
+                Description = description,
+                MaxRegistrationCount = maxRegistrationCount
             };
 
             @event.SetDate(date);

@@ -132,6 +132,10 @@
     <Compile Include="Migrations\201510201335018_Removed_Age_From_Event.Designer.cs">
       <DependentUpon>201510201335018_Removed_Age_From_Event.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510210723116_Removed_BirthYear_From_User.cs" />
+    <Compile Include="Migrations\201510210723116_Removed_BirthYear_From_User.Designer.cs">
+      <DependentUpon>201510210723116_Removed_BirthYear_From_User.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EventCloudDataModule.cs" />
     <Compile Include="Migrations\SeedData\DefaultTenantRoleAndUserBuilder.cs" />
@@ -166,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510201335018_Removed_Age_From_Event.resx">
       <DependentUpon>201510201335018_Removed_Age_From_Event.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510210723116_Removed_BirthYear_From_User.resx">
+      <DependentUpon>201510210723116_Removed_BirthYear_From_User.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
