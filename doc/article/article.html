@@ -26,13 +26,467 @@
 <p>In this arcitle, we will see how to develop a SaaS (multi-tenant) application 
 using following frameworks:</p>
 <ul>
-	<li>ASP.NET Boilerplate as application framework.</li>
-	<li>ASP.NET MVC and ASP.NET Web API as Web Frameworks.</li>
-	<li>Entity Framework as ORM.</li>
-	<li>Angularjs as SPA framework.</li>
+	<li><strong>ASP.NET Boilerplate</strong> as application framework.</li>
+	<li><strong>ASP.NET MVC</strong> and <strong>ASP.NET Web API</strong> as Web Frameworks.</li>
+	<li><strong>Entity Framework</strong> as ORM.</li>
+	<li><strong>Angularjs</strong> as SPA framework.</li>
+	<li><strong>Bootstrap</strong> as HTML/CSS framework.</li>
 </ul>
+<p>You can see the <a href="http://eventcloud.aspnetboilerplate.com/">live demo</a> 
+before the article.&nbsp;</p>
 <h2>Creating Application From Template</h2>
-<p>s</p>
+<p>We create the <strong>startup template</strong> from
+<a href="http://www.aspnetboilerplate.com/Templates">
+http://aspnetboilerplate.com/Templates</a>:</p>
+<p>
+<img alt="Creating the template" height="408" src="create-template.png" width="681" /></p>
+<p>I selected "<strong>ABP + module zero</strong>". It creates a ready and 
+working solution for us including a <strong>login page</strong>, <strong>
+navigation</strong> and <strong>layout</strong>.After download and open the 
+solution with <strong>Visual Studio 2013+</strong>, we see a <strong>layered</strong> 
+solution structure including a test project:</p>
+<p>
+<img alt="Solution structure" height="167" src="solution-structure.png" width="215" /></p>
+<p>First, we <strong>select EventCloud.Web as startup project</strong>. Solution 
+comes with <strong>Entity Framework Code-First Migrations</strong>. So, (after 
+restore nuget packages) we open the <strong>Package Manager Console</strong> 
+(PMC) and run <strong>Update-Database</strong> command to create the database:</p>
+<p>
+<img alt="Update database command" height="203" src="pmc-update-database.png" width="743" /></p>
+<p>PMC <strong>Default project</strong> should be <strong>
+EventCloud.EntityFramework</strong> (since it contains the migrations). This 
+command creates <strong>EventCloud database </strong>in local SQL Server. You 
+can change <strong>connection string</strong> from <strong>web.config</strong> 
+file.</p>
+<p>Now, we can run the application. We see the pre-built login page. Can can 
+enter <strong>default </strong>as tenancy name, <strong>admin </strong>as user 
+and <strong>123qwe </strong>as password to login:</p>
+<p>
+<img alt="Initial Login PAge" height="394" src="initial-login-page.png" width="388" /></p>
+<p>After login, we see a basic bootstrap based layout:</p>
+<p>
+<img alt="Initial layout" height="449" src="initial-layout.png" width="956" /></p>
+<p>This is a localized UI with a dynamic menu. Angular layout, routing and basic 
+infrastructure are properly working. I got this project as a base for the event 
+cloud project.</p>
+<h2>Event Cloud Project</h2>
+<p>In this article, I will show key parts of the project and explain it. So, 
+please download the sample project, open in Visual Studio 2013+ and run 
+migrations just like above and before reading rest of the article.</p>
+<p>In this article, I will follow <strong>DDD </strong>techniques to create
+<strong>domain (business) layer </strong>and <strong>application layer</strong>.</p>
+<p>TODO: BUSINESS RULES</p>
+<h3>Entities</h3>
+<p>Entities are parts of our domain layer and located under <strong>
+EventCloud.Core</strong> project. 
+ASP.NET Boilerplate startup template comes with <strong>Tenant</strong>, <strong>
+User</strong>, <strong>Role</strong>... entities which are common for most 
+applications. We can customize them based on our needs and add our new 
+application entities.</p>
+<p>The basic entity of this project is <strong>
+Event </strong>entity:</p>
+<pre lang="cs">[Table(&quot;AppEvents&quot;)]
+public class Event : FullAuditedEntity&lt;Guid&gt;, IMustHaveTenant
+{
+    public const int MaxTitleLength = 128;
+    public const int MaxDescriptionLength = 2048;
+
+    public virtual int TenantId { get; set; }
+
+    [Required]
+    [StringLength(MaxTitleLength)]
+    public virtual string Title { get; protected set; }
+
+    [StringLength(MaxDescriptionLength)]
+    public virtual string Description { get; protected set; }
+
+    public virtual DateTime Date { get; protected set; }
+
+    public virtual bool IsCancelled { get; protected set; }
+
+    /// &lt;summary&gt;
+    /// Gets or sets the maximum registration count.
+    /// 0: Unlimited.
+    /// &lt;/summary&gt;
+    [Range(0, int.MaxValue)]
+    public virtual int MaxRegistrationCount { get; protected set; }
+
+    [ForeignKey(&quot;EventId&quot;)]
+    public virtual ICollection&lt;EventRegistration&gt; Registrations { get; protected set; }
+
+    /// &lt;summary&gt;
+    /// We don&#39;t make constructor public and forcing to create events using &lt;see cref=&quot;Create&quot;/&gt; method.
+    /// But constructor can not be private since it&#39;s used by EntityFramework.
+    /// Thats why we did it protected.
+    /// &lt;/summary&gt;
+    protected Event()
+    {
+
+    }
+
+    public static Event Create(int tenantId, string title, DateTime date, string description = null, int maxRegistrationCount = 0)
+    {
+        var @event = new Event
+        {
+            Id = Guid.NewGuid(),
+            TenantId = tenantId,
+            Title = title,
+            Description = description,
+            MaxRegistrationCount = maxRegistrationCount
+        };
+
+        @event.SetDate(date);
+
+        @event.Registrations = new Collection&lt;EventRegistration&gt;();
+
+        return @event;
+    }
+
+    public bool IsInPast()
+    {
+        return Date &lt; Clock.Now;
+    }
+
+    public bool IsAllowedCancellationTimeEnded()
+    {
+        return Date.Subtract(Clock.Now).TotalHours &lt;= 2.0; //2 hours can be defined as Event property and determined per event
+    }
+
+    public void ChangeDate(DateTime date)
+    {
+        if (date == Date)
+        {
+            return;
+        }
+
+        SetDate(date);
+
+        DomainEvents.EventBus.Trigger(new EventDateChangedEvent(this));
+    }
+
+    internal void Cancel()
+    {
+        AssertNotInPast();
+        IsCancelled = true;
+    }
+
+    private void SetDate(DateTime date)
+    {
+        AssertNotCancelled();
+
+        if (date &lt; Clock.Now)
+        {
+            throw new UserFriendlyException(&quot;Can not set an event&#39;s date in the past!&quot;);
+        }
+
+        if (date &lt;= Clock.Now.AddHours(3)) //3 can be configurable per tenant
+        {
+            throw new UserFriendlyException(&quot;Should set an event&#39;s date 3 hours before at least!&quot;);
+        }
+
+        Date = date;
+
+        DomainEvents.EventBus.Trigger(new EventDateChangedEvent(this));
+    }
+
+    private void AssertNotInPast()
+    {
+        if (IsInPast())
+        {
+            throw new UserFriendlyException(&quot;This event was in the past&quot;);
+        }
+    }
+
+    private void AssertNotCancelled()
+    {
+        if (IsCancelled)
+        {
+            throw new UserFriendlyException(&quot;This event is canceled!&quot;);
+        }
+    }
+}</pre>
+<p>Event entity has not just get/set properties. Actually, it has not <strong>public setters</strong>, 
+setters are protected. It has some <strong>domain 
+logic</strong>. All properties must be changed by the Event entity itself to 
+ensure domain logic is executed. Constructor is also protected. So, the only way 
+to create an Event is the <strong>Event.Create</strong> method (They can be 
+private normally, but private setters don't work with EntityFramework. Because 
+Entity Framework can not set privates when retrieving an entity from database).</p>
+<p>Event implements <strong>IMustHaveTenant</strong> interface. This is an 
+interface of ASP.NET Boilerplate (ABP) framework and ensures that this entity is 
+per tenant. This is needed for <strong>multi-tenancy</strong>. Thus, different 
+tenants will have different events and can not see each other's events.</p>
+<p>In DDD, entities have domain (business) logic. We have some arbitrary 
+business rules those can be understood easily when you check the entity.</p>
+<p>Second entity of our application is <strong>EventRegistration</strong>:</p>
+<pre lang="cs">[Table(&quot;AppEventRegistrations&quot;)]
+public class EventRegistration : CreationAuditedEntity, IMustHaveTenant
+{
+    public int TenantId { get; set; }
+
+    [ForeignKey(&quot;EventId&quot;)]
+    public virtual Event Event { get; protected set; }
+    public virtual Guid EventId { get; protected set; }
+
+    [ForeignKey(&quot;UserId&quot;)]
+    public virtual User User { get; protected set; }
+    public virtual long UserId { get; protected set; }
+
+    /// &lt;summary&gt;
+    /// We don&#39;t make constructor public and forcing to create registrations using &lt;see cref=&quot;CreateAsync&quot;/&gt; method.
+    /// But constructor can not be private since it&#39;s used by EntityFramework.
+    /// Thats why we did it protected.
+    /// &lt;/summary&gt;
+    protected EventRegistration()
+    {
+            
+    }
+
+    public async static Task&lt;EventRegistration&gt; CreateAsync(Event @event, User user, IEventRegistrationPolicy registrationPolicy)
+    {
+        await registrationPolicy.CheckRegistrationAttemptAsync(@event, user);
+
+        return new EventRegistration
+        {
+            TenantId = @event.TenantId,
+            EventId = @event.Id,
+            Event = @event,
+            UserId = @user.Id,
+            User = user
+        };
+    }
+
+    public async Task CancelAsync(IRepository&lt;EventRegistration&gt; repository)
+    {
+        if (repository == null) { throw new ArgumentNullException(&quot;repository&quot;); }
+
+        if (Event.IsInPast())
+        {
+            throw new UserFriendlyException(&quot;Can not cancel event which is in the past!&quot;);
+        }
+
+        if (Event.IsAllowedCancellationTimeEnded())
+        {
+            throw new UserFriendlyException(&quot;It&#39;s too late to cancel your registration!&quot;);
+        }
+
+        await repository.DeleteAsync(this);
+    }
+}</pre>
+<p>As similar to Event, we have a static <strong>Create</strong> method. The 
+only way of creating a new EventRegistration is this CreateAsync method. It gets 
+an <strong>event</strong>, <strong>user</strong> and a <strong>registration 
+policy</strong>. It checks if given user can register to the event using 
+registrationPolicy.<strong>CheckRegistrationAttemptAsync</strong>. This method throws exception if given user can not 
+register to given event.</p>
+<p>With such a design, we ensure that all business rules are applied while 
+creating a registration. There is no way of creating a registration without 
+using registration policy.</p>
+<h3>Event Registration Policy</h3>
+<p><strong>EventRegistrationPolicy</strong> class is defined as 
+shown below:</p>
+<pre lang="cs">public class EventRegistrationPolicy : EventCloudServiceBase, IEventRegistrationPolicy
+{
+    private readonly IRepository&lt;EventRegistration&gt; _eventRegistrationRepository;
+
+    public EventRegistrationPolicy(IRepository&lt;EventRegistration&gt; eventRegistrationRepository)
+    {
+        _eventRegistrationRepository = eventRegistrationRepository;
+    }
+
+    public async Task CheckRegistrationAttemptAsync(Event @event, User user)
+    {
+        if (@event == null) { throw new ArgumentNullException(&quot;event&quot;); }
+        if (user == null) { throw new ArgumentNullException(&quot;user&quot;); }
+
+        CheckEventDate(@event);
+        await CheckEventRegistrationFrequencyAsync(user);
+    }
+
+    private static void CheckEventDate(Event @event)
+    {
+        if (@event.IsInPast())
+        {
+            throw new UserFriendlyException(&quot;Can not register event in the past!&quot;);
+        }
+    }
+
+    private async Task CheckEventRegistrationFrequencyAsync(User user)
+    {
+        var oneMonthAgo = Clock.Now.AddDays(-30);
+        var maxAllowedEventRegistrationCountInLast30DaysPerUser = await SettingManager.GetSettingValueAsync&lt;int&gt;(EventCloudSettingNames.MaxAllowedEventRegistrationCountInLast30DaysPerUser);
+        if (maxAllowedEventRegistrationCountInLast30DaysPerUser &gt; 0)
+        {
+            var registrationCountInLast30Days = await _eventRegistrationRepository.CountAsync(r =&gt; r.UserId == user.Id &amp;&amp; r.CreationTime &gt;= oneMonthAgo);
+            if (registrationCountInLast30Days &gt; maxAllowedEventRegistrationCountInLast30DaysPerUser)
+            {
+                throw new UserFriendlyException(string.Format(&quot;Can not register to more than {0}&quot;, maxAllowedEventRegistrationCountInLast30DaysPerUser));
+            }
+        }
+    }
+}</pre>
+<p>This is an important part of our domain. We have two rules while creating an 
+event registration:</p>
+<ol>
+	<li>A used can not register to an event <strong>in the past</strong>.</li>
+	<li>A user can register to a <strong>maximum count </strong>of events in 30 
+	days. So, we have registration frequency limit.</li>
+</ol>
+<h3>Event Manager</h3>
+<p><strong>EventManager</strong> implements business (domain) logic for events. 
+All Event operations should be executed using this class. It's defined as shown below:</p>
+<pre lang="cs">public class EventManager : IEventManager
+{
+    public IEventBus EventBus { get; set; }
+
+    private readonly IEventRegistrationPolicy _registrationPolicy;
+    private readonly IRepository&lt;EventRegistration&gt; _eventRegistrationRepository;
+    private readonly IRepository&lt;Event, Guid&gt; _eventRepository;
+
+    public EventManager(
+        IEventRegistrationPolicy registrationPolicy,
+        IRepository&lt;EventRegistration&gt; eventRegistrationRepository,
+        IRepository&lt;Event, Guid&gt; eventRepository)
+    {
+        _registrationPolicy = registrationPolicy;
+        _eventRegistrationRepository = eventRegistrationRepository;
+        _eventRepository = eventRepository;
+
+        EventBus = NullEventBus.Instance;
+    }
+
+    public async Task&lt;Event&gt; GetAsync(Guid id)
+    {
+        var @event = await _eventRepository.FirstOrDefaultAsync(id);
+        if (@event == null)
+        {
+            throw new UserFriendlyException(&quot;Could not found the event, maybe it&#39;s deleted!&quot;);
+        }
+
+        return @event;
+    }
+
+    public async Task CreateAsync(Event @event)
+    {
+        await _eventRepository.InsertAsync(@event);
+    }
+
+    public void Cancel(Event @event)
+    {
+        @event.Cancel();
+        EventBus.Trigger(new EventCancelledEvent(@event));
+    }
+
+    public async Task&lt;EventRegistration&gt; RegisterAsync(Event @event, User user)
+    {
+        return await _eventRegistrationRepository.InsertAsync(
+            await EventRegistration.CreateAsync(@event, user, _registrationPolicy)
+            );
+    }
+
+    public async Task CancelRegistrationAsync(Event @event, User user)
+    {
+        var registration = await _eventRegistrationRepository.FirstOrDefaultAsync(r =&gt; r.EventId == @event.Id &amp;&amp; r.UserId == user.Id);
+        if (registration == null)
+        {
+            //No need to cancel since there is no such a registration
+            return;
+        }
+
+        await registration.CancelAsync(_eventRegistrationRepository);
+    }
+
+    public async Task&lt;IReadOnlyList&lt;User&gt;&gt; GetRegisteredUsersAsync(Event @event)
+    {
+        return await _eventRegistrationRepository
+            .GetAll()
+            .Include(registration =&gt; registration.User)
+            .Where(registration =&gt; registration.EventId == @event.Id)
+            .Select(registration =&gt; registration.User)
+            .ToListAsync();
+    }
+}</pre>
+<h3>Domain Events</h3>
+<p>We may want to define and trigger some domain specific events on some state 
+changes in our application. I defined 2 domain specific events:</p>
+<ul>
+	<li><strong>EventCancelledEvent</strong>: Triggered when an event is 
+	canceled. It's triggered in <strong>EventManager.Cancel</strong> method.</li>
+	<li><strong>EventDateChangedEvent</strong>: Triggered when date of an event 
+	changed. It's triggered in <strong>Event.ChangeDate</strong> method.</li>
+</ul>
+<p>We handle these events and notify related users about these changes. Also, I 
+handle <strong>EntityCreatedEventDate&lt;Event&gt;</strong> (which is a pre-defined 
+ABP event and triggered automatically).</p>
+<p>To handle an event, we should define an event handler class:</p>
+<pre lang="cs">public class EventUserEmailer : 
+    IEventHandler&lt;EntityCreatedEventData&lt;Event&gt;&gt;,
+    IEventHandler&lt;EventDateChangedEvent&gt;, 
+    IEventHandler&lt;EventCancelledEvent&gt;,
+    ITransientDependency
+{
+    public ILogger Logger { get; set; }
+
+    private readonly IEventManager _eventManager;
+    private readonly UserManager _userManager;
+
+    public EventUserEmailer(
+        UserManager userManager, 
+        IEventManager eventManager)
+    {
+        _userManager = userManager;
+        _eventManager = eventManager;
+
+        Logger = NullLogger.Instance;
+    }
+
+    [UnitOfWork]
+    public virtual void HandleEvent(EntityCreatedEventData&lt;Event&gt; eventData)
+    {
+        //TODO: Send email to all tenant users as a notification
+
+        var users = _userManager
+            .Users
+            .Where(u =&gt; u.TenantId == eventData.Entity.TenantId)
+            .ToList();
+
+        foreach (var user in users)
+        {
+            var message = string.Format(&quot;Hey! There is a new event &#39;{0}&#39; on {1}! Want to register?&quot;,eventData.Entity.Title, eventData.Entity.Date);
+            Logger.Debug(string.Format(&quot;TODO: Send email to {0} -&gt; {1}&quot;, user.EmailAddress, message));
+        }
+    }
+
+    public void HandleEvent(EventDateChangedEvent eventData)
+    {
+        //TODO: Send email to all registered users!
+
+        var registeredUsers = AsyncHelper.RunSync(() =&gt; _eventManager.GetRegisteredUsersAsync(eventData.Entity));
+        foreach (var user in registeredUsers)
+        {
+            var message = eventData.Entity.Title + &quot; event&#39;s date is changed! New date is: &quot; + eventData.Entity.Date;
+            Logger.Debug(string.Format(&quot;TODO: Send email to {0} -&gt; {1}&quot;,user.EmailAddress, message));
+        }
+    }
+
+    public void HandleEvent(EventCancelledEvent eventData)
+    {
+        //TODO: Send email to all registered users!
+
+        var registeredUsers = AsyncHelper.RunSync(() =&gt; _eventManager.GetRegisteredUsersAsync(eventData.Entity));
+        foreach (var user in registeredUsers)
+        {
+            var message = eventData.Entity.Title + &quot; event is canceled!&quot;;
+            Logger.Debug(string.Format(&quot;TODO: Send email to {0} -&gt; {1}&quot;, user.EmailAddress, message));
+        }
+    }
+}</pre>
+<p>We can handle same events in different classes. Here, we handle these events 
+and send email to related users as a notification (Not implemented emailing 
+actually to make the sample application simpler). An event handler should 
+implement IEventHandler&lt;<em>event-type</em>&gt; interface. ABP automatically calls 
+the handler when the event occurs. We can register to more than one event in a 
+single handler, as shown in this example.</p>
 
 
 <h2 id="ArticleSummary">Summary</h2>
