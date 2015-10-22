@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Domain.Entities;
@@ -37,7 +38,7 @@ namespace EventCloud.Events
         public virtual int MaxRegistrationCount { get; protected set; }
 
         [ForeignKey("EventId")]
-        public virtual ICollection<EventRegistration> Registrations { get; set; }
+        public virtual ICollection<EventRegistration> Registrations { get; protected set; }
 
         /// <summary>
         /// We don't make constructor public and forcing to create events using <see cref="Create"/> method.
@@ -61,6 +62,8 @@ namespace EventCloud.Events
             };
 
             @event.SetDate(date);
+
+            @event.Registrations = new Collection<EventRegistration>();
 
             return @event;
         }

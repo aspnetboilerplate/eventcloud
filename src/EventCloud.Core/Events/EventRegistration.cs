@@ -36,6 +36,7 @@ namespace EventCloud.Events
         {
             if (@event == null) { throw new ArgumentNullException("event"); }
             if (user == null) { throw new ArgumentNullException("user"); }
+            if (registrationPolicy == null) { throw new ArgumentNullException("registrationPolicy"); }
 
             await registrationPolicy.CheckRegistrationAttemptAsync(@event, user);
 

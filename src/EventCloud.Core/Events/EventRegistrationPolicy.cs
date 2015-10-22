@@ -21,7 +21,7 @@ namespace EventCloud.Events
         public async Task CheckRegistrationAttemptAsync(Event @event, User user)
         {
             if (@event == null) { throw new ArgumentNullException("event"); }
-            if (user == null) { throw new ArgumentNullException("event"); }
+            if (user == null) { throw new ArgumentNullException("user"); }
 
             CheckEventDate(@event);
             await CheckEventRegistrationFrequencyAsync(user);
