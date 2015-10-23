@@ -38,8 +38,8 @@
 <p><img alt="Login page" src="login-page.jpg" style="width:100%" /></p>
 <p>See <a href="http://eventcloud.aspnetboilerplate.com/">LIVE DEMO</a>.</p>
 <h2 id="ArticleIntroduction">Introduction</h2>
-<p>In this arcitle, we will see how to develop a SaaS (multi-tenant) application 
-using following frameworks:</p>
+<p>In this article, we will see a SaaS (multi-tenant) application 
+developed using the following frameworks:</p>
 <ul>
 	<li><strong><a href="http://www.aspnetboilerplate.com/">ASP.NET Boilerplate</a></strong> as application framework.</li>
 	<li><strong>ASP.NET MVC</strong> and <strong>ASP.NET Web API</strong> as Web Frameworks.</li>
@@ -47,38 +47,41 @@ using following frameworks:</p>
 	<li><strong>Angularjs</strong> as SPA framework.</li>
 	<li><strong>Bootstrap</strong> as HTML/CSS framework.</li>
 </ul>
-<p>You can see the <a href="http://eventcloud.aspnetboilerplate.com/">live demo</a> 
-before the article.&nbsp;</p>
+<p>You can see <a href="http://eventcloud.aspnetboilerplate.com/">live demo</a> 
+before reading the article.&nbsp;</p>
 <h2 id="ArticleCreateTemplate">Creating Application From Template</h2>
-<p>We create the <strong>startup template</strong> from
+<p>ASP.NET Boilerplate provides templates to make a project startup easier. We create the <strong>startup template</strong> from
 <a href="http://www.aspnetboilerplate.com/Templates">
 http://aspnetboilerplate.com/Templates</a>:</p>
 <p>
 <img alt="Creating the template" height="408" src="create-template.png" width="681" /></p>
-<p>I selected "<strong>ABP + module zero</strong>". It creates a ready and 
+<p>I selected "<strong>ABP + module zero</strong>" template (module zero adds 
+user, role, tenant... management infrastructure to the framework). It creates a ready and 
 working solution for us including a <strong>login page</strong>, <strong>
-navigation</strong> and <strong>layout</strong>.After download and open the 
+navigation</strong> and a bootstrap based <strong>layout</strong>. After download and open the 
 solution with <strong>Visual Studio 2013+</strong>, we see a <strong>layered</strong> 
-solution structure including a test project:</p>
+solution structure including a unit test project:</p>
 <p>
 <img alt="Solution structure" height="167" src="solution-structure.png" width="215" /></p>
 <p>First, we <strong>select EventCloud.Web as startup project</strong>. Solution 
 comes with <strong>Entity Framework Code-First Migrations</strong>. So, (after 
-restore nuget packages) we open the <strong>Package Manager Console</strong> 
+restoring nuget packages) we open the <strong>Package Manager Console</strong> 
 (PMC) and run <strong>Update-Database</strong> command to create the database:</p>
 <p>
 <img alt="Update database command" height="203" src="pmc-update-database.png" width="743" /></p>
 <p>PMC <strong>Default project</strong> should be <strong>
 EventCloud.EntityFramework</strong> (since it contains the migrations). This 
-command creates <strong>EventCloud database </strong>in local SQL Server. You 
+command creates <strong>EventCloud </strong>database<strong> </strong>in local SQL Server 
+(you 
 can change <strong>connection string</strong> from <strong>web.config</strong> 
-file.</p>
-<p>Now, we can run the application. We see the pre-built login page. Can can 
+file).</p>
+<p>Now, we can run the application. We see the pre-built <strong>login</strong> page. Can can 
 enter <strong>default </strong>as tenancy name, <strong>admin </strong>as user 
 and <strong>123qwe </strong>as password to login:</p>
 <p>
 <img alt="Initial Login PAge" height="394" src="initial-login-page.png" width="388" /></p>
-<p>After login, we see a basic bootstrap based layout:</p>
+<p>After login, we see the basic bootstrap based layout consists of two pages: 
+Home and About:</p>
 <p>
 <img alt="Initial layout" height="449" src="initial-layout.png" width="956" /></p>
 <p>This is a localized UI with a dynamic menu. Angular layout, routing and basic 
@@ -87,18 +90,21 @@ cloud project.</p>
 <h2 id="ArticleEventCloudProject">Event Cloud Project</h2>
 <p>In this article, I will show key parts of the project and explain it. So, 
 please download the sample project, open in Visual Studio 2013+ and run 
-migrations just like above and before reading rest of the article.</p>
-<p>In this article, I will follow <strong>DDD </strong>techniques to create
+migrations just like above before reading rest of the article. I will follow 
+some <strong>DDD</strong> (Domain Driven Design) techniques to create
 <strong>domain (business) layer </strong>and <strong>application layer</strong>.</p>
-<p>TODO: BUSINESS RULES</p>
+<p>Event Cloud is a free SaaS (multi-tenant) application. We can create a tenant 
+which has it's own events, users, roles... There are some simple business rules 
+applied while creating, canceling and registering to an event.</p>
+<p>So, let's start to investigate the source code.</p>
 <h3 id="ArticleEntities">Entities</h3>
 <p>Entities are parts of our domain layer and located under <strong>
 EventCloud.Core</strong> project. 
 ASP.NET Boilerplate startup template comes with <strong>Tenant</strong>, <strong>
 User</strong>, <strong>Role</strong>... entities which are common for most 
-applications. We can customize them based on our needs and add our new 
-application entities.</p>
-<p>The basic entity of this project is <strong>
+applications. We can customize them based on our needs. Surely, we can add our application 
+specific entities.</p>
+<p>The fundamental entity of event cloud project is the <strong>
 Event </strong>entity:</p>
 <pre lang="cs">[Table(&quot;AppEvents&quot;)]
 public class Event : FullAuditedEntity&lt;Guid&gt;, IMustHaveTenant
@@ -223,15 +229,22 @@ public class Event : FullAuditedEntity&lt;Guid&gt;, IMustHaveTenant
 <p>Event entity has not just get/set properties. Actually, it has not <strong>public setters</strong>, 
 setters are protected. It has some <strong>domain 
 logic</strong>. All properties must be changed by the Event entity itself to 
-ensure domain logic is executed. Constructor is also protected. So, the only way 
+ensure domain logic is executed.</p>
+<p>Event entity's <strong>constructor</strong> is also <strong>protected</strong>. So, the only way 
 to create an Event is the <strong>Event.Create</strong> method (They can be 
-private normally, but private setters don't work with EntityFramework. Because 
-Entity Framework can not set privates when retrieving an entity from database).</p>
+private normally, but private setters don't work well with Entity Framework 
+since Entity Framework can not set privates when retrieving an entity from database).</p>
 <p>Event implements <strong>IMustHaveTenant</strong> interface. This is an 
 interface of ASP.NET Boilerplate (ABP) framework and ensures that this entity is 
 per tenant. This is needed for <strong>multi-tenancy</strong>. Thus, different 
-tenants will have different events and can not see each other's events.</p>
-<p>In DDD, entities have domain (business) logic. We have some arbitrary 
+tenants will have different events and can not see each other's events. ABP 
+automatically filters entities of current tenant.</p>
+<p>Event inherits from FullAuditedEntity which contains creation, modification 
+and deletion audit columns. FullAuditedEntity also implements ISoftDelete, so 
+events can not be deleted from database. They are marked as deleted when you 
+delete it. ABP automatically filters (hides) deleted entities when you query 
+database.</p>
+<p>In DDD, entities have domain (business) logic. We have some simple 
 business rules those can be understood easily when you check the entity.</p>
 <p>Second entity of our application is <strong>EventRegistration</strong>:</p>
 <pre lang="cs">[Table(&quot;AppEventRegistrations&quot;)]
@@ -288,15 +301,16 @@ public class EventRegistration : CreationAuditedEntity, IMustHaveTenant
         await repository.DeleteAsync(this);
     }
 }</pre>
-<p>As similar to Event, we have a static <strong>Create</strong> method. The 
-only way of creating a new EventRegistration is this CreateAsync method. It gets 
+<p>As similar to Event, we have a static create method. The 
+only way of creating a new EventRegistration is this <strong>CreateAsync</strong> method. It gets 
 an <strong>event</strong>, <strong>user</strong> and a <strong>registration 
 policy</strong>. It checks if given user can register to the event using 
-registrationPolicy.<strong>CheckRegistrationAttemptAsync</strong>. This method throws exception if given user can not 
-register to given event.</p>
-<p>With such a design, we ensure that all business rules are applied while 
+registrationPolicy.<strong>CheckRegistrationAttemptAsync</strong> method. This method throws exception if given user can not 
+register to given event. With such a design, we ensure that all business rules are applied while 
 creating a registration. There is no way of creating a registration without 
 using registration policy.</p>
+<p>See <a href="http://aspnetboilerplate.com/Pages/Documents/Entities">Entity 
+documentation</a> for more information on entities.</p>
 <h3 id="ArticleEventRegistrationPolicy">Event Registration Policy</h3>
 <p><strong>EventRegistrationPolicy</strong> class is defined as 
 shown below:</p>
@@ -421,6 +435,9 @@ All Event operations should be executed using this class. It's defined as shown 
             .ToListAsync();
     }
 }</pre>
+<p>It performs domain logic and triggers needed events.</p>
+<p>See <a href="http://aspnetboilerplate.com/Pages/Documents/Domain-Services">
+domain services documentation</a> for more information on domain services.</p>
 <h3 id="ArticleDomainEvents">Domain Events</h3>
 <p>We may want to define and trigger some domain specific events on some state 
 changes in our application. I defined 2 domain specific events:</p>
@@ -433,7 +450,8 @@ changes in our application. I defined 2 domain specific events:</p>
 <p>We handle these events and notify related users about these changes. Also, I 
 handle <strong>EntityCreatedEventDate&lt;Event&gt;</strong> (which is a pre-defined 
 ABP event and triggered automatically).</p>
-<p>To handle an event, we should define an event handler class:</p>
+<p>To handle an event, we should define an event handler class. I defined 
+EventUserEmailer to send emails to users when needed:</p>
 <pre lang="cs">public class EventUserEmailer : 
     IEventHandler&lt;EntityCreatedEventData&lt;Event&gt;&gt;,
     IEventHandler&lt;EventDateChangedEvent&gt;, 
@@ -498,13 +516,17 @@ ABP event and triggered automatically).</p>
 }</pre>
 <p>We can handle same events in different classes or different events in same 
 class (as in this sample). Here, we handle these events 
-and send email to related users as a notification (Not implemented emailing 
+and send email to related users as a notification (not implemented emailing 
 actually to make the sample application simpler). An event handler should 
 implement IEventHandler&lt;<em>event-type</em>&gt; interface. ABP automatically 
-calls the handler when the event occurs.</p>
+calls the handler when related events occur.</p>
+<p>See
+<a href="http://aspnetboilerplate.com/Pages/Documents/EventBus-Domain-Events">
+EventBus documentation</a> for more information on domain events.</p>
 <h3 id="ArticleAppServices">Application Services</h3>
-<p>Application services use domain layer to implement use cases of presentation 
-layer. We have a single application service in this application, <strong>
+<p>Application services use domain layer to implement use cases of the 
+application (generally used by presentation 
+layer). We have a single application service in this application; <strong>
 EventAppService</strong>:</p>
 <pre lang="cs">[AbpAuthorize]
 public class EventAppService : EventCloudAppServiceBase, IEventAppService
@@ -590,13 +612,17 @@ public class EventAppService : EventCloudAppServiceBase, IEventAppService
 }</pre>
 <p>As you see, application service does not implement domain logic itself. It 
 just uses entities and domain services (EventManager) to perform the use cases.</p>
+<p>See
+<a href="http://aspnetboilerplate.com/Pages/Documents/Application-Services">
+application service documentation</a> for more information on application 
+services.</p>
 <h3 id="ArticlePresentation">Presentation Layer</h3>
-<p>Presentation layer for this application built using Angularjs as a SPA.</p>
+<p>Presentation layer for this application is built using Angularjs as a SPA.</p>
 <h4 id="ArticleEventList">Event List</h4>
 <p>When we login to the application, we first see a list of events:</p>
 <p>
 <img alt="Event list page" height="396" src="event-list-page.png" width="959" /></p>
-<p>We use EventAppService to get list of events. Here, the Angular controller to 
+<p>We directly use <strong>EventAppService</strong> to get list of events. Here, the Angular controller to 
 create this page:</p>
 <pre lang="js">(function() {
     var controllerId = &#39;app.views.events.index&#39;;
@@ -638,21 +664,22 @@ create this page:</p>
         }
     ]);
 })();</pre>
-<p>We inject EventAppService as 'abp.services.app.event' into Angular 
+<p>We inject <strong>EventAppService</strong> as '<strong>abp.services.app.event</strong>' into Angular 
 controller. We used
 <a href="http://www.aspnetboilerplate.com/Pages/Documents/Dynamic-Web-API">
 dynamic web api layer</a> feature of ABP. It creates needed Web API controller 
-and Angularjs service automatically and dynamically. So, we can use application 
+and Angularjs service <strong>automatically</strong> and <strong>dynamically</strong>. So, we can use application 
 service methods like calling regular javascript functions. So, to call 
-EventAppService.GetList C# method, we simple call eventService.getList 
-javascript function which returns a promise ($q for angular). We also open a 
+<strong>EventAppService.GetList</strong> C# method, we simple call <strong>eventService.getList</strong> 
+javascript function which returns a <strong>promise</strong> ($q for angular).</p>
+<p>We also open a 
 "new event" modal (dialog) when user clicks to "+ New event" button (which 
 triggers vm.openNewEventDialog function). I will not go details of Angular 
-views, since they are simple and you can check it in source code.</p>
+views, since they are simpler and you can check it in source code.</p>
 <h4 id="ArticleEventDetail">Event Detail</h4>
 <p>When we click "Details" button for an event, we go to event details with a 
-URL like "<a href="http://eventcloud.aspnetboilerplate.com/#/events/e9499e3e-35c0-492c-98ce-7e410461103f">http://eventcloud.aspnetboilerplate.com/<strong>#/events/e9499e3e-35c0-492c-98ce-7e410461103f</strong></a>". 
-The GUID is id of the event.</p>
+URL like "http://eventcloud.aspnetboilerplate.com/<strong>#/events/e9499e3e-35c0-492c-98ce-7e410461103f</strong>". 
+GUID is id of the event.</p>
 <p>
 <img alt="Event details" height="473" src="event-detail-page.png" width="742" /></p>
 <p>Here, we see event details with registered users. We can register to the 
