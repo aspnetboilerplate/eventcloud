@@ -16,17 +16,32 @@
 
 <ul>
 	<li><a href="#ArticleIntroduction">Introduction</a></li>
+	<li><a href="#ArticleCreateTemplate">Creating Application From Template</a></li>
+	<li><a href="#ArticleEventCloudProject">Event Cloud Project</a><ul>
+		<li><a href="#ArticleEntities">Entities</a></li>
+		<li><a href="#ArticleEventRegistrationPolicy">Event Registration Policy</a></li>
+		<li><a href="#ArticleEventManager">Event Manager</a></li>
+		<li><a href="#ArticleDomainEvents">Domain Events</a></li>
+		<li><a href="#ArticleAppServices">Application Services</a></li>
+		<li><a href="#ArticlePresentation">Presentation Layer</a></li>
+		<li><a href="#ArticleEventList">Event List</a></li>
+		<li><a href="#ArticleEventDetail">Event Detail</a></li>
+		<li><a href="#ArticleMainMenu">Main Menu</a></li>
+		<li><a href="#ArticleAngularRoute">Angular Route</a></li>
+		<li><a href="#ArticleSourceCode">Source Code</a></li>
+	</ul>
+	</li>
 	<li><a href="#ArticleSummary">Summary</a></li>
 	<li><a href="#ArticleHistory">Article History</a></li>
 </ul>
 
 <p><img alt="Login page" src="login-page.jpg" style="width:100%" /></p>
 <p>See <a href="http://eventcloud.aspnetboilerplate.com/">LIVE DEMO</a>.</p>
-<h2>Introduction</h2>
+<h2 id="ArticleIntroduction">Introduction</h2>
 <p>In this arcitle, we will see how to develop a SaaS (multi-tenant) application 
 using following frameworks:</p>
 <ul>
-	<li><strong>ASP.NET Boilerplate</strong> as application framework.</li>
+	<li><strong><a href="http://www.aspnetboilerplate.com/">ASP.NET Boilerplate</a></strong> as application framework.</li>
 	<li><strong>ASP.NET MVC</strong> and <strong>ASP.NET Web API</strong> as Web Frameworks.</li>
 	<li><strong>Entity Framework</strong> as ORM.</li>
 	<li><strong>Angularjs</strong> as SPA framework.</li>
@@ -34,7 +49,7 @@ using following frameworks:</p>
 </ul>
 <p>You can see the <a href="http://eventcloud.aspnetboilerplate.com/">live demo</a> 
 before the article.&nbsp;</p>
-<h2>Creating Application From Template</h2>
+<h2 id="ArticleCreateTemplate">Creating Application From Template</h2>
 <p>We create the <strong>startup template</strong> from
 <a href="http://www.aspnetboilerplate.com/Templates">
 http://aspnetboilerplate.com/Templates</a>:</p>
@@ -69,14 +84,14 @@ and <strong>123qwe </strong>as password to login:</p>
 <p>This is a localized UI with a dynamic menu. Angular layout, routing and basic 
 infrastructure are properly working. I got this project as a base for the event 
 cloud project.</p>
-<h2>Event Cloud Project</h2>
+<h2 id="ArticleEventCloudProject">Event Cloud Project</h2>
 <p>In this article, I will show key parts of the project and explain it. So, 
 please download the sample project, open in Visual Studio 2013+ and run 
 migrations just like above and before reading rest of the article.</p>
 <p>In this article, I will follow <strong>DDD </strong>techniques to create
 <strong>domain (business) layer </strong>and <strong>application layer</strong>.</p>
 <p>TODO: BUSINESS RULES</p>
-<h3>Entities</h3>
+<h3 id="ArticleEntities">Entities</h3>
 <p>Entities are parts of our domain layer and located under <strong>
 EventCloud.Core</strong> project. 
 ASP.NET Boilerplate startup template comes with <strong>Tenant</strong>, <strong>
@@ -282,7 +297,7 @@ register to given event.</p>
 <p>With such a design, we ensure that all business rules are applied while 
 creating a registration. There is no way of creating a registration without 
 using registration policy.</p>
-<h3>Event Registration Policy</h3>
+<h3 id="ArticleEventRegistrationPolicy">Event Registration Policy</h3>
 <p><strong>EventRegistrationPolicy</strong> class is defined as 
 shown below:</p>
 <pre lang="cs">public class EventRegistrationPolicy : EventCloudServiceBase, IEventRegistrationPolicy
@@ -332,7 +347,7 @@ event registration:</p>
 	<li>A user can register to a <strong>maximum count </strong>of events in 30 
 	days. So, we have registration frequency limit.</li>
 </ol>
-<h3>Event Manager</h3>
+<h3 id="ArticleEventManager">Event Manager</h3>
 <p><strong>EventManager</strong> implements business (domain) logic for events. 
 All Event operations should be executed using this class. It's defined as shown below:</p>
 <pre lang="cs">public class EventManager : IEventManager
@@ -406,7 +421,7 @@ All Event operations should be executed using this class. It's defined as shown 
             .ToListAsync();
     }
 }</pre>
-<h3>Domain Events</h3>
+<h3 id="ArticleDomainEvents">Domain Events</h3>
 <p>We may want to define and trigger some domain specific events on some state 
 changes in our application. I defined 2 domain specific events:</p>
 <ul>
@@ -481,20 +496,305 @@ ABP event and triggered automatically).</p>
         }
     }
 }</pre>
-<p>We can handle same events in different classes. Here, we handle these events 
+<p>We can handle same events in different classes or different events in same 
+class (as in this sample). Here, we handle these events 
 and send email to related users as a notification (Not implemented emailing 
 actually to make the sample application simpler). An event handler should 
-implement IEventHandler&lt;<em>event-type</em>&gt; interface. ABP automatically calls 
-the handler when the event occurs. We can register to more than one event in a 
-single handler, as shown in this example.</p>
+implement IEventHandler&lt;<em>event-type</em>&gt; interface. ABP automatically 
+calls the handler when the event occurs.</p>
+<h3 id="ArticleAppServices">Application Services</h3>
+<p>Application services use domain layer to implement use cases of presentation 
+layer. We have a single application service in this application, <strong>
+EventAppService</strong>:</p>
+<pre lang="cs">[AbpAuthorize]
+public class EventAppService : EventCloudAppServiceBase, IEventAppService
+{
+    private readonly IEventManager _eventManager;
+    private readonly IRepository&lt;Event, Guid&gt; _eventRepository;
+
+    public EventAppService(
+        IEventManager eventManager, 
+        IRepository&lt;Event, Guid&gt; eventRepository)
+    {
+        _eventManager = eventManager;
+        _eventRepository = eventRepository;
+    }
+
+    public async Task&lt;ListResultOutput&lt;EventListDto&gt;&gt; GetList(GetEventListInput input)
+    {
+        var events = await _eventRepository
+            .GetAll()
+            .Include(e =&gt; e.Registrations)
+            .WhereIf(!input.IncludeCanceledEvents, e =&gt; !e.IsCancelled)
+            .OrderByDescending(e =&gt; e.CreationTime)
+            .ToListAsync();
+
+        return new ListResultOutput&lt;EventListDto&gt;(events.MapTo&lt;List&lt;EventListDto&gt;&gt;());
+    }
+
+    public async Task&lt;EventDetailOutput&gt; GetDetail(EntityRequestInput&lt;Guid&gt; input)
+    {
+        var @event = await _eventRepository
+            .GetAll()
+            .Include(e =&gt; e.Registrations)
+            .Where(e =&gt; e.Id == input.Id)
+            .FirstOrDefaultAsync();
+
+        if (@event == null)
+        {
+            throw new UserFriendlyException(&quot;Could not found the event, maybe it&#39;s deleted.&quot;);
+        }
+
+        return @event.MapTo&lt;EventDetailOutput&gt;();
+    }
+
+    public async Task Create(CreateEventInput input)
+    {
+        var @event = Event.Create(AbpSession.GetTenantId(), input.Title, input.Date, input.Description, input.MaxRegistrationCount);
+        await _eventManager.CreateAsync(@event);
+    }
+
+    public async Task Cancel(EntityRequestInput&lt;Guid&gt; input)
+    {
+        var @event = await _eventManager.GetAsync(input.Id);
+        _eventManager.Cancel(@event);
+    }
+
+    public async Task&lt;EventRegisterOutput&gt; Register(EntityRequestInput&lt;Guid&gt; input)
+    {
+        var registration = await RegisterAndSaveAsync(
+            await _eventManager.GetAsync(input.Id),
+            await GetCurrentUserAsync()
+            );
+
+        return new EventRegisterOutput
+        {
+            RegistrationId = registration.Id
+        };
+    }
+
+    public async Task CancelRegistration(EntityRequestInput&lt;Guid&gt; input)
+    {
+        await _eventManager.CancelRegistrationAsync(
+            await _eventManager.GetAsync(input.Id),
+            await GetCurrentUserAsync()
+            );
+    }
+
+    private async Task&lt;EventRegistration&gt; RegisterAndSaveAsync(Event @event, User user)
+    {
+        var registration = await _eventManager.RegisterAsync(@event, user);
+        await CurrentUnitOfWork.SaveChangesAsync();
+        return registration;
+    }
+}</pre>
+<p>As you see, application service does not implement domain logic itself. It 
+just uses entities and domain services (EventManager) to perform the use cases.</p>
+<h3 id="ArticlePresentation">Presentation Layer</h3>
+<p>Presentation layer for this application built using Angularjs as a SPA.</p>
+<h4 id="ArticleEventList">Event List</h4>
+<p>When we login to the application, we first see a list of events:</p>
+<p>
+<img alt="Event list page" height="396" src="event-list-page.png" width="959" /></p>
+<p>We use EventAppService to get list of events. Here, the Angular controller to 
+create this page:</p>
+<pre lang="js">(function() {
+    var controllerId = &#39;app.views.events.index&#39;;
+    angular.module(&#39;app&#39;).controller(controllerId, [
+        &#39;$scope&#39;, &#39;$modal&#39;, &#39;abp.services.app.event&#39;,
+        function ($scope, $modal, eventService) {
+            var vm = this;
+
+            vm.events = [];
+            vm.filters = {
+                includeCanceledEvents: false
+            };
+
+            function loadEvents() {
+<strong>                eventService.getList(vm.filters).success(function (result) {
+                    vm.events = result.items;
+                });
+</strong>            };
+
+            vm.openNewEventDialog = function() {
+                var modalInstance = $modal.open({
+                    templateUrl: abp.appPath + &#39;App/Main/views/events/createDialog.cshtml&#39;,
+                    controller: &#39;app.views.events.createDialog as vm&#39;,
+                    size: &#39;md&#39;
+                });
+
+                modalInstance.result.then(function () {
+                    loadEvents();
+                });
+            };
+
+            $scope.$watch(&#39;vm.filters.includeCanceledEvents&#39;, function (newValue, oldValue) {
+                if (newValue != oldValue) {
+                    loadEvents();
+                }
+            });
+
+            loadEvents();
+        }
+    ]);
+})();</pre>
+<p>We inject EventAppService as 'abp.services.app.event' into Angular 
+controller. We used
+<a href="http://www.aspnetboilerplate.com/Pages/Documents/Dynamic-Web-API">
+dynamic web api layer</a> feature of ABP. It creates needed Web API controller 
+and Angularjs service automatically and dynamically. So, we can use application 
+service methods like calling regular javascript functions. So, to call 
+EventAppService.GetList C# method, we simple call eventService.getList 
+javascript function which returns a promise ($q for angular). We also open a 
+"new event" modal (dialog) when user clicks to "+ New event" button (which 
+triggers vm.openNewEventDialog function). I will not go details of Angular 
+views, since they are simple and you can check it in source code.</p>
+<h4 id="ArticleEventDetail">Event Detail</h4>
+<p>When we click "Details" button for an event, we go to event details with a 
+URL like "<a href="http://eventcloud.aspnetboilerplate.com/#/events/e9499e3e-35c0-492c-98ce-7e410461103f">http://eventcloud.aspnetboilerplate.com/<strong>#/events/e9499e3e-35c0-492c-98ce-7e410461103f</strong></a>". 
+The GUID is id of the event.</p>
+<p>
+<img alt="Event details" height="473" src="event-detail-page.png" width="742" /></p>
+<p>Here, we see event details with registered users. We can register to the 
+event or cancel registration. This view's controller is defined in detail.js as 
+shown below:</p>
+<pre lang="js">(function () {
+    var controllerId = &#39;app.views.events.detail&#39;;
+    angular.module(&#39;app&#39;).controller(controllerId, [
+        &#39;$scope&#39;, &#39;$state&#39;,&#39;$stateParams&#39;, &#39;abp.services.app.event&#39;,
+        function ($scope, $state, $stateParams, eventService) {
+            var vm = this;
+
+            function loadEvent() {
+<strong>                eventService.getDetail({
+                    id: $stateParams.id
+                }).success(function (result) {
+                    vm.event = result;
+                });
+</strong>            }
+
+            vm.isRegistered = function () {
+                if (!vm.event) {
+                    return false;
+                }
+
+                return _.find(vm.event.registrations, function(registration) {
+                    return registration.userId == abp.session.userId;
+                });
+            };
+
+            vm.isEventCreator = function() {
+                return vm.event &amp;&amp; vm.event.creatorUserId == abp.session.userId;
+            };
+
+            vm.getUserThumbnail = function(registration) {
+                return registration.userName.substr(0, 1).toLocaleUpperCase();
+            };
+
+            vm.register = function() {
+<strong>                eventService.register({
+                    id: vm.event.id
+                }).success(function (result) {
+                    abp.notify.success(&#39;Successfully registered to event. Your registration id: &#39; + result.registrationId + &quot;.&quot;);
+                    loadEvent();
+                });
+</strong>            };
+
+            vm.cancelRegistertration = function() {
+<strong>                eventService.cancelRegistration({
+                    id: vm.event.id
+                }).success(function () {
+                    abp.notify.info(&#39;Canceled your registration.&#39;);
+                    loadEvent();
+                });
+</strong>            };
+
+            vm.cancelEvent = function() {
+<strong>                eventService.cancel({
+                    id: vm.event.id
+                }).success(function () {
+                    abp.notify.info(&#39;Canceled the event.&#39;);
+                    vm.backToEventsPage();
+                });
+</strong>            };
+
+            vm.backToEventsPage = function() {
+                $state.go(&#39;events&#39;);
+            };
+
+            loadEvent();
+        }
+    ]);
+})();</pre>
+<p>We simply use event application service to perform actions.</p>
+<h3 id="ArticleMainMenu">Main Menu</h3>
+<p>Top menu is automatically created by ABP template. We define menu items in 
+EventCloudNavigationProvider class:</p>
+<pre lang="cs">public class EventCloudNavigationProvider : NavigationProvider
+{
+    public override void SetNavigation(INavigationProviderContext context)
+    {
+        context.Manager.MainMenu
+            .AddItem(
+                new MenuItemDefinition(
+                    AppPageNames.Events,
+                    new LocalizableString(&quot;Events&quot;, EventCloudConsts.LocalizationSourceName),
+                    url: &quot;#/&quot;,
+                    icon: &quot;fa fa-calendar-check-o&quot;
+                    )
+            ).AddItem(
+                new MenuItemDefinition(
+                    AppPageNames.About,
+                    new LocalizableString(&quot;About&quot;, EventCloudConsts.LocalizationSourceName),
+                    url: &quot;#/about&quot;,
+                    icon: &quot;fa fa-info&quot;
+                    )
+            );
+    }
+}</pre>
+<p>We can add new menu items here. See
+<a href="http://www.aspnetboilerplate.com/Pages/Documents/Navigation">navigation 
+documentation</a> for more information.</p>
+<h3 id="ArticleAngularRoute">Angular Route</h3>
+<p>Defining the menu only shows it on the page. Angular has it's own route system. 
+This application uses Angular ui-router. Routes are defined in app.js as shown 
+below:</p>
+<pre lang="js">//Configuration for Angular UI routing.
+app.config([
+    &#39;$stateProvider&#39;, &#39;$urlRouterProvider&#39;,
+    function($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise(&#39;/events&#39;);
+        $stateProvider
+            .state(&#39;events&#39;, {
+                url: &#39;/events&#39;,
+                templateUrl: &#39;/App/Main/views/events/index.cshtml&#39;,
+                menu: &#39;Events&#39; //Matches to name of &#39;Events&#39; menu in EventCloudNavigationProvider
+            })
+            .state(&#39;eventDetail&#39;, {
+                url: &#39;/events/:id&#39;,
+                templateUrl: &#39;/App/Main/views/events/detail.cshtml&#39;,
+                menu: &#39;Events&#39; //Matches to name of &#39;Events&#39; menu in EventCloudNavigationProvider
+            })
+            .state(&#39;about&#39;, {
+                url: &#39;/about&#39;,
+                templateUrl: &#39;/App/Main/views/about/about.cshtml&#39;,
+                menu: &#39;About&#39; //Matches to name of &#39;About&#39; menu in EventCloudNavigationProvider
+            });
+    }
+]);</pre>
 
 
+<h2 id="ArticleSourceCode">Source Code</h2>
+<p>You can get the latest source code here:
+<a href="https://github.com/aspnetboilerplate/eventcloud">
+https://github.com/aspnetboilerplate/eventcloud</a></p>
 <h2 id="ArticleSummary">Summary</h2>
-<p>...</p>
-<p>Use the following links for more information on ASP.NET Boilerplate:</p>
+<p>In this article, I introduced a Multi Tenant (SaaS) application built on
+<a href="http://www.aspnetboilerplate.com">ASP.NET Boilerplate</a> (ABP) 
+framework. Use the following links for more information on ASP.NET Boilerplate:</p>
 <ul>
 	<li>Official site and documentation: 
-	<a href="http://www.aspnetboilerplate.com">aspnetboilerplate.com</a></li>
+	a href="http://www.aspnetboilerplate.com">aspnetboilerplate.com</a></li>
 	<li>Official forum: <a href="http://forum.aspnetboilerplate.com/">forum.aspnetboilerplate.com</a></li>
 	<li>Github repositories: <a href="https://github.com/aspnetboilerplate">github.com/aspnetboilerplate</a></li>
 	<li>Follow on twitter: <a href="https://twitter.com/aspboilerplate">
