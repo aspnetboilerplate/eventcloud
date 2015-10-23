@@ -136,6 +136,10 @@
     <Compile Include="Migrations\201510210723116_Removed_BirthYear_From_User.Designer.cs">
       <DependentUpon>201510210723116_Removed_BirthYear_From_User.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201510231926262_UpgradeTo_ModuleZero_0_7_3.cs" />
+    <Compile Include="Migrations\201510231926262_UpgradeTo_ModuleZero_0_7_3.Designer.cs">
+      <DependentUpon>201510231926262_UpgradeTo_ModuleZero_0_7_3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EventCloudDataModule.cs" />
     <Compile Include="Migrations\SeedData\DefaultTenantRoleAndUserBuilder.cs" />
@@ -173,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201510210723116_Removed_BirthYear_From_User.resx">
       <DependentUpon>201510210723116_Removed_BirthYear_From_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510231926262_UpgradeTo_ModuleZero_0_7_3.resx">
+      <DependentUpon>201510231926262_UpgradeTo_ModuleZero_0_7_3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

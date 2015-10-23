@@ -280,6 +280,12 @@
       <DependentUpon>main.css</DependentUpon>
     </Content>
     <Content Include="App\Main\services\appSession.js" />
+    <Content Include="App\Main\views\about\about.css">
+      <DependentUpon>about.less</DependentUpon>
+    </Content>
+    <Content Include="App\Main\views\about\about.min.css">
+      <DependentUpon>about.css</DependentUpon>
+    </Content>
     <Content Include="App\Main\views\events\createDialog.js" />
     <Content Include="App\Main\views\events\detail.css">
       <DependentUpon>detail.less</DependentUpon>
@@ -436,6 +442,10 @@
     <Content Include="Abp\Framework\styles\abp.mixings.less" />
     <Content Include="Abp\Framework\styles\abp.less" />
     <Content Include="Abp\Framework\styles\abp.css.map" />
+    <Content Include="App\Main\views\about\about.less" />
+    <Content Include="App\Main\views\about\about.css.map">
+      <DependentUpon>about.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Publish_Release_FileSystem.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />

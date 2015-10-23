@@ -1,9 +1,15 @@
 ﻿(function () {
     var controllerId = 'app.views.about';
     angular.module('app').controller(controllerId, [
-        '$scope', function ($scope) {
+        '$scope', 'abp.services.app.statistics',
+        function ($scope, statisticsService) {
             var vm = this;
-            //About logic...
+
+            vm.statisticItems = [];
+
+            statisticsService.getStatistics().success(function (result) {
+                vm.statisticItems = result.items;
+            });
         }
     ]);
 })();
