@@ -31,8 +31,8 @@ namespace EventCloud.Statistics
 
         public async Task<ListResultOutput<NameValueDto>> GetStatistics()
         {
-            //Disabled MayHaveTenant filter to access to all tenant's data, not for only current tenant.
-            using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant))
+            //Disabled filters to access to all tenant's data, not for only current tenant.
+            using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant, AbpDataFilters.MustHaveTenant))
             {
                 var statisticItems = new List<NameValueDto>
                 {
