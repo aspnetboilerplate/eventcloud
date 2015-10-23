@@ -9,3 +9,4 @@ This is a sample Multi-Tenant application built using ASP.NET Boilerplate and mo
 * Tenant users can cancel their registration based on some policy.
 
 __LIVE DEMO: http://eventcloud.aspnetboilerplate.com__
+Note: You can register to __default__ tenant or create your own tenant.
