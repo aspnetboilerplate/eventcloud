@@ -26,11 +26,13 @@ EntityFramework and ASP.NET Boilerplate</h1>
 		<li><a href="#ArticleEventManager">Event Manager</a></li>
 		<li><a href="#ArticleDomainEvents">Domain Events</a></li>
 		<li><a href="#ArticleAppServices">Application Services</a></li>
-		<li><a href="#ArticlePresentation">Presentation Layer</a></li>
-		<li><a href="#ArticleEventList">Event List</a></li>
-		<li><a href="#ArticleEventDetail">Event Detail</a></li>
-		<li><a href="#ArticleMainMenu">Main Menu</a></li>
-		<li><a href="#ArticleAngularRoute">Angular Route</a></li>
+		<li><a href="#ArticlePresentation">Presentation Layer</a><ul>
+			<li><a href="#ArticleEventList">Event List</a></li>
+			<li><a href="#ArticleEventDetail">Event Detail</a></li>
+			<li><a href="#ArticleMainMenu">Main Menu</a></li>
+			<li><a href="#ArticleAngularRoute">Angular Route</a></li>
+		</ul>
+		</li>
 		<li><a href="#ArticleSourceCode">Source Code</a></li>
 	</ul>
 	</li>
@@ -758,7 +760,7 @@ shown below:</p>
     ]);
 })();</pre>
 <p>We simply use event application service to perform actions.</p>
-<h3 id="ArticleMainMenu">Main Menu</h3>
+<h4 id="ArticleMainMenu">Main Menu</h4>
 <p>Top menu is automatically created by ABP template. We define menu items in 
 EventCloudNavigationProvider class:</p>
 <pre lang="cs">public class EventCloudNavigationProvider : NavigationProvider
@@ -786,7 +788,7 @@ EventCloudNavigationProvider class:</p>
 <p>We can add new menu items here. See
 <a href="http://www.aspnetboilerplate.com/Pages/Documents/Navigation">navigation 
 documentation</a> for more information.</p>
-<h3 id="ArticleAngularRoute">Angular Route</h3>
+<h4 id="ArticleAngularRoute">Angular Route</h4>
 <p>Defining the menu only shows it on the page. Angular has it's own route system. 
 This application uses Angular ui-router. Routes are defined in app.js as shown 
 below:</p>
