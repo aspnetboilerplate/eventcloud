@@ -11,3 +11,5 @@ This is a sample Multi-Tenant application built using ASP.NET Boilerplate and mo
 __LIVE DEMO: http://eventcloud.aspnetboilerplate.com__
 
 Note: You can register to __default__ tenant or create your own tenant.
+
+__ARTICLE__: http://www.codeproject.com/Articles/1043326/A-Multi-Tenant-SaaS-Application-With-ASP-NET-MVC-A
