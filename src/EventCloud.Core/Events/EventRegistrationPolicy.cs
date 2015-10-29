@@ -44,7 +44,7 @@ namespace EventCloud.Events
                 var registrationCountInLast30Days = await _eventRegistrationRepository.CountAsync(r => r.UserId == user.Id && r.CreationTime >= oneMonthAgo);
                 if (registrationCountInLast30Days > maxAllowedEventRegistrationCountInLast30DaysPerUser)
                 {
-                    throw new UserFriendlyException(string.Format("Can not register to more than {0}", maxAllowedEventRegistrationCountInLast30DaysPerUser)); //TODO: Localize
+                    throw new UserFriendlyException(string.Format("Can not register to more than {0} events in 30 days", maxAllowedEventRegistrationCountInLast30DaysPerUser)); //TODO: Localize
                 }
             }
         }

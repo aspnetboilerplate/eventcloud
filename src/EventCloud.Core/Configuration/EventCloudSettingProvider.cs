@@ -11,7 +11,7 @@ namespace EventCloud.Configuration
             {
                 new SettingDefinition(
                     EventCloudSettingNames.MaxAllowedEventRegistrationCountInLast30DaysPerUser,
-                    defaultValue: "3",
+                    defaultValue: "10",
                     scopes: SettingScopes.Tenant),
             };
         }
