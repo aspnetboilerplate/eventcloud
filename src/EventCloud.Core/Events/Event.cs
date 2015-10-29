@@ -111,8 +111,6 @@ namespace EventCloud.Events
             }
 
             Date = date;
-
-            DomainEvents.EventBus.Trigger(new EventDateChangedEvent(this));
         }
 
         private void AssertNotInPast()
