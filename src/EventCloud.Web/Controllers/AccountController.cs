@@ -213,8 +213,15 @@ namespace EventCloud.Web.Controllers
                         }
                     };
 
-                    model.UserName = model.EmailAddress;
-                    model.Password = Users.User.CreateRandomPassword();
+                    if (string.IsNullOrWhiteSpace(model.UserName))
+                    {
+                        model.UserName = model.EmailAddress;
+                    }
+
+                    if (string.IsNullOrWhiteSpace(model.Password))
+                    {
+                        model.Password = Users.User.CreateRandomPassword();
+                    }
 
                     if (string.Equals(externalLoginInfo.Email, model.EmailAddress, StringComparison.InvariantCultureIgnoreCase))
                     {
