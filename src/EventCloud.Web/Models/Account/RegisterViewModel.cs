@@ -33,5 +33,10 @@ namespace EventCloud.Web.Models.Account
         public string Password { get; set; }
 
         public bool IsExternalLogin { get; set; }
+
+        public RegisterViewModel()
+        {
+            TenancyName = Tenant.DefaultTenantName;
+        }
     }
 }

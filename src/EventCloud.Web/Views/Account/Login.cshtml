@@ -12,13 +12,13 @@
             <div class="well bs-component">
                 <form id="LoginForm" class="form-horizontal" action="@(Url.Action("Login", "Account"))?returnUrl=@(Model.ReturnUrl)" method="POST">
                     <fieldset>
-                        <legend>Login</legend>
+                        <legend>@L("LogIn")</legend>
 
                         @if (Model.IsMultiTenancyEnabled)
                         {
                             <div class="form-group">
                                 <div class="col-lg-12">
-                                    <input type="text" class="form-control" id="TenancyName" placeholder="Tenancy name" required maxlength="@EventCloud.MultiTenancy.Tenant.MaxTenancyNameLength">
+                                    <input type="text" class="form-control" id="TenancyName" placeholder="@L("TenancyName")" required maxlength="@EventCloud.MultiTenancy.Tenant.MaxTenancyNameLength">
                                     @*<span class="text-muted">Can be empty to login as host.</span>*@
                                 </div>
                             </div>
@@ -30,18 +30,18 @@
 
                         <div class="form-group">
                             <div class="col-lg-12">
-                                <input type="text" class="form-control" id="EmailAddressInput" placeholder="User name or email" required maxlength="@EventCloud.Users.User.MaxEmailAddressLength">
+                                <input type="text" class="form-control" id="EmailAddressInput" placeholder="@L("UserNameOrEmail")" required maxlength="@EventCloud.Users.User.MaxEmailAddressLength">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-lg-12">
-                                <input type="password" class="form-control" id="PasswordInput" placeholder="Password" required maxlength="@EventCloud.Users.User.MaxPlainPasswordLength">
+                                <input type="password" class="form-control" id="PasswordInput" placeholder="@L("Password")" required maxlength="@EventCloud.Users.User.MaxPlainPasswordLength">
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" id="RememberMeInput">
                                         <span class="ripple"></span>
-                                        <span class="check"></span> Remember me
+                                        <span class="check"></span> @L("RememberMe")
                                     </label>
                                 </div>
                             </div>
@@ -49,8 +49,8 @@
 
                         <div class="form-group">
                             <div class="col-lg-12">
-                                <button id="LoginButton" type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Login</button>
-                                <a class="btn btn-success" href="@Url.Action("Register")"><i class="fa fa-sign-in"></i> Register</a>
+                                <button id="LoginButton" type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> @L("LogIn")</button>
+                                <a class="btn btn-success" href="@Url.Action("Register")"><i class="fa fa-sign-in"></i> @L("Register")</a>
                             </div>
                         </div>
                     </fieldset>
@@ -62,7 +62,7 @@
 
                 @if (loginProviders.Count > 0)
                 {
-                    <p>Or login with:</p>
+                    <p>@L("OrLoginWith"):</p>
 
                     using (Html.BeginForm("ExternalLogin", "Account", method: FormMethod.Post))
                     {
@@ -84,9 +84,9 @@
 
             </div>
 
-            <a href="@Url.Action("RegisterTenant", "Account")" class="btn btn-info">BECOME A TENANT *</a>
+            <a href="@Url.Action("RegisterTenant", "Account")" class="btn btn-info">@L("BecomeATenant") *</a>
             <p id="TenantCreateHint" class="text-muted">
-                <small>* A tenant can have it's own users and events. It's free!</small>
+                <small>* @L("BecomeATenantHint")</small>
             </p>
         </div>
     </div>

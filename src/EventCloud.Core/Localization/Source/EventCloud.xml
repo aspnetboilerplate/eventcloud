@@ -29,5 +29,49 @@
     
     <text name="LoginFailed" value="Login failed!" />
 
+    <text name="NameSurname" value="Name surname" />
+    <text name="UserName" value="User name" />
+    <text name="Name" value="Name" />
+    <text name="Surname" value="Surname" />
+    <text name="EmailAddress" value="Email address" />
+
+    <text name="Events" value="Events" />
+    <text name="NewEvent" value="New event" />
+    <text name="ShowCanceledEvents" value="Show canceled events" />
+    <text name="ThisEventIsCanceled" value="This event is canceled" />
+    <text name="Details" value="Details" />
+    <text name="XofYregistered" value="{0} of {1} registered" />
+    <text name="XregisteredNoNewRegistrationAvailable" value="{0} registered. No new registration available." />
+    <text name="XregisteredUnlimitedRegistrations" value="{0} registered. Unlimited registrations." />
+    <text name="BackToEvents" value="Back to events" />
+    <text name="Register" value="Register" />
+    <text name="CancelRegistration" value="Cancel registration" />
+    <text name="CancelTheEvent" value="Cancel the event" />
+    <text name="XregisteredOfYAvailableRegistration" value="{0} registered users (of {1} available registrations)" />
+    <text name="Title" value="Title" />
+    <text name="Description" value="Description" />
+    <text name="Date" value="Date" />
+    <text name="MaxRegistrationCount" value="Max registration count" />
+    <text name="Unlimited" value="Unlimited" />
+    <text name="Cancel" value="Cancel" />
+    <text name="Save" value="Save" />
+    <text name="AboutTheCloudEvent" value="About the Cloud Event" />
+    <text name="CloudEventDescription" value="This is an example multi-tenant application built using ASP.NET Boilerplate framework." />
+    <text name="SomeStatistics" value="Some Statistics" />
+    <text name="StatisticsNote" value="Note: These statistics include all tenants, not only current tenant." />
+    <text name="Links" value="Links" />
+    <text name="SourceCodeOfThisApplication" value="Source code of this application" />
+    <text name="AbpOfficialWebSite" value="ASP.NET Boilerplate official web site" />
+    <text name="OfficialForum" value="Official forum" />
+    <text name="Logout" value="Logout" />
+    <text name="Tenants" value="Tenants" />
+    <text name="Users" value="Users" />
+    <text name="Registrations" value="Registrations" />
+    <text name="OrLoginWith" value="Or login with" />
+    <text name="BecomeATenant" value="BECOME A TENANT" />
+    <text name="BecomeATenantHint" value="A tenant can have it's own users and events. It's free!" />
+    <text name="AdminPassword" value="Admin password" />
+    <text name="CreateTheTenant" value="Create the tenant" />
+
   </texts>
 </localizationDictionary>

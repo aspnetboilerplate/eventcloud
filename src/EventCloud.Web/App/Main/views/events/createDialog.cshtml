@@ -1,40 +1,40 @@
 ﻿<div>
     <div class="modal-header">
-        <h3 class="modal-title">Create New Event</h3>
+        <h3 class="modal-title">@L("NewEvent")</h3>
     </div>
     <div class="modal-body">
         <form class="form-horizontal">
             <fieldset>
                 <div class="form-group">
-                    <label class="col-lg-2 control-label">Title:</label>
+                    <label class="col-lg-2 control-label">@L("Title")</label>
                     <div class="col-lg-10">
-                        <input ng-model="vm.event.title" type="text" class="form-control" name="EventTitle" placeholder="Enter event title">
+                        <input ng-model="vm.event.title" type="text" class="form-control" name="EventTitle">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-2 control-label">Description:</label>
+                    <label class="col-lg-2 control-label">@L("Description")</label>
                     <div class="col-lg-10">
-                        <textarea ng-model="vm.event.description" class="form-control" rows="5" name="EventDescription" placeholder="Describe your event in detail"></textarea>
+                        <textarea ng-model="vm.event.description" class="form-control" rows="5" name="EventDescription"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-2 control-label">Date:</label>
+                    <label class="col-lg-2 control-label">@L("Date")</label>
                     <div class="col-lg-10">
                         <input ng-model="vm.event.date" type="text" class="form-control" name="EventDate" placeholder="YYYY-MM-DD HH:MM">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-2 control-label">Count:</label>
+                    <label class="col-lg-2 control-label">@L("MaxRegistrationCount")</label>
                     <div class="col-lg-10">
-                        <input ng-model="vm.event.maxRegistrationCount" type="number" class="form-control" name="EventMaxRegistrationCount" placeholder="Max registration count">
-                        <small class="text-muted">0: Unlimited.</small>
+                        <input ng-model="vm.event.maxRegistrationCount" type="number" class="form-control" name="EventMaxRegistrationCount">
+                        <small class="text-muted">0: @L("Unlimited").</small>
                     </div>
                 </div>
             </fieldset>
         </form>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-warning" ng-click="vm.cancel()">Cancel</button>
-        <button class="btn btn-primary" ng-click="vm.save()">Submit</button>
+        <button class="btn btn-warning" ng-click="vm.cancel()">@L("Cancel")</button>
+        <button class="btn btn-primary" ng-click="vm.save()">@L("Save")</button>
     </div>
 </div>

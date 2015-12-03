@@ -6,7 +6,7 @@
             <div class="well bs-component">
                 <form class="form-horizontal" action="@(Url.Action("RegisterTenant", "Account"))" method="POST">
                     <fieldset>
-                        <legend>Become a Tenant</legend>
+                        <legend>@L("BecomeATenant")</legend>
 
                         @if (@ViewBag.ErrorMessage != null)
                         {
@@ -41,13 +41,13 @@
 
                         <div class="form-group">
                             <div class="col-lg-12">
-                                <input type="password" class="form-control" name="Password" placeholder="@L("Admin password")" required maxlength="@EventCloud.Users.User.MaxPlainPasswordLength">
+                                <input type="password" class="form-control" name="Password" placeholder="@L("AdminPassword")" required maxlength="@EventCloud.Users.User.MaxPlainPasswordLength">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-lg-12">
-                                <button type="submit" id="RegisterButton" class="btn btn-primary"><i class="fa fa-sign-in"></i> Create tenant</button>
+                                <button type="submit" id="RegisterButton" class="btn btn-primary"><i class="fa fa-sign-in"></i> @L("CreateTheTenant")</button>
                             </div>
                         </div>
                     </fieldset>

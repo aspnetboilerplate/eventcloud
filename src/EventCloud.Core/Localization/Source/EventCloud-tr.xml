@@ -29,11 +29,49 @@
 
     <text name="LoginFailed" value="Giriş başarısız!" />
     
-    <text name="NameSurname" value="Name surname" />
-    <text name="UserName" value="User name" />
-    <text name="Name" value="Name" />
-    <text name="Surname" value="Surname" />
-    <text name="EmailAddress" value="Email address" />
+    <text name="NameSurname" value="Ad soyad" />
+    <text name="UserName" value="Kullanıcı adı" />
+    <text name="Name" value="Ad" />
+    <text name="Surname" value="Soyad" />
+    <text name="EmailAddress" value="E-posta adresi" />
+
+    <text name="Events" value="Etkinlikler" />
+    <text name="NewEvent" value="Yeni etkinlik" />
+    <text name="ShowCanceledEvents" value="İptal edilmiş etkinlikleri de göster." />
+    <text name="ThisEventIsCanceled" value="Bu etkinlik iptal edilmiş." />
+    <text name="Details" value="Ayrıntılar" />
+    <text name="XofYregistered" value="{1} kapasitenin {0} adedi için kayıt yapılmış." />
+    <text name="XregisteredNoNewRegistrationAvailable" value="{0} kayıt yapıldı. Yeni kayıt yapılamaz." />
+    <text name="XregisteredUnlimitedRegistrations" value="{0} kayıt yapıldı. Sınırsız kayıt yapılabilir." />
+    <text name="BackToEvents" value="Etkinliklere geri dön" />
+    <text name="Register" value="Kaydol" />
+    <text name="CancelRegistration" value="Kaydını iptal et" />
+    <text name="CancelTheEvent" value="Etkinliği iptal et" />
+    <text name="XregisteredOfYAvailableRegistration" value="{0} kayıt yapılmış (en fazla {1} kayıt yapılabilir)." />
+    <text name="Title" value="Başlık" />
+    <text name="Description" value="Açıklama" />
+    <text name="Date" value="Tarih" />
+    <text name="MaxRegistrationCount" value="En fazla kayıt sayısı" />
+    <text name="Unlimited" value="Sınırsız" />
+    <text name="Cancel" value="İptal" />
+    <text name="Save" value="Kaydet" />
+    <text name="AboutTheCloudEvent" value="Cloud Event Hakkında" />
+    <text name="CloudEventDescription" value="Bu, ASP.NET Boilerplate framework ile geliştirilmiş çok-müşterili (SaaS) örnek bir uygulamadır." />
+    <text name="SomeStatistics" value="Bazı İstatistikler" />
+    <text name="StatisticsNote" value="Not: Bu istatistikler tüm müşterileri içerir, sadece şu anki müşteri değil." />
+    <text name="Links" value="Bağlantılar" />
+    <text name="SourceCodeOfThisApplication" value="Bu uygulamanın kaynak kodu" />
+    <text name="AbpOfficialWebSite" value="ASP.NET Boilerplate resmi web sitesi" />
+    <text name="OfficialForum" value="Resmi forum" />
+    <text name="Logout" value="Çıkış" />
+    <text name="Tenants" value="Müşteriler" />
+    <text name="Users" value="Kullanıcılar" />
+    <text name="Registrations" value="Kayıtlar" />
+    <text name="OrLoginWith" value="Ya da şununla gir" />
+    <text name="BecomeATenant" value="MÜŞTERİ OL" />
+    <text name="BecomeATenantHint" value="Bir müşterinin kendine ait kullanıcıları ve etkinlikleri olur. Tamamen ücretsiz!" />
+    <text name="AdminPassword" value="Yönetici (admin) şifresi" />
+    <text name="CreateTheTenant" value="Müşteriyi oluştur" />
 
   </texts>
 </localizationDictionary>

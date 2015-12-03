@@ -6,7 +6,7 @@
             <div class="well bs-component">
                 <form class="form-horizontal" action="@(Url.Action("Register", "Account"))" method="POST">
                     <fieldset>
-                        <legend>Register</legend>
+                        <legend>@L("Register")</legend>
 
                         @if (@ViewBag.ErrorMessage != null)
                         {
@@ -58,7 +58,7 @@
 
                         <div class="form-group">
                             <div class="col-lg-12">
-                                <button type="submit" id="RegisterButton" class="btn btn-primary"><i class="fa fa-sign-in"></i> Register</button>
+                                <button type="submit" id="RegisterButton" class="btn btn-primary"><i class="fa fa-sign-in"></i> @L("Register")</button>
                             </div>
                         </div>
                     </fieldset>

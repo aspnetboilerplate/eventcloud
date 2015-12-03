@@ -37,19 +37,19 @@ namespace EventCloud.Statistics
                 var statisticItems = new List<NameValueDto>
                 {
                     new NameValueDto(
-                        "Tenants",
+                        L("Tenants"),
                         (await _tenantRepository.CountAsync()).ToString()
                         ),
                     new NameValueDto(
-                        "Users",
+                        L("Users"),
                         (await _userRepository.CountAsync()).ToString()
                         ),
                     new NameValueDto(
-                        "Events",
+                        L("Events"),
                         (await _eventRepository.CountAsync()).ToString()
                         ),
                     new NameValueDto(
-                        "Registrations",
+                        L("Registrations"),
                         (await _eventRegistrationRepository.CountAsync()).ToString()
                         )
                 };

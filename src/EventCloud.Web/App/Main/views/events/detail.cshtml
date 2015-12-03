@@ -3,10 +3,10 @@
     <h2>{{vm.event.title}} <span class="event-date"><i class="fa fa-calendar-times-o"></i> {{vm.event.date | momentFormat:'DD.MM.YYYY'}}</span></h2>
 
     <div class="event-actions">
-        <a class="btn btn-sm btn-default" ng-click="vm.backToEventsPage()"><i class="fa fa-arrow-circle-left"></i> back to events</a>
-        <a class="btn btn-sm btn-primary" ng-if="!vm.isRegistered()" ng-click="vm.register()"><i class="fa fa-star"></i> Register</a>
-        <a class="btn btn-sm btn-warning" ng-if="vm.isRegistered()" ng-click="vm.cancelRegistertration()"><i class="fa fa-times"></i> Cancel registration</a>
-        <a class="btn btn-sm btn-danger" ng-if="vm.isEventCreator()" ng-click="vm.cancelEvent()"><i class="fa fa-times"></i> Cancel the event</a>
+        <a class="btn btn-sm btn-default" ng-click="vm.backToEventsPage()"><i class="fa fa-arrow-circle-left"></i> @L("BackToEvents")</a>
+        <a class="btn btn-sm btn-primary" ng-if="!vm.isRegistered()" ng-click="vm.register()"><i class="fa fa-star"></i> @L("Register")</a>
+        <a class="btn btn-sm btn-warning" ng-if="vm.isRegistered()" ng-click="vm.cancelRegistertration()"><i class="fa fa-times"></i> @L("CancelRegistration")</a>
+        <a class="btn btn-sm btn-danger" ng-if="vm.isEventCreator()" ng-click="vm.cancelEvent()"><i class="fa fa-times"></i> @L("CancelTheEvent")</a>
     </div>
 
     <p>{{vm.event.description}}</p>
@@ -14,7 +14,9 @@
     <hr/>
 
     <div>
-        <h5>{{vm.event.registrationsCount}} registered users (of {{vm.event.maxRegistrationCount}} available registrations)</h5>
+        <h5>
+            @L("XregisteredOfYAvailableRegistration", "{{vm.event.registrationsCount}}", "{{vm.event.maxRegistrationCount}}")
+        </h5>
         <div class="registrar" ng-repeat="registration in vm.event.registrations">
             <div class="registrar-thumbnail">{{vm.getUserThumbnail(registration)}}</div>
             <div class="registrar-body">
