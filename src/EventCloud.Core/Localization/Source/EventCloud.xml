@@ -69,7 +69,7 @@
     <text name="Registrations" value="Registrations" />
     <text name="OrLoginWith" value="Or login with" />
     <text name="BecomeATenant" value="BECOME A TENANT" />
-    <text name="BecomeATenantHint" value="A tenant can have it's own users and events. It's free!" />
+    <text name="BecomeATenantHint" value="A tenant can have its own users and events. It's free!" />
     <text name="AdminPassword" value="Admin password" />
     <text name="CreateTheTenant" value="Create the tenant" />
 
