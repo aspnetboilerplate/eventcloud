@@ -6285,3 +6285,168 @@ DEBUG 2015-10-21 10:40:52,608 [91   ] ud.Events.Notifications.EventUserEmailer -
 WARN  2015-10-21 11:03:52,074 [171  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
 WARN  2015-10-21 11:04:03,700 [164  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
 WARN  2015-10-21 11:04:09,757 [164  ] Default                                  - Can not find 'Events' in localization source 'EventCloud'!
+DEBUG 2015-12-05 21:44:05,217 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2015-12-05 21:44:06,714 [1    ] Abp.Modules.AbpModuleManager             - Found 13 ABP modules in total.
+DEBUG 2015-12-05 21:44:06,717 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-12-05 21:44:06,718 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-12-05 21:44:06,718 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-12-05 21:44:06,718 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-12-05 21:44:06,718 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-12-05 21:44:06,719 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-12-05 21:44:06,719 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-12-05 21:44:06,719 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-12-05 21:44:06,719 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudApplicationModule, EventCloud.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-12-05 21:44:06,719 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudCoreModule, EventCloud.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-12-05 21:44:06,719 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudDataModule, EventCloud.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-12-05 21:44:06,719 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.Web.EventCloudWebModule, EventCloud.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-12-05 21:44:06,719 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.Api.EventCloudWebApiModule, EventCloud.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2015-12-05 21:44:06,723 [1    ] Abp.Modules.AbpModuleManager             - 13 modules loaded.
+DEBUG 2015-12-05 21:44:08,656 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2015-12-05 21:44:08,661 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2015-12-05 21:44:08,661 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2015-12-05 21:44:08,661 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2015-12-05 21:44:08,662 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: EventCloud
+DEBUG 2015-12-05 21:44:09,744 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 6 classes defines auto mapping attributes
+DEBUG 2015-12-05 21:44:09,744 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventListDto
+DEBUG 2015-12-05 21:44:09,851 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventRegistrationDto
+DEBUG 2015-12-05 21:44:09,859 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventDetailOutput
+DEBUG 2015-12-05 21:44:09,860 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2015-12-05 21:44:09,863 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Sessions.Dto.UserLoginInfoDto
+DEBUG 2015-12-05 21:44:09,864 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2015-12-05 21:44:09,901 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'EventCloud.Events.IEventAppService' with service name 'app/event'.
+DEBUG 2015-12-05 21:44:09,902 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'EventCloud.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2015-12-05 21:44:09,903 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'EventCloud.Statistics.IStatisticsAppService' with service name 'app/statistics'.
+DEBUG 2015-12-05 21:44:09,903 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'EventCloud.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2015-12-05 21:44:09,904 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'EventCloud.Sessions.ISessionAppService' with service name 'app/session'.
+ERROR 2015-12-05 21:44:25,885 [17   ] .Mvc.Controllers.AbpHandleErrorAttribute - System.InvalidOperationException: The view '~/App/Main/views/home/home.cshtml' or its master was not found or no view engine supports the searched locations. The following locations were searched:
+~/App/Main/views/home/home.cshtml
+   at System.Web.Mvc.ViewResult.FindView(ControllerContext context)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+System.InvalidOperationException: The view '~/App/Main/views/home/home.cshtml' or its master was not found or no view engine supports the searched locations. The following locations were searched:
+~/App/Main/views/home/home.cshtml
+   at System.Web.Mvc.ViewResult.FindView(ControllerContext context)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+DEBUG 2016-01-07 15:39:55,231 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-01-07 15:39:56,208 [1    ] Abp.Modules.AbpModuleManager             - Found 13 ABP modules in total.
+DEBUG 2016-01-07 15:39:56,210 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 15:39:56,212 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 15:39:56,212 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 15:39:56,212 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 15:39:56,212 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 15:39:56,212 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 15:39:56,212 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 15:39:56,212 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.7.5.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 15:39:56,213 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudApplicationModule, EventCloud.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 15:39:56,213 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudCoreModule, EventCloud.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 15:39:56,213 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudDataModule, EventCloud.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 15:39:56,213 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.Web.EventCloudWebModule, EventCloud.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 15:39:56,213 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.Api.EventCloudWebApiModule, EventCloud.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 15:39:56,216 [1    ] Abp.Modules.AbpModuleManager             - 13 modules loaded.
+DEBUG 2016-01-07 15:39:57,506 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-01-07 15:39:57,510 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-01-07 15:39:57,511 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-01-07 15:39:57,511 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-01-07 15:39:57,512 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: EventCloud
+DEBUG 2016-01-07 15:39:58,184 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 6 classes defines auto mapping attributes
+DEBUG 2016-01-07 15:39:58,184 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventListDto
+DEBUG 2016-01-07 15:39:58,300 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventRegistrationDto
+DEBUG 2016-01-07 15:39:58,307 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventDetailOutput
+DEBUG 2016-01-07 15:39:58,308 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-01-07 15:39:58,310 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-01-07 15:39:58,311 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-01-07 15:39:58,339 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'EventCloud.Events.IEventAppService' with service name 'app/event'.
+DEBUG 2016-01-07 15:39:58,340 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'EventCloud.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-01-07 15:39:58,340 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'EventCloud.Statistics.IStatisticsAppService' with service name 'app/statistics'.
+DEBUG 2016-01-07 15:39:58,341 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'EventCloud.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-01-07 15:39:58,342 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'EventCloud.Sessions.ISessionAppService' with service name 'app/session'.
+ERROR 2016-01-07 15:40:03,113 [9    ] lers.Filters.AbpExceptionFilterAttribute - System.Web.HttpException (0x80004005): There is no such a service: JQuery_app/event
+   at Abp.WebApi.Controllers.Dynamic.Scripting.ScriptProxyManager.GetScript(String name, ProxyScriptType type)
+   at Abp.WebApi.Controllers.Dynamic.Scripting.AbpServiceProxiesController.Get(String name, ProxyScriptType type)
+   at lambda_method(Closure , Object , Object[] )
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass10.<GetExecutor>b__9(Object instance, Object[] methodParameters)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.AuthenticationFilterResult.<ExecuteAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__0.MoveNext()
+System.Web.HttpException (0x80004005): There is no such a service: JQuery_app/event
+   at Abp.WebApi.Controllers.Dynamic.Scripting.ScriptProxyManager.GetScript(String name, ProxyScriptType type)
+   at Abp.WebApi.Controllers.Dynamic.Scripting.AbpServiceProxiesController.Get(String name, ProxyScriptType type)
+   at lambda_method(Closure , Object , Object[] )
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClass10.<GetExecutor>b__9(Object instance, Object[] methodParameters)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ApiControllerActionInvoker.<InvokeActionAsyncCore>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ActionFilterResult.<ExecuteAsync>d__2.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.AuthenticationFilterResult.<ExecuteAsync>d__0.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Http.Controllers.ExceptionFilterResult.<ExecuteAsync>d__0.MoveNext()
+DEBUG 2016-01-07 16:03:04,675 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2016-01-07 16:03:05,708 [1    ] Abp.Modules.AbpModuleManager             - Found 13 ABP modules in total.
+DEBUG 2016-01-07 16:03:05,710 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=0.7.7.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 16:03:05,712 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=0.7.7.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 16:03:05,712 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkModule, Abp.EntityFramework, Version=0.7.7.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 16:03:05,712 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.WebApi.AbpWebApiModule, Abp.Web.Api, Version=0.7.7.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 16:03:05,712 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebModule, Abp.Web, Version=0.7.7.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 16:03:05,712 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.Mvc.AbpWebMvcModule, Abp.Web.Mvc, Version=0.7.7.1, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 16:03:05,712 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.Zero, Version=0.7.7.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 16:03:05,712 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFramework.AbpZeroEntityFrameworkModule, Abp.Zero.EntityFramework, Version=0.7.7.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 16:03:05,712 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudApplicationModule, EventCloud.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 16:03:05,712 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudCoreModule, EventCloud.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 16:03:05,713 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.EventCloudDataModule, EventCloud.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 16:03:05,713 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.Web.EventCloudWebModule, EventCloud.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 16:03:05,713 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: EventCloud.Api.EventCloudWebApiModule, EventCloud.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2016-01-07 16:03:05,716 [1    ] Abp.Modules.AbpModuleManager             - 13 modules loaded.
+DEBUG 2016-01-07 16:03:07,060 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2016-01-07 16:03:07,064 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2016-01-07 16:03:07,064 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2016-01-07 16:03:07,065 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2016-01-07 16:03:07,065 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: EventCloud
+DEBUG 2016-01-07 16:03:07,761 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 6 classes defines auto mapping attributes
+DEBUG 2016-01-07 16:03:07,761 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventListDto
+DEBUG 2016-01-07 16:03:07,867 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventRegistrationDto
+DEBUG 2016-01-07 16:03:07,875 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Events.Dtos.EventDetailOutput
+DEBUG 2016-01-07 16:03:07,875 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2016-01-07 16:03:07,878 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Sessions.Dto.UserLoginInfoDto
+DEBUG 2016-01-07 16:03:07,878 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - EventCloud.Web.Models.Account.TenantSelectionViewModel+TenantInfo
+DEBUG 2016-01-07 16:03:07,906 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'EventCloud.Events.IEventAppService' with service name 'app/event'.
+DEBUG 2016-01-07 16:03:07,907 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'EventCloud.Roles.IRoleAppService' with service name 'app/role'.
+DEBUG 2016-01-07 16:03:07,908 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'EventCloud.Statistics.IStatisticsAppService' with service name 'app/statistics'.
+DEBUG 2016-01-07 16:03:07,908 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'EventCloud.Users.IUserAppService' with service name 'app/user'.
+DEBUG 2016-01-07 16:03:07,909 [1    ] Abp.Logging.LogHelper                    - Dynamic web api controller is created for type 'EventCloud.Sessions.ISessionAppService' with service name 'app/session'.
