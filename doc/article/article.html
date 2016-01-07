@@ -33,6 +33,7 @@ EntityFramework and ASP.NET Boilerplate</h1>
 			<li><a href="#ArticleAngularRoute">Angular Route</a></li>
 		</ul>
 		</li>
+		<li><a href="#ArticleUnitTests">Unit and Integration Tests</a></li>
 	</ul>
 	</li>
 	<li><a href="#ArticleSocialLogins">Social Logins</a></li>
@@ -822,10 +823,86 @@ app.config([
     }
 ]);</pre>
 
+
+<h2 id="ArticleUnitTests">Unit and Integration Tests</h2>
+<p>ASP.NET Boilerplate provides tools to make unit and integration tests easier. 
+You can find all test code from
+<a href="https://github.com/aspnetboilerplate/eventcloud">source code</a> of the 
+project. Here, I will briefly explain basic tests. Solution includes 
+<strong>EventAppService_Tests</strong> class which tests the EventAppService. See 2 tests from 
+this class:</p>
+<pre lang="js">public class EventAppService_Tests : EventCloudTestBase
+{
+    private readonly IEventAppService _eventAppService;
+
+    public EventAppService_Tests()
+    {
+        _eventAppService = Resolve&lt;IEventAppService&gt;();
+    }
+
+    [Fact]
+    <strong>public async Task Should_Create_Event()</strong>
+    {
+        //Arrange
+        var eventTitle = Guid.NewGuid().ToString();
+
+        //Act
+        await _eventAppService.Create(new CreateEventInput
+        {
+            Title = eventTitle,
+            Description = &quot;A description&quot;,
+            Date = Clock.Now.AddDays(2)
+        });
+
+        //Assert
+        UsingDbContext(context =&gt;
+        {
+            context.Events.FirstOrDefault(e =&gt; e.Title == eventTitle).ShouldNotBe(null);
+        });
+    }
+
+    [Fact]
+    <strong>public async Task Should_Not_Create_Events_In_The_Past()</strong>
+    {
+        //Arrange
+        var eventTitle = Guid.NewGuid().ToString();
+
+        //Act
+        await Assert.ThrowsAsync&lt;UserFriendlyException&gt;(async () =&gt;
+        {
+            await _eventAppService.Create(new CreateEventInput
+            {
+                Title = eventTitle,
+                Description = &quot;A description&quot;,
+                Date = Clock.Now.AddDays(-1)
+            });
+        });
+    }
+
+    private Event GetTestEvent()
+    {
+        return UsingDbContext(context =&gt; GetTestEvent(context));
+    }
+
+    private static Event GetTestEvent(EventCloudDbContext context)
+    {
+        return context.Events.Single(e =&gt; e.Title == TestDataBuilder.TestEventTitle);
+    }
+}</pre>
+<p>We use <strong>xUnit</strong> as test framework. In the first test, we simply 
+create an event and check database if it's in there. In the second test, we 
+intentionally trying to create an event in the past. Since our business rule 
+don't allow it, we should get an exception here.</p>
+<p>With such tests, we tested everyting starting from application service 
+including all aspects of ASP.NET Boilerplate (like validation, unit of work and 
+so on). See my <em>
+<a href="http://www.codeproject.com/Articles/871786/Unit-testing-in-Csharp-using-xUnit-Entity-Framewor">Unit testing in C# using xUnit, Entity Framework, Effort and ASP.NET Boilerplate</a></em> 
+article for details on unit testing.</p>
+
 <h2 id="ArticleSocialLogins">Social Logins</h2>
 <p>Startup template is configured to work with social login providers: Facebook, 
 Twitter and Google+. All we need to enable it in web.config and enter API 
-credentials.</p>
+credentials:</p>
 <pre lang="xml">&lt;add key=&quot;ExternalAuth.Facebook.IsEnabled&quot; value=&quot;false&quot; /&gt;
 &lt;add key=&quot;ExternalAuth.Facebook.AppId&quot; value=&quot;&quot; /&gt;
 &lt;add key=&quot;ExternalAuth.Facebook.AppSecret&quot; value=&quot;&quot; /&gt;
@@ -897,6 +974,11 @@ framework. Use the following links for more information on ASP.NET Boilerplate:<
 
 <h2 id="ArticleHistory">Article History</h2>
 <ul>
+	<li>2016-01-08<ul>
+		<li>Added 'unit and integration tests' section.</li>
+		<li>Upgraded Abp.* nuget packages to v0.7.7.1.</li>
+	</ul>
+	</li>
 	<li>2015-12-04<ul>
 		<li>Added 'social media login' and 'token based authentication' 
 		sections.</li>
