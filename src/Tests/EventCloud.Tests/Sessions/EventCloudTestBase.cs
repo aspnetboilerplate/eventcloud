@@ -30,18 +30,23 @@ namespace EventCloud.Tests.Sessions
 
         protected EventCloudTestBase()
         {
+            //Seed initial data
+            UsingDbContext(context => new InitialDataBuilder(context).Build());
+            UsingDbContext(context => new TestDataBuilder(context).Build());
+
+            LoginAsDefaultTenantAdmin();
+        }
+
+        protected override void PreInitialize()
+        {
+            base.PreInitialize();
+
             //Fake DbConnection using Effort!
             LocalIocManager.IocContainer.Register(
                 Component.For<DbConnection>()
                     .UsingFactoryMethod(Effort.DbConnectionFactory.CreateTransient)
                     .LifestyleSingleton()
                 );
-
-            //Seed initial data
-            UsingDbContext(context => new InitialDataBuilder(context).Build());
-            UsingDbContext(context => new TestDataBuilder(context).Build());
-
-            LoginAsDefaultTenantAdmin();
         }
 
         protected override void AddModules(ITypeList<AbpModule> modules)
@@ -62,8 +67,7 @@ namespace EventCloud.Tests.Sessions
                 context.SaveChanges();
             }
         }
-
-
+        
         public async Task UsingDbContext(Func<EventCloudDbContext, Task> action)
         {
             using (var context = LocalIocManager.Resolve<EventCloudDbContext>())
