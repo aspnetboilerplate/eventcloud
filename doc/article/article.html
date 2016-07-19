@@ -66,8 +66,8 @@ before reading the article.&nbsp;</p>
 <a href="http://www.aspnetboilerplate.com/Templates">
 http://aspnetboilerplate.com/Templates</a>:</p>
 <p>
-<img alt="Creating the template" height="408" src="create-template.png" width="681" /></p>
-<p>I selected "<strong>ABP + module zero</strong>" template (module zero adds 
+<img alt="Create template" height="661" src="create-template-2.png" width="945" /></p>
+<p>I selected template including "<strong>module zero</strong>" template (module zero adds 
 user, role, tenant... management infrastructure to the framework). It creates a ready and 
 working solution for us including a <strong>login page</strong>, <strong>
 navigation</strong> and a bootstrap based <strong>layout</strong>. After download and open the 
@@ -93,7 +93,7 @@ and <strong>123qwe </strong>as password to login:</p>
 <p>
 <img alt="Initial Login PAge" height="394" src="initial-login-page.png" width="388" /></p>
 <p>After login, we see the basic bootstrap based layout consists of two pages: 
-Home and About:</p>
+<strong>Home</strong> and <strong>About</strong>:</p>
 <p>
 <img alt="Initial layout" height="449" src="initial-layout.png" width="956" /></p>
 <p>This is a localized UI with a dynamic menu. Angular layout, routing and basic 
@@ -252,8 +252,8 @@ interface of ASP.NET Boilerplate (ABP) framework and ensures that this entity is
 per tenant. This is needed for <strong>multi-tenancy</strong>. Thus, different 
 tenants will have different events and can not see each other's events. ABP 
 automatically filters entities of current tenant.</p>
-<p>Event inherits from FullAuditedEntity which contains creation, modification 
-and deletion audit columns. FullAuditedEntity also implements ISoftDelete, so 
+<p>Event class inherits from <strong>FullAuditedEntity</strong> which contains creation, modification 
+and deletion audit columns. FullAuditedEntity also implements <strong>ISoftDelete</strong>, so 
 events can not be deleted from database. They are marked as deleted when you 
 delete it. ABP automatically filters (hides) deleted entities when you query 
 database.</p>
@@ -539,8 +539,8 @@ EventBus documentation</a> for more information on domain events.</p>
 <h3 id="ArticleAppServices">Application Services</h3>
 <p>Application services use domain layer to implement use cases of the 
 application (generally used by presentation 
-layer). We have a single application service in this application; <strong>
-EventAppService</strong>:</p>
+layer). <strong>
+EventAppService</strong> performs application logic for events.</p>
 <pre lang="cs">[AbpAuthorize]
 public class EventAppService : EventCloudAppServiceBase, IEventAppService
 {
@@ -974,6 +974,12 @@ framework. Use the following links for more information on ASP.NET Boilerplate:<
 
 <h2 id="ArticleHistory">Article History</h2>
 <ul>
+	<li>2016-07-19<ul>
+		<li>Renewed images and revised content.</li>
+		<li>Added statistics to about page.</li>
+		<li>Upgraded Abp.* nuget packages to v0.10.</li>
+	</ul>
+	</li>
 	<li>2016-01-08<ul>
 		<li>Added 'unit and integration tests' section.</li>
 		<li>Upgraded Abp.* nuget packages to v0.7.7.1.</li>
