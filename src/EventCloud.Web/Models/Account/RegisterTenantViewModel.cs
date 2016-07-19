@@ -1,11 +1,10 @@
 using System.ComponentModel.DataAnnotations;
-using Abp.Application.Services.Dto;
 using EventCloud.MultiTenancy;
 using EventCloud.Users;
 
 namespace EventCloud.Web.Models.Account
 {
-    public class RegisterTenantViewModel : IInputDto
+    public class RegisterTenantViewModel
     {
         [Required]
         [StringLength(Tenant.MaxTenancyNameLength)]

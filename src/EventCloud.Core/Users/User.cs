@@ -1,12 +1,11 @@
 ﻿using System;
 using Abp.Authorization.Users;
 using Abp.Extensions;
-using EventCloud.MultiTenancy;
 using Microsoft.AspNet.Identity;
 
 namespace EventCloud.Users
 {
-    public class User : AbpUser<Tenant, User>
+    public class User : AbpUser<User>
     {
         public static string CreateRandomPassword()
         {

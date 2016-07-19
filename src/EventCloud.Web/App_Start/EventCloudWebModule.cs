@@ -1,19 +1,21 @@
 ﻿using System.Reflection;
-using System.Web;
-using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Abp.Localization;
-using Abp.Localization.Sources;
-using Abp.Localization.Sources.Xml;
 using Abp.Modules;
+using Abp.Web.Mvc;
 using EventCloud.Api;
 using EventCloud.Web.Navigation;
 
 namespace EventCloud.Web
 {
-    [DependsOn(typeof(EventCloudDataModule), typeof(EventCloudApplicationModule), typeof(EventCloudWebApiModule))]
+    [DependsOn(
+        typeof(EventCloudDataModule), 
+        typeof(EventCloudApplicationModule), 
+        typeof(EventCloudWebApiModule),
+        typeof(AbpWebMvcModule)
+        )]
     public class EventCloudWebModule : AbpModule
     {
         public override void PreInitialize()

@@ -1,4 +1,5 @@
-﻿using Abp.Domain.Repositories;
+﻿using Abp.Application.Features;
+using Abp.Domain.Repositories;
 using Abp.MultiTenancy;
 using EventCloud.Authorization.Roles;
 using EventCloud.Editions;
@@ -11,11 +12,13 @@ namespace EventCloud.MultiTenancy
         public TenantManager(
             IRepository<Tenant> tenantRepository, 
             IRepository<TenantFeatureSetting, long> tenantFeatureRepository, 
-            EditionManager editionManager
+            EditionManager editionManager,
+            IAbpZeroFeatureValueStore featureValueStore
             ) : base(
             tenantRepository, 
-            tenantFeatureRepository, 
-            editionManager)
+            tenantFeatureRepository,
+            editionManager,
+            featureValueStore)
         {
         }
     }

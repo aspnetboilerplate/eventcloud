@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Editions;
 using Abp.Application.Features;
 using Abp.Domain.Repositories;
+using EventCloud.Features;
 
 namespace EventCloud.Editions
 {
@@ -8,10 +9,10 @@ namespace EventCloud.Editions
     {
         public EditionManager(
             IRepository<Edition> editionRepository,
-            IRepository<EditionFeatureSetting, long> editionFeatureRepository)
+            FeatureValueStore featureValueStore)
             : base(
                 editionRepository,
-                editionFeatureRepository)
+                featureValueStore)
         {
         }
     }

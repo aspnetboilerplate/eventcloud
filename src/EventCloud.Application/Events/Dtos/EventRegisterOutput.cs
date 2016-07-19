@@ -1,8 +1,6 @@
-using Abp.Application.Services.Dto;
-
 namespace EventCloud.Events.Dtos
 {
-    public class EventRegisterOutput : IOutputDto
+    public class EventRegisterOutput
     {
         public int RegistrationId { get; set; }
     }

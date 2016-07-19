@@ -1,8 +1,6 @@
-﻿using Abp.Application.Services.Dto;
-
-namespace EventCloud.Events.Dtos
+﻿namespace EventCloud.Events.Dtos
 {
-    public class GetEventListInput : IInputDto
+    public class GetEventListInput
     {
         public bool IncludeCanceledEvents { get; set; }
     }

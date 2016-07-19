@@ -1,10 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using Abp.Application.Services.Dto;
 
 namespace EventCloud.Events.Dtos
 {
-    public class CreateEventInput : IInputDto
+    public class CreateEventInput
     {
         [Required]
         [StringLength(Event.MaxTitleLength)]

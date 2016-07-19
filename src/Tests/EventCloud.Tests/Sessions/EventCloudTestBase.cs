@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Abp.Collections;
 using Abp.Configuration.Startup;
 using Abp.Events.Bus;
-using Abp.Modules;
 using Abp.Runtime.Session;
 using Abp.TestBase;
 using EventCloud.EntityFramework;
@@ -20,7 +19,7 @@ using EventCloud.Tests.Data;
 
 namespace EventCloud.Tests.Sessions
 {
-    public abstract class EventCloudTestBase : AbpIntegratedTestBase
+    public abstract class EventCloudTestBase : AbpIntegratedTestBase<EventCloudTestModule>
     {
         static EventCloudTestBase()
         {
@@ -49,15 +48,6 @@ namespace EventCloud.Tests.Sessions
                 );
         }
 
-        protected override void AddModules(ITypeList<AbpModule> modules)
-        {
-            base.AddModules(modules);
-
-            //Adding testing modules. Depended modules of these modules are automatically added.
-            modules.Add<EventCloudApplicationModule>();
-            modules.Add<EventCloudDataModule>();
-        }
-
         public void UsingDbContext(Action<EventCloudDbContext> action)
         {
             using (var context = LocalIocManager.Resolve<EventCloudDbContext>())
@@ -67,7 +57,7 @@ namespace EventCloud.Tests.Sessions
                 context.SaveChanges();
             }
         }
-        
+
         public async Task UsingDbContext(Func<EventCloudDbContext, Task> action)
         {
             using (var context = LocalIocManager.Resolve<EventCloudDbContext>())

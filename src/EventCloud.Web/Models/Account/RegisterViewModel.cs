@@ -1,11 +1,10 @@
 using System.ComponentModel.DataAnnotations;
-using Abp.Application.Services.Dto;
 using EventCloud.MultiTenancy;
 using EventCloud.Users;
 
 namespace EventCloud.Web.Models.Account
 {
-    public class RegisterViewModel : IInputDto
+    public class RegisterViewModel
     {
         /// <summary>
         /// Not required for single-tenant applications.

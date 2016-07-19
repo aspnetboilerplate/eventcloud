@@ -5,7 +5,7 @@ using Castle.Facilities.Logging;
 
 namespace EventCloud.Web
 {
-    public class MvcApplication : AbpWebApplication
+    public class MvcApplication : AbpWebApplication<EventCloudWebModule>
     {
         protected override void Application_Start(object sender, EventArgs e)
         {

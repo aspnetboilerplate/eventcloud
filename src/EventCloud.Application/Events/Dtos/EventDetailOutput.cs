@@ -6,7 +6,7 @@ using Abp.AutoMapper;
 namespace EventCloud.Events.Dtos
 {
     [AutoMapFrom(typeof(Event))]
-    public class EventDetailOutput : FullAuditedEntityDto<Guid>, IOutputDto
+    public class EventDetailOutput : FullAuditedEntityDto<Guid>
     {
         public string Title { get; set; }
 
