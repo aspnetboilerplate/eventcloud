@@ -6,6 +6,6 @@ namespace EventCloud.Statistics
 {
     public interface IStatisticsAppService : IApplicationService
     {
-        Task<ListResultOutput<NameValueDto>> GetStatistics();
+        Task<ListResultDto<NameValueDto>> GetStatistics();
     }
 }

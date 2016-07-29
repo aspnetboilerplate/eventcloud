@@ -5,6 +5,8 @@ using Abp.Configuration.Startup;
 using Abp.Dependency;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
+using Abp.IdentityFramework;
+using Abp.Localization;
 using Abp.Organizations;
 using Abp.Runtime.Caching;
 using Abp.Zero.Configuration;
@@ -13,39 +15,34 @@ using EventCloud.MultiTenancy;
 
 namespace EventCloud.Users
 {
-    public class UserManager : AbpUserManager<Tenant, Role, User>
+    public class UserManager : AbpUserManager< Role, User>
     {
         public UserManager(
-            UserStore store,
-            RoleManager roleManager,
-            IRepository<Tenant> tenantRepository,
-            IMultiTenancyConfig multiTenancyConfig,
-            IPermissionManager permissionManager,
-            IUnitOfWorkManager unitOfWorkManager,
-            ISettingManager settingManager,
-            IUserManagementConfig userManagementConfig,
-            IIocResolver iocResolver,
-            ICacheManager cacheManager,
-            IRepository<OrganizationUnit, long> organizationUnitRepository,
-            IRepository<UserOrganizationUnit, long> userOrganizationUnitRepository,
-            IOrganizationUnitSettings organizationUnitSettings,
-            IRepository<UserLoginAttempt, long> userLoginAttemptRepository)
-            : base(
-                store,
+          UserStore userStore,
+          RoleManager roleManager,
+          IPermissionManager permissionManager,
+          IUnitOfWorkManager unitOfWorkManager,
+          ICacheManager cacheManager,
+          IRepository<OrganizationUnit, long> organizationUnitRepository,
+          IRepository<UserOrganizationUnit, long> userOrganizationUnitRepository,
+          IOrganizationUnitSettings organizationUnitSettings,
+          ILocalizationManager localizationManager,
+          ISettingManager settingManager,
+          IdentityEmailMessageService emailService,
+          IUserTokenProviderAccessor userTokenProviderAccessor)
+          : base(
+                userStore,
                 roleManager,
-                tenantRepository,
-                multiTenancyConfig,
                 permissionManager,
                 unitOfWorkManager,
-                settingManager,
-                userManagementConfig,
-                iocResolver,
                 cacheManager,
                 organizationUnitRepository,
                 userOrganizationUnitRepository,
                 organizationUnitSettings,
-                userLoginAttemptRepository
-            )
+                localizationManager,
+                emailService,
+                settingManager,
+                userTokenProviderAccessor)
         {
         }
     }

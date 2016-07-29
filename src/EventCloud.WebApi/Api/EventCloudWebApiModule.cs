@@ -14,8 +14,8 @@ namespace EventCloud.Api
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
-
-            DynamicApiControllerBuilder
+             
+            Configuration.Modules.AbpWebApi().DynamicApiControllerBuilder
                 .ForAll<IApplicationService>(typeof(EventCloudApplicationModule).Assembly, "app")
                 .Build();
 

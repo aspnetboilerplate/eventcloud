@@ -29,7 +29,7 @@ namespace EventCloud.Statistics
             _eventRegistrationRepository = eventRegistrationRepository;
         }
 
-        public async Task<ListResultOutput<NameValueDto>> GetStatistics()
+        public async Task<ListResultDto<NameValueDto>> GetStatistics()
         {
             //Disabled filters to access to all tenant's data, not for only current tenant.
             using (CurrentUnitOfWork.DisableFilter(AbpDataFilters.MayHaveTenant, AbpDataFilters.MustHaveTenant))
@@ -54,7 +54,7 @@ namespace EventCloud.Statistics
                         )
                 };
 
-                return new ListResultOutput<NameValueDto>(statisticItems);
+                return new ListResultDto<NameValueDto>(statisticItems);
             }
         }
     }

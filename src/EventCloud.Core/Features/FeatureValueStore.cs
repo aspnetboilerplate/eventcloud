@@ -9,20 +9,19 @@ using EventCloud.Users;
 
 namespace EventCloud.Features
 {
-    public class FeatureValueStore : AbpFeatureValueStore<Tenant, Role, User>
+    public class FeatureValueStore : AbpFeatureValueStore<Tenant, User>
     {
         public FeatureValueStore(
             ICacheManager cacheManager,
-            IRepository<TenantFeatureSetting, long> tenantFeatureSettingRepository,
+            IRepository<TenantFeatureSetting, long> tenantFeatureRepository,
             IRepository<Tenant> tenantRepository,
-            IRepository<EditionFeatureSetting, long> editionFeatureSettingRepository,
+            IRepository<EditionFeatureSetting, long> editionFeatureRepository,
             IFeatureManager featureManager,
             IUnitOfWorkManager unitOfWorkManager)
-            : base(
-                  cacheManager,
-                  tenantFeatureSettingRepository,
+            : base(cacheManager,
+                  tenantFeatureRepository,
                   tenantRepository,
-                  editionFeatureSettingRepository,
+                  editionFeatureRepository,
                   featureManager,
                   unitOfWorkManager)
         {
