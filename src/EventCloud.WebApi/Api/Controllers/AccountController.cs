@@ -5,6 +5,7 @@ using Abp.UI;
 using Abp.Web.Models;
 using Abp.WebApi.Controllers;
 using EventCloud.Api.Models;
+using EventCloud.Authorization;
 using EventCloud.Authorization.Roles;
 using EventCloud.MultiTenancy;
 using EventCloud.Users;
@@ -19,15 +20,17 @@ namespace EventCloud.Api.Controllers
         public static OAuthBearerAuthenticationOptions OAuthBearerOptions { get; private set; }
 
         private readonly UserManager _userManager;
+        private readonly LogInManager _logInManager;
 
         static AccountController()
         {
             OAuthBearerOptions = new OAuthBearerAuthenticationOptions();
         }
 
-        public AccountController(UserManager userManager)
+        public AccountController(UserManager userManager, LogInManager logInManager)
         {
             _userManager = userManager;
+            _logInManager = logInManager;
         }
 
         public async Task<AjaxResponse> Authenticate(LoginModel loginModel)
@@ -48,10 +51,9 @@ namespace EventCloud.Api.Controllers
 
             return new AjaxResponse(OAuthBearerOptions.AccessTokenFormat.Protect(ticket));
         }
-
-        private async Task<AbpUserManager<Tenant, Role, User>.AbpLoginResult> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
+        private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
         {
-            var loginResult = await _userManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
+            var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
 
             switch (loginResult.Result)
             {
@@ -62,6 +64,7 @@ namespace EventCloud.Api.Controllers
             }
         }
 
+     
         private Exception CreateExceptionForFailedLoginAttempt(AbpLoginResultType result, string usernameOrEmailAddress, string tenancyName)
         {
             switch (result)

@@ -29,7 +29,7 @@ namespace EventCloud.Events
             _eventRepository = eventRepository;
         }
 
-        public async Task<ListResultOutput<EventListDto>> GetList(GetEventListInput input)
+        public async Task<ListResultDto<EventListDto>> GetList(GetEventListInput input)
         {
             var events = await _eventRepository
                 .GetAll()
@@ -38,10 +38,10 @@ namespace EventCloud.Events
                 .OrderByDescending(e => e.CreationTime)
                 .ToListAsync();
 
-            return new ListResultOutput<EventListDto>(events.MapTo<List<EventListDto>>());
+            return new ListResultDto<EventListDto>(events.MapTo<List<EventListDto>>());
         }
 
-        public async Task<EventDetailOutput> GetDetail(EntityRequestInput<Guid> input)
+        public async Task<EventDetailOutput> GetDetail(EntityDto<Guid> input)
         {
             var @event = await _eventRepository
                 .GetAll()
@@ -63,13 +63,13 @@ namespace EventCloud.Events
             await _eventManager.CreateAsync(@event);
         }
 
-        public async Task Cancel(EntityRequestInput<Guid> input)
+        public async Task Cancel(EntityDto<Guid> input)
         {
             var @event = await _eventManager.GetAsync(input.Id);
             _eventManager.Cancel(@event);
         }
 
-        public async Task<EventRegisterOutput> Register(EntityRequestInput<Guid> input)
+        public async Task<EventRegisterOutput> Register(EntityDto<Guid> input)
         {
             var registration = await RegisterAndSaveAsync(
                 await _eventManager.GetAsync(input.Id),
@@ -82,7 +82,7 @@ namespace EventCloud.Events
             };
         }
 
-        public async Task CancelRegistration(EntityRequestInput<Guid> input)
+        public async Task CancelRegistration(EntityDto<Guid> input)
         {
             await _eventManager.CancelRegistrationAsync(
                 await _eventManager.GetAsync(input.Id),

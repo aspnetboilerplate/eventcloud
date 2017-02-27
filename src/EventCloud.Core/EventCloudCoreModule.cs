@@ -34,7 +34,7 @@ namespace EventCloud
             Configuration.Modules.Zero().RoleManagement.StaticRoles.Add(new StaticRoleDefinition(StaticRoleNames.Tenant.Admin, MultiTenancySides.Tenant));
             Configuration.Modules.Zero().RoleManagement.StaticRoles.Add(new StaticRoleDefinition(StaticRoleNames.Tenant.Member, MultiTenancySides.Tenant));
 
-            Clock.Provider = new UtcClockProvider();
+            Clock.Provider = ClockProviders.Utc;
         }
 
         public override void Initialize()

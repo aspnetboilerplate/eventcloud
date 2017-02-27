@@ -76,7 +76,7 @@ namespace EventCloud.Tests.Events
         public async Task Should_Cancel_Event()
         {
             //Act
-            await _eventAppService.Cancel(new EntityRequestInput<Guid>(GetTestEvent().Id));
+            await _eventAppService.Cancel(new EntityDto<Guid>(GetTestEvent().Id));
 
             //Assert
             GetTestEvent().IsCancelled.ShouldBeTrue();
@@ -89,7 +89,7 @@ namespace EventCloud.Tests.Events
             var testEvent = GetTestEvent();
 
             //Act
-            var output = await _eventAppService.Register(new EntityRequestInput<Guid>(testEvent.Id));
+            var output = await _eventAppService.Register(new EntityDto<Guid>(testEvent.Id));
 
             //Assert
             output.RegistrationId.ShouldBeGreaterThan(0);
@@ -121,7 +121,7 @@ namespace EventCloud.Tests.Events
             });
 
             //Act
-            await _eventAppService.CancelRegistration(new EntityRequestInput<Guid>(GetTestEvent().Id));
+            await _eventAppService.CancelRegistration(new EntityDto<Guid>(GetTestEvent().Id));
 
             //Assert
             UsingDbContext(context =>

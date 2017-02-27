@@ -8,16 +8,16 @@ namespace EventCloud.Events
 {
     public interface IEventAppService : IApplicationService
     {
-        Task<ListResultOutput<EventListDto>> GetList(GetEventListInput input);
+        Task<ListResultDto<EventListDto>> GetList(GetEventListInput input);
 
-        Task<EventDetailOutput> GetDetail(EntityRequestInput<Guid> input);
+        Task<EventDetailOutput> GetDetail(EntityDto<Guid> input);
 
         Task Create(CreateEventInput input);
 
-        Task Cancel(EntityRequestInput<Guid> input);
+        Task Cancel(EntityDto<Guid> input);
 
-        Task<EventRegisterOutput> Register(EntityRequestInput<Guid> input);
+        Task<EventRegisterOutput> Register(EntityDto<Guid> input);
 
-        Task CancelRegistration(EntityRequestInput<Guid> input);
+        Task CancelRegistration(EntityDto<Guid> input);
     }
 }

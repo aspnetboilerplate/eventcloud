@@ -14,7 +14,9 @@ using Abp.Domain.Uow;
 using Abp.Extensions;
 using Abp.Threading;
 using Abp.UI;
+using Abp.Web.Models;
 using Abp.Web.Mvc.Models;
+using EventCloud.Authorization;
 using EventCloud.Authorization.Roles;
 using EventCloud.MultiTenancy;
 using EventCloud.Users;
@@ -33,13 +35,11 @@ namespace EventCloud.Web.Controllers
         private readonly RoleManager _roleManager;
         private readonly IUnitOfWorkManager _unitOfWorkManager;
         private readonly IMultiTenancyConfig _multiTenancyConfig;
+        private readonly LogInManager _logInManager;
 
         private IAuthenticationManager AuthenticationManager
         {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
+            get { return HttpContext.GetOwinContext().Authentication; }
         }
 
         public AccountController(
@@ -47,13 +47,14 @@ namespace EventCloud.Web.Controllers
             UserManager userManager,
             RoleManager roleManager,
             IUnitOfWorkManager unitOfWorkManager,
-            IMultiTenancyConfig multiTenancyConfig)
+            IMultiTenancyConfig multiTenancyConfig, LogInManager logInManager)
         {
             _tenantManager = tenantManager;
             _userManager = userManager;
             _roleManager = roleManager;
             _unitOfWorkManager = unitOfWorkManager;
             _multiTenancyConfig = multiTenancyConfig;
+            _logInManager = logInManager;
         }
 
         #region Login / Logout
@@ -83,7 +84,7 @@ namespace EventCloud.Web.Controllers
                 loginModel.UsernameOrEmailAddress,
                 loginModel.Password,
                 loginModel.TenancyName
-                );
+            );
 
             await SignInAsync(loginResult.User, loginResult.Identity, loginModel.RememberMe);
 
@@ -92,22 +93,33 @@ namespace EventCloud.Web.Controllers
                 returnUrl = Request.ApplicationPath;
             }
 
-            return Json(new MvcAjaxResponse { TargetUrl = returnUrl });
+            return Json(new AjaxResponse {TargetUrl = returnUrl});
         }
 
-        private async Task<AbpUserManager<Tenant, Role, User>.AbpLoginResult> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
+        private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress,
+            string password, string tenancyName)
         {
-            var loginResult = await _userManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
 
-            switch (loginResult.Result)
+
+            try
             {
-                case AbpLoginResultType.Success:
-                    return loginResult;
-                default:
-                    throw CreateExceptionForFailedLoginAttempt(loginResult.Result, usernameOrEmailAddress, tenancyName);
-            }
-        }
+                var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
 
+                switch (loginResult.Result)
+                {
+                    case AbpLoginResultType.Success:
+                        return loginResult;
+                    default:
+                        throw CreateExceptionForFailedLoginAttempt(loginResult.Result, usernameOrEmailAddress, tenancyName);
+                }
+            }
+            catch (Exception exception)
+            {
+                
+                throw exception;
+            }
+         
+        }
         private async Task SignInAsync(User user, ClaimsIdentity identity = null, bool rememberMe = false)
         {
             if (identity == null)
@@ -256,12 +268,13 @@ namespace EventCloud.Web.Controllers
                 await _unitOfWorkManager.Current.SaveChangesAsync();
 
                 //Directly login if possible
+                //Directly login if possible
                 if (user.IsActive)
                 {
-                    AbpUserManager<Tenant, Role, User>.AbpLoginResult loginResult;
+                    AbpLoginResult<Tenant, User> loginResult;
                     if (externalLoginInfo != null)
                     {
-                        loginResult = await _userManager.LoginAsync(externalLoginInfo.Login, tenant.TenancyName);
+                        loginResult = await _logInManager.LoginAsync(externalLoginInfo.Login, tenant.TenancyName);
                     }
                     else
                     {
@@ -419,7 +432,7 @@ namespace EventCloud.Web.Controllers
                 }
             }
 
-            var loginResult = await _userManager.LoginAsync(loginInfo.Login, tenancyName);
+            var loginResult = await _logInManager.LoginAsync(loginInfo.Login, tenancyName);
 
             switch (loginResult.Result)
             {

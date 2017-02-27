@@ -7,18 +7,20 @@ using EventCloud.Users;
 
 namespace EventCloud.MultiTenancy
 {
-    public class TenantManager : AbpTenantManager<Tenant, Role, User>
+    public class TenantManager : AbpTenantManager<Tenant, User>
     {
         public TenantManager(
-            IRepository<Tenant> tenantRepository, 
-            IRepository<TenantFeatureSetting, long> tenantFeatureRepository, 
+            IRepository<Tenant> tenantRepository,
+            IRepository<TenantFeatureSetting, long> tenantFeatureRepository,
             EditionManager editionManager,
             IAbpZeroFeatureValueStore featureValueStore
-            ) : base(
-            tenantRepository, 
-            tenantFeatureRepository,
-            editionManager,
-            featureValueStore)
+            )
+            : base(
+                tenantRepository,
+                tenantFeatureRepository,
+                editionManager,
+                featureValueStore
+            )
         {
         }
     }
