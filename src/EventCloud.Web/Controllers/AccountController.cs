@@ -39,10 +39,7 @@ namespace EventCloud.Web.Controllers
 
         private IAuthenticationManager AuthenticationManager
         {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
+            get { return HttpContext.GetOwinContext().Authentication; }
         }
 
         public AccountController(
@@ -87,7 +84,7 @@ namespace EventCloud.Web.Controllers
                 loginModel.UsernameOrEmailAddress,
                 loginModel.Password,
                 loginModel.TenancyName
-                );
+            );
 
             await SignInAsync(loginResult.User, loginResult.Identity, loginModel.RememberMe);
 
@@ -96,20 +93,32 @@ namespace EventCloud.Web.Controllers
                 returnUrl = Request.ApplicationPath;
             }
 
-            return Json(new AjaxResponse { TargetUrl = returnUrl });
+            return Json(new AjaxResponse {TargetUrl = returnUrl});
         }
 
-        private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
+        private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress,
+            string password, string tenancyName)
         {
-            var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
 
-            switch (loginResult.Result)
+
+            try
             {
-                case AbpLoginResultType.Success:
-                    return loginResult;
-                default:
-                    throw CreateExceptionForFailedLoginAttempt(loginResult.Result, usernameOrEmailAddress, tenancyName);
+                var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
+
+                switch (loginResult.Result)
+                {
+                    case AbpLoginResultType.Success:
+                        return loginResult;
+                    default:
+                        throw CreateExceptionForFailedLoginAttempt(loginResult.Result, usernameOrEmailAddress, tenancyName);
+                }
             }
+            catch (Exception exception)
+            {
+                
+                throw exception;
+            }
+         
         }
         private async Task SignInAsync(User user, ClaimsIdentity identity = null, bool rememberMe = false)
         {
