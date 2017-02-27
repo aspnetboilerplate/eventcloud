@@ -1,5 +1,10 @@
 # Event Cloud
  
+ ## tips
+
+ You need to install TypeScript:2.1  http://www.microsoft.com/zh-CN/download/details.aspx?id=48593
+
+
 This is a sample Multi-Tenant application built using ASP.NET Boilerplate and module-zero.
  
 
@@ -28,6 +33,8 @@ http://www.codeproject.com/Articles/1043326/A-Multi-Tenant-SaaS-Application-With
 
 
 # 此为中文翻译内容：
+
+# 版本升级为ABP1.42 需要安装typescript2.1 http://www.microsoft.com/zh-CN/download/details.aspx?id=48593
 
 # 活动云
 
