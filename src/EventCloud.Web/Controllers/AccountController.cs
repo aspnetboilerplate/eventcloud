@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Abp.Auditing;
+using Abp.Authorization;
 using Abp.Authorization.Users;
 using Abp.AutoMapper;
 using Abp.Configuration.Startup;
@@ -334,7 +335,7 @@ namespace EventCloud.Web.Controllers
                     Name = model.TenancyName
                 };
 
-                CheckErrors(await _tenantManager.CreateAsync(tenant));
+                await _tenantManager.CreateAsync(tenant);
                 await _unitOfWorkManager.Current.SaveChangesAsync(); //To get new tenant's id.
 
                 //We are working entities of new tenant, so changing tenant filter
