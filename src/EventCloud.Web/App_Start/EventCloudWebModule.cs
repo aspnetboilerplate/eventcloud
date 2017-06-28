@@ -2,9 +2,11 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Abp.Configuration.Startup;
 using Abp.Localization;
 using Abp.Modules;
 using Abp.Web.Mvc;
+using Abp.Web.Mvc.Configuration;
 using EventCloud.Api;
 using EventCloud.Web.Navigation;
 
@@ -20,6 +22,9 @@ namespace EventCloud.Web
     {
         public override void PreInitialize()
         {
+            Configuration.Modules.AbpMvc().IsAutomaticAntiForgeryValidationEnabled = false;
+            Configuration.Modules.AbpWebApi().IsAutomaticAntiForgeryValidationEnabled = false;
+
             //Add/remove languages for your application
             Configuration.Localization.Languages.Add(new LanguageInfo("en", "English", "famfamfam-flag-england", true));
             Configuration.Localization.Languages.Add(new LanguageInfo("tr", "Türkçe", "famfamfam-flag-tr"));

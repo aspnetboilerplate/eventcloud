@@ -100,27 +100,17 @@ namespace EventCloud.Web.Controllers
         private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress,
             string password, string tenancyName)
         {
+            var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
 
-
-            try
+            switch (loginResult.Result)
             {
-                var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
-
-                switch (loginResult.Result)
-                {
-                    case AbpLoginResultType.Success:
-                        return loginResult;
-                    default:
-                        throw CreateExceptionForFailedLoginAttempt(loginResult.Result, usernameOrEmailAddress, tenancyName);
-                }
+                case AbpLoginResultType.Success:
+                    return loginResult;
+                default:
+                    throw CreateExceptionForFailedLoginAttempt(loginResult.Result, usernameOrEmailAddress, tenancyName);
             }
-            catch (Exception exception)
-            {
-                
-                throw exception;
-            }
-         
         }
+
         private async Task SignInAsync(User user, ClaimsIdentity identity = null, bool rememberMe = false)
         {
             if (identity == null)
