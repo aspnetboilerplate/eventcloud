@@ -36,6 +36,7 @@ namespace EventCloud.Events
                 .Include(e => e.Registrations)
                 .WhereIf(!input.IncludeCanceledEvents, e => !e.IsCancelled)
                 .OrderByDescending(e => e.CreationTime)
+                .Take(64)
                 .ToListAsync();
 
             return new ListResultDto<EventListDto>(events.MapTo<List<EventListDto>>());
