@@ -1,0 +1,57 @@
+<div class="row clearfix" [@routerTransition]>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card main-content">
+            <div class="header">
+                <h2>
+                    {{event.title}} <span class="event-detail-header"><i class="fa fa-calendar"></i> <span>{{event.date | date:'short'}}</span></span>
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li>
+                        <div class="btn-group" role="group">
+                            <button type="button" [routerLink]="['/app/events']" class="btn bg-black waves-effect waves-light"><i class="fa fa-arrow-circle-left"></i> {{l('BackToEvents')}}</button>
+                            <button *ngIf="!isRegistered()" type="button" class="btn bg-green waves-effect waves-light" (click)="registerToEvent()"><i class="fa fa-star"></i> {{l('Register')}}</button>
+                            <button *ngIf="isRegistered()" type="button" class="btn bg-orange waves-effect waves-light" (click)="cancelRegistrationFromEvent()"><i class="fa fa-remove"></i> {{l('CancelRegistration')}}</button>
+                            <button *ngIf="isEventCreator()" type="button" class="btn bg-red waves-effect waves-light" (click)="cancelEvent()"><i class="fa fa-remove"></i> {{l('CancelTheEvent')}}</button>
+                        </div>
+                    </li>
+                    <i class="fa fa-spin fa-spinner" *ngIf="isTableLoading"></i>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);" class="waves-effect waves-block()" (click)="refresh();"><i class="material-icons">refresh</i> {{l('Refresh')}}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body table-responsive">
+                <div>
+                    {{event.description}}
+                </div>
+                <h5>
+                    {{l("XregisteredOfYAvailableRegistration", event.registrationsCount, event.maxRegistrationCount)}}
+                </h5>
+
+                <hr />
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>{{l('Name')}}</th>
+                            <th>{{l('Surname')}}</th>
+                            <th>{{l('CreationTime')}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let registration of event.registrations">
+                            <td>{{registration.userName}}</td>
+                            <td>{{registration.userSurname}}</td>
+                            <td>{{registration.creationTime | date:'short'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
