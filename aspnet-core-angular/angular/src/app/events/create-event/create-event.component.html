@@ -1,0 +1,53 @@
+<div bsModal #createEventModal="bs-modal" class="modal fade" (onShown)="onShown()" tabindex="-1" role="dialog" aria-labelledby="createUserModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+
+        <div #modalContent class="modal-content">
+
+            <form *ngIf="active" #createEventForm="ngForm" id="frm_create_event" novalidate (ngSubmit)="save()">
+
+                <div class="modal-header">
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">
+                        <span>{{l("CreateNewEvent")}}</span>
+                    </h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input class="form-control" type="text" name="Title" [(ngModel)]="event.title" required maxlength="64" minlength="2">
+                            <label class="form-label">{{l("Title")}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <textarea name="Description" class="form-control" [(ngModel)]="event.description"></textarea>
+                            <label class="form-label">{{l("Description")}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" #eventDate name="Date" class="form-control">
+                            <label class="form-label">{{l("Date")}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="number" name="MaxRegistrationCount" class="form-control" [(ngModel)]="event.maxRegistrationCount">
+                            <label class="form-label">{{l("MaxRegistrationCount")}} (0: {{l("Unlimited")}})</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">{{l("Cancel")}}</button>
+                    <button [disabled]="!createEventForm.form.valid || saving" type="submit" class="btn btn-primary blue">{{l("Save")}}</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
