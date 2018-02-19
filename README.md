@@ -14,7 +14,7 @@ This is a sample Multi-Tenant application built using ASP.NET Boilerplate and mo
 
 __http://eventcloud.aspnetboilerplate.com__
 
-![alt login form](https://raw.githubusercontent.com/aspnetboilerplate/eventcloud/master/doc/article/login-page-v2.jpg)
+![alt login form](https://github.com/aspnetboilerplate/aspnetboilerplate/blob/dev/doc/WebSite/Articles/Developing-a-Multi-Tenant-SaaS-Application-with-ASP.NET-MVC-EntityFramework-AngularJs/login-page-v2.jpg)
 
 Note: You can register to __default__ tenant or create your own tenant.
 
