@@ -1,6 +1,10 @@
 # Event Cloud
  
-This is a sample Multi-Tenant application built using ASP.NET Boilerplate and module-zero.
+This is a sample Multi-Tenant application built using ASP.NET Boilerplate and module-zero. 
+In this repository there are 2 diffrent source code of even cloud sample.
+One of them is developed using ASP.NET MVC, Angularjs and EntityFramewok, and the other 
+is developed using ASP.NET Core, Angular and EntityFrameworkCore. 
+Here are the feaures:
 
 * Anyone can create a tenant using a registration form and becomes admin of the tenant.
 * Anyone can register to a tenant.
@@ -18,8 +22,12 @@ __http://eventcloud.aspnetboilerplate.com__
 
 Note: You can register to __default__ tenant or create your own tenant.
 
-## Article
+## Articles
 
-There is a Codeproject article explains this example deeply:
+There are 2 Codeproject articles explains this example deeply:
 
+ASP.NET MVC, Angularjs and EntityFramework version:
 http://www.codeproject.com/Articles/1043326/A-Multi-Tenant-SaaS-Application-With-ASP-NET-MVC-A
+
+ASP.NET Core, Angular and EntityFrameworkCore version
+https://www.codeproject.com/Articles/1231118/A-Multi-Tenant-SaaS-Application-With-ASP-NET-Core
