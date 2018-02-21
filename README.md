@@ -26,8 +26,8 @@ Note: You can register to __default__ tenant or create your own tenant.
 
 There are 2 Codeproject articles explains this example deeply:
 
-ASP.NET MVC, Angularjs and EntityFramework version:
+##### ASP.NET MVC, Angularjs and EntityFramework version:
 http://www.codeproject.com/Articles/1043326/A-Multi-Tenant-SaaS-Application-With-ASP-NET-MVC-A
 
-ASP.NET Core, Angular and EntityFrameworkCore version
+##### ASP.NET Core, Angular and EntityFrameworkCore version
 https://www.codeproject.com/Articles/1231118/A-Multi-Tenant-SaaS-Application-With-ASP-NET-Core
