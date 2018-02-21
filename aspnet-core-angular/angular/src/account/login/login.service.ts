@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenAuthServiceProxy, AuthenticateModel, AuthenticateResultModel, ExternalLoginProviderInfoModel, ExternalAuthenticateModel, ExternalAuthenticateResultModel } from '@shared/service-proxies/service-proxies';
 import { UrlHelper } from '@shared/helpers/UrlHelper';
@@ -75,7 +75,7 @@ export class LoginService {
         );
 
         var initialUrl = UrlHelper.initialUrl;
-        if (initialUrl.indexOf('/login') > 0) {
+        if (initialUrl.indexOf('/account') > 0) {
             initialUrl = AppConsts.appBaseUrl;
         }
 

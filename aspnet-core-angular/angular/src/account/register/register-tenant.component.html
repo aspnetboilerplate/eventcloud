@@ -1,0 +1,36 @@
+<div class="card" [@routerTransition]>
+    <div #cardBody class="body">
+        <form #registerTenantForm="ngForm" method="post" novalidate (ngSubmit)="save()">
+            <div class="form-group form-float">
+                <div class="form-line">
+                    <input materialInput class="form-control" type="text" name="TenancyName" [(ngModel)]="tenant.tenancyName" required maxlength="64" minlength="2">
+                    <label class="form-label">{{l("TenancyName")}}</label>
+                </div>
+            </div>
+            <div class="form-group form-float">
+                <div class="form-line">
+                    <input materialInput type="text" name="Name" class="form-control" [(ngModel)]="tenant.name" required maxlength="128">
+                    <label class="form-label">{{l("Name")}}</label>
+                </div>
+            </div>
+            <div class="form-group form-float">
+                <div class="form-line">
+                    <input materialInput type="email" name="AdminEmailAddress" class="form-control" [(ngModel)]="tenant.adminEmailAddress" required maxlength="256" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$">
+                    <label class="form-label">{{l("AdminEmailAddress")}}</label>
+                </div>
+            </div>
+            <div class="form-group form-float">
+                <div class="form-line">
+                    <input materialInput type="password" name="Password" class="form-control" [(ngModel)]="tenant.password" required>
+                    <label class="form-label">{{l("Password")}}</label>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button [disabled]="saving" [routerLink]="['../login']" type="button" class="btn btn-default">{{l("Back")}}</button>
+                <button [disabled]="!registerTenantForm.form.valid || saving" type="submit" class="btn bg-pink waves-effect" >{{l("Submit")}}</button>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-﻿import { Component, Injector, ElementRef, ViewChild } from '@angular/core';
+import { Component, Injector, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponentBase } from '@shared/app-component-base';
 import { LoginService } from './login.service';
@@ -31,16 +31,8 @@ export class LoginComponent extends AppComponentBase {
         $(this.cardBody.nativeElement).find('input:first').focus();
     }
 
-    get multiTenancySideIsTeanant(): boolean {
+    get multiTenancySideIsTenant(): boolean {
         return this._sessionService.tenantId > 0;
-    }
-
-    get isSelfRegistrationAllowed(): boolean {
-        if (!this._sessionService.tenantId) {
-            return false;
-        }
-
-        return true;
     }
 
     login(): void {

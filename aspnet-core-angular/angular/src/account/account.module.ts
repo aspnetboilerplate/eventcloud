@@ -1,4 +1,4 @@
-﻿import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
@@ -18,8 +18,8 @@ import { TenantChangeModalComponent } from './tenant/tenant-change-modal.compone
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AccountLanguagesComponent } from './layout/account-languages.component';
-
 import { LoginService } from './login/login.service';
+import { RegisterTenantComponent } from './register/register-tenant.component';
 
 @NgModule({
     imports: [
@@ -39,7 +39,8 @@ import { LoginService } from './login/login.service';
         TenantChangeModalComponent,
         LoginComponent,
         RegisterComponent,
-        AccountLanguagesComponent
+        AccountLanguagesComponent,
+        RegisterTenantComponent
     ],
     providers: [
         LoginService

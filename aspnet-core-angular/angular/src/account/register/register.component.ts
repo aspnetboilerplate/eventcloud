@@ -1,4 +1,4 @@
-﻿import { Component, Injector, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, Injector, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountServiceProxy, RegisterInput, RegisterOutput } from '@shared/service-proxies/service-proxies'
 import { AppComponentBase } from '@shared/app-component-base';
@@ -21,7 +21,7 @@ export class RegisterComponent extends AppComponentBase implements AfterViewInit
         injector: Injector,
         private _accountService: AccountServiceProxy,
         private _router: Router,
-        private readonly _loginService: LoginService
+        private _loginService: LoginService
     ) {
         super(injector);
     }

@@ -1,4 +1,4 @@
-﻿<div class="card" id="LoginArea" [@routerTransition]>
+<div class="card" id="LoginArea" [@routerTransition]>
     <div #cardBody class="body">
         <form #loginForm="ngForm" id="LoginForm" method="post" novalidate (ngSubmit)="login()">
             <h4 class="text-center">{{l("LogIn")}}</h4>
@@ -29,10 +29,13 @@
                     <button id="LoginButton" class="btn btn-block bg-pink waves-effect" type="submit">{{l("LogIn")}}</button>
                 </div>
             </div>
-
-            <div class="row m-t-15 m-b--20" *ngIf="isSelfRegistrationAllowed">
-                <div class="col-xs-12">
+            <hr/>
+            <div class="row m-t-20">
+                <div class="col-xs-6">
                     <a [routerLink]="['../register']">{{l("Register")}}</a>
+                </div>
+                <div class="col-xs-6 text-right" *ngIf="!multiTenancySideIsTenant">
+                    <a [routerLink]="['../register-tenant']" id="register-btn">{{l("NewTenant")}}</a>
                 </div>
             </div>
         </form>
