@@ -1,5 +1,4 @@
 import { Component, Injector, ElementRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { AppComponentBase } from '@shared/app-component-base';
 import { LoginService } from './login.service';
 import { accountModuleAnimation } from '@shared/animations/routerTransition';
@@ -21,7 +20,6 @@ export class LoginComponent extends AppComponentBase {
     constructor(
         injector: Injector,
         public loginService: LoginService,
-        private _router: Router,
         private _sessionService: AbpSessionService
     ) {
         super(injector);
