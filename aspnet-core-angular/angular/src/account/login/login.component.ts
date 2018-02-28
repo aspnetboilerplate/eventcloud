@@ -3,6 +3,7 @@ import { AppComponentBase } from '@shared/app-component-base';
 import { LoginService } from './login.service';
 import { accountModuleAnimation } from '@shared/animations/routerTransition';
 import { AbpSessionService } from '@abp/session/abp-session.service';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './login.component.html',
@@ -21,9 +22,14 @@ export class LoginComponent extends AppComponentBase implements OnInit {
     constructor(
         injector: Injector,
         public loginService: LoginService,
+        private _router: Router,
         private _sessionService: AbpSessionService
     ) {
         super(injector);
+    }
+
+    get multiTenancySideIsTenant(): boolean {
+        return this._sessionService.tenantId > 0;
     }
 
     ngOnInit() {
@@ -40,8 +46,14 @@ export class LoginComponent extends AppComponentBase implements OnInit {
         $(this.cardBody.nativeElement).find('input:first').focus();
     }
 
-    get multiTenancySideIsTenant(): boolean {
-        return this._sessionService.tenantId > 0;
+    redirectToRegisterTenant(): void {
+        var tenantId = abp.multiTenancy.getTenantIdCookie();
+        debugger;
+        if (tenantId) {
+            window.location.href = "account/register-tenant?TenantId=0";
+        } else {
+            this._router.navigate(['account/register-tenant']);
+        }
     }
 
     login(): void {
