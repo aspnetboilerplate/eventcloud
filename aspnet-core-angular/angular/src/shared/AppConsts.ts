@@ -1,7 +1,9 @@
-﻿export class AppConsts {
+export class AppConsts {
 
     static remoteServiceBaseUrl: string;
     static appBaseUrl: string;
+
+    static localeMappings: any = [];
 
     static readonly userManagement = {
         defaultAdminUserName: 'admin'

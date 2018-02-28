@@ -47,7 +47,7 @@
                 "../node_modules/js-cookie/src/js.cookie.js",
                 "../node_modules/bootstrap/dist/js/bootstrap.js",
                 "../node_modules/lodash/lodash.min.js",
-                "../node_modules/moment/min/moment.min.js",
+                "../node_modules/moment/min/moment-with-locales.js",
                 "../node_modules/signalr/jquery.signalR.js",
                 "../node_modules/@aspnet/signalr/dist/browser/signalr.min.js",
                 "../node_modules/toastr/toastr.js",

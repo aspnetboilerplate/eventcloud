@@ -116,7 +116,7 @@
     <text name="AdminPassword" value="Admin password" />
     <text name="CreateTheTenant" value="Create the tenant" />
     <text name="CreationTime" value="Creation time" />
-    <text name="NewTenant" value="New tenant" />
+    <text name="NewTenant" value="Become a tenant" />
 
   </texts>
 </localizationDictionary>

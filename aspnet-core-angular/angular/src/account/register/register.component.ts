@@ -16,6 +16,7 @@ export class RegisterComponent extends AppComponentBase implements AfterViewInit
     model: RegisterInput = new RegisterInput();
 
     saving: boolean = false;
+    tenancyName: string;
 
     constructor(
         injector: Injector,
@@ -27,6 +28,11 @@ export class RegisterComponent extends AppComponentBase implements AfterViewInit
     }
 
     ngAfterViewInit(): void {
+        if (!this.appSession.tenant) {
+            console.log("login redirect");
+            this._router.navigate(['account/login']);
+        }
+
         $(this.cardBody.nativeElement).find('input:first').focus();
     }
 
@@ -38,7 +44,7 @@ export class RegisterComponent extends AppComponentBase implements AfterViewInit
         this.saving = true;
         this._accountService.register(this.model)
             .finally(() => { this.saving = false; })
-            .subscribe((result:RegisterOutput) => {
+            .subscribe((result: RegisterOutput) => {
                 if (!result.canLogin) {
                     this.notify.success(this.l('SuccessfullyRegistered'));
                     this._router.navigate(['/login']);

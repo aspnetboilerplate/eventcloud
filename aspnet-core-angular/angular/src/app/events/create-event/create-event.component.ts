@@ -47,7 +47,7 @@ export class CreateEventComponent extends AppComponentBase {
     save(): void {
         this.saving = true;
 
-        this.event.date = moment($(this.eventDate.nativeElement).data('DateTimePicker').date().format('YYYY-MM-DDTHH:mm:ss') + 'Z');
+        this.event.date = moment($(this.eventDate.nativeElement).data('DateTimePicker').date().format('YYYY-MM-DDTHH:mm:ssZ'));
 
         this._eventService.createAsync(this.event)
             .finally(() => { this.saving = false; })
