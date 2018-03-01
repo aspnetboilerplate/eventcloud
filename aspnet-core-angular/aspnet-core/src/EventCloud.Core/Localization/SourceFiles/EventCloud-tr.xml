@@ -75,5 +75,38 @@
     <text name="CreateNewRole">Yeni rol oluştur</text>
     <text name="RoleName">Rol adı</text>
     <text name="Actions">İşlemler</text>
+
+      <text name="Events" value="Etkinlikler" />
+      <text name="NewEvent" value="Yeni etkinlik" />
+      <text name="ShowCanceledEvents" value="İptal edilen etkinlikler" />
+      <text name="ThisEventIsCanceled" value="Bu etkinlik iptal edildi" />
+      <text name="Details" value="Detaylar" />
+      <text name="XofYregistered" value="{1} de {0} kayıt" />
+      <text name="XregisteredNoNewRegistrationAvailable" value="{0} kayıt. Yeni kayıt alınmıyor." />
+      <text name="XregisteredUnlimitedRegistrations" value="{0} kayıt. Limitsiz kayıt." />
+      <text name="BackToEvents" value="Etkinliklere dön" />
+      <text name="CancelRegistration" value="Kaydı iptal et" />
+      <text name="CancelTheEvent" value="Etkinliği iptal et" />
+      <text name="XregisteredOfYAvailableRegistration" value="{0} kayıtlı kullanıcı (toplam kontenjan {1})" />
+      <text name="Title" value="Başlık" />
+      <text name="Description" value="Açıklama" />
+      <text name="Date" value="Tarih" />
+      <text name="MaxRegistrationCount" value="Maks kayıt sayısı" />
+      <text name="Unlimited" value="Limitsiz" />
+      <text name="AboutTheCloudEvent" value="Cloud etkinliği hakkında" />
+      <text name="CloudEventDescription" value="Bu, ASP.NET Boilerplate framework kullanılarak geliştirilmiş bir multi-tenant uygulamadır." />
+      <text name="SomeStatistics" value="Bazı istatistikler" />
+      <text name="StatisticsNote" value="Not: Bu istetistikler tüm müşteriler içindir." />
+      <text name="Links" value="Linkler" />
+      <text name="SourceCodeOfThisApplication" value="Bu uygulamanın kaynak kodu" />
+      <text name="AbpOfficialWebSite" value="ASP.NET Boilerplate resmi web sitesi" />
+      <text name="OfficialForum" value="Resmi forum" />
+      <text name="Registrations" value="Kayıtlar" />
+      <text name="BecomeATenant" value="MÜŞTERİ OL" />
+      <text name="BecomeATenantHint" value="Müşterilerin kendi kullanıcıları ve etkinlikleri olabilir. Ücretsiz!" />
+      <text name="AdminPassword" value="Admin şifre" />
+      <text name="CreateTheTenant" value="Müşteri oluştur" />
+      <text name="CreationTime" value="Oluşturma tarihi" />
+      <text name="NewTenant" value="MÜŞTERİ OL" />
   </texts>
 </localizationDictionary>
