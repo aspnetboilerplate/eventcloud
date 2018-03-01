@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-md-6" *ngFor="let event of events">
                         <div class="card">
-                            <div class="header bg-blue-grey">
+                            <div [class]="event.isCancelled ? 'header bg-red' : 'header bg-blue-grey'">
                                 <h2>
                                     {{event.title}} <small class="event-description">{{event.description}}</small>
                                 </h2>
