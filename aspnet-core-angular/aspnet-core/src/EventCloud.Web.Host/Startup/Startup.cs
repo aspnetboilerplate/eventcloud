@@ -72,7 +72,7 @@ namespace EventCloud.Web.Host.Startup
             // Swagger - Enable this line and the related lines in Configure method to enable swagger UI
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new Info { Title = "EventCloud API", Version = "v1" });
+                options.SwaggerDoc("v1", new Info { Title = "Think Event API", Version = "v1" });
                 options.DocInclusionPredicate((docName, description) => true);
 
                 // Define the BearerAuth scheme that's in use
