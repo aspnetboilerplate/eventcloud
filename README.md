@@ -1,18 +1,18 @@
-# Event Cloud
+# Think Event
  
-This is a sample Multi-Tenant application built using ASP.NET Boilerplate and module-zero. 
-In this repository there are 2 diffrent source code of even cloud sample.
-One of them is developed using ASP.NET MVC, Angularjs and EntityFramewok, and the other 
-is developed using ASP.NET Core, Angular and EntityFrameworkCore. 
-Here are the feaures:
+Esta é uma aplicação Multi-Tenant criada usando ASP.NET Boilerplate e module-zero. 
+Neste repositório existem 2 códigos-fonte diferentes que servem pro painel administrativo do Geek Etec e demais eventos que possam acontecer.
+Um deles é desenvolvido usando Angular, e o outro 
+é desenvolvido usando ASP.NET Core, Angular e EntityFrameworkCore. 
+Aqui estão as feaures:
 
-* Anyone can create a tenant using a registration form and becomes admin of the tenant.
-* Anyone can register to a tenant.
-* Users can create events.
-* Users can see events and other registered users.
-* Users can register to events based on some policy.
-* Users can cancel their registration based on some policy.
-* Users can cancel their own events.
+* Qualquer pessoa pode criar uma rede usando um formulário de registro e se torna administrador da rede.
+* Qualquer pessoa pode se registrar na rede.
+* Os usuários admin podem criar eventos.
+* Os usuários admin podem ver eventos e outros usuários registrados.
+* Os usuários podem se registrar nos eventos com base em alguma política.
+* Os usuários podem cancelar seu registro com base em alguma política.
+* Os usuários admin podem cancelar seus próprios eventos.
 
 ## Live Demo
 
