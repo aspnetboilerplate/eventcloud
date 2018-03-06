@@ -30,6 +30,8 @@ Basta enviar uma requisição POST para https://api-thinkevent.azurewebsites.net
 
 ![Requisição Remota](/images/tokenAuth-remote.png "Requisição Remota feita pelo postman")
 
+Enviamos no corpo da requisição um objeto JSON que poderia incluir o tanancyName junto com os demais atributos que enviamos, userNameOrEmailAddress e password, porém o tenancyName não é necessário para os usuário que estão na rede Default. Como vimos acima, o resultado da requisição retorna um JSON com o token. Podemos salvá-lo e usar nos próximos pedidos de requisição.
+
 ## Articles
 
 There are 2 Codeproject articles explains this example deeply:
