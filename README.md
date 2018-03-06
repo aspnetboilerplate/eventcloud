@@ -32,9 +32,9 @@ Basta enviar uma requisição POST para https://api-thinkevent.azurewebsites.net
 
 Enviamos no corpo da requisição um objeto JSON que poderia incluir o tanancyName junto com os demais atributos que enviamos, userNameOrEmailAddress e password, porém o tenancyName não é necessário para os usuário que estão na rede Default. Como vimos acima, o resultado da requisição retorna um JSON com o token. Podemos salvá-lo e usar nos próximos pedidos de requisição.
 
-## Articles
+## Artigos
 
-There are 2 Codeproject articles explains this example deeply:
+Existem 2 artigos do Codeproject explicando este exemplo profundamente:
 
 ##### ASP.NET MVC, Angularjs and EntityFramework version:
 http://www.codeproject.com/Articles/1043326/A-Multi-Tenant-SaaS-Application-With-ASP-NET-MVC-A
