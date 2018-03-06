@@ -1,7 +1,7 @@
 ﻿import * as moment from 'moment';
 import { AppConsts } from '@shared/AppConsts';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { Type, CompilerOptions, NgModuleRef } from '@angular/core';
+import { Type, CompilerOptions, NgModuleRef, isDevMode } from '@angular/core';
 
 export class AppPreBootstrap {
 
@@ -16,8 +16,13 @@ export class AppPreBootstrap {
     }
 
     private static getApplicationConfig(callback: () => void) {
+        let url : string = '/assets/appconfig.json';
+
+        if (isDevMode())
+            url = '/assets/appconfig.development.json';
+
         return abp.ajax({
-            url: '/assets/appconfig.json',
+            url: url,
             method: 'GET',
             headers: {
                 'Abp.TenantId': abp.multiTenancy.getTenantIdCookie()

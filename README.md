@@ -16,11 +16,11 @@ Here are the feaures:
 
 ## Live Demo
 
-__http://eventcloud.aspnetboilerplate.com__
+__https://thinkevent.azurewebsites.net__
 
-![alt login form](https://github.com/aspnetboilerplate/aspnetboilerplate/blob/dev/doc/WebSite/Articles/Developing-a-Multi-Tenant-SaaS-Application-with-ASP.NET-MVC-EntityFramework-AngularJs/login-page-v2.jpg)
+![alt login form](/images/login.png "Formulário de Login do Painel Administrativo")
 
-Note: You can register to __default__ tenant or create your own tenant.
+Nota: Você pode se registrar na rede __default__ ou criar sua própria rede.
 
 ## Autenticação
 
