@@ -22,6 +22,14 @@ __http://eventcloud.aspnetboilerplate.com__
 
 Note: You can register to __default__ tenant or create your own tenant.
 
+## Autenticação
+
+Basta enviar uma requisição POST para https://api-thinkevent.azurewebsites.net/api/TokenAuth/Authenticate com o cabeçalho Context-Type="application/json" como demonstrado abaixo:
+
+![Requisição Local](/images/tokenAuth.png "Requisição local feita pelo postman")
+
+![Requisição Remota](/images/tokenAuth-remote.png "Requisição Remota feita pelo postman")
+
 ## Articles
 
 There are 2 Codeproject articles explains this example deeply:

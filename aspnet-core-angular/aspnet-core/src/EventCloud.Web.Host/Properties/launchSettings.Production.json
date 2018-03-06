@@ -1,9 +1,9 @@
-{
+﻿{
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:21021/",
+      "applicationUrl": "https://thinkevent.azurewebsites.net/",
       "sslPort": 0
     }
   },
