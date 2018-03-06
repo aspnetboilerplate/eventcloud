@@ -2,7 +2,7 @@
   "runtime": "Default",
   "swaggerGenerator": {
     "fromSwagger": {
-      "url": "http://localhost:21021/swagger/v1/swagger.json",
+      "url": "https://api-thinkevent.azurewebsites.net/swagger/v1/swagger.json",
       "output": null
     }
   },

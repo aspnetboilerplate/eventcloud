@@ -29,7 +29,7 @@ namespace EventCloud.Web.Host.Startup
 {
     public class Startup
     {
-        private const string _defaultCorsPolicyName = "localhost";
+        private const string _defaultCorsPolicyName = "thinkevent.azurewebsites.net";
 
         private readonly IConfigurationRoot _appConfiguration;
 
