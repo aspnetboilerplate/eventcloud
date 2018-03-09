@@ -36,7 +36,7 @@ export class LoginComponent extends AppComponentBase implements OnInit {
         if (this.appSession.tenant) {
             this.tenancyName = this.appSession.tenant.tenancyName;
             if (this.tenancyName == "Default") {
-                this.loginService.authenticateModel.userNameOrEmailAddress = "admin";
+                this.loginService.authenticateModel.userNameOrEmailAddress = "john";
                 this.loginService.authenticateModel.password = "123qwe";
             }
         }
