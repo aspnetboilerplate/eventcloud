@@ -1,25 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Abp.Authorization;
+﻿using Abp.Authorization;
 using Abp.Authorization.Users;
 using Abp.MultiTenancy;
 using Abp.Runtime.Security;
 using Abp.UI;
-using EventCloud.Authentication.External;
-using EventCloud.Authentication.JwtBearer;
-using EventCloud.Authorization;
-using EventCloud.Authorization.Users;
-using EventCloud.Models.TokenAuth;
-using EventCloud.MultiTenancy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.IO;
+using System.Linq;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace EventCloud.Controllers
 {
+    using Authentication.External;
+    using Authentication.JwtBearer;
+    using Authorization;
+    using Authorization.Users;
+    using Models.TokenAuth;
+    using MultiTenancy;
+
     [Route("api/[controller]/[action]")]
     public class TokenAuthController : EventCloudControllerBase
     {
@@ -182,6 +186,8 @@ namespace EventCloud.Controllers
 
         private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
         {
+            password = StringCipher.OpenSSLDecrypt(password, String.Format("scrt-key-{0}", usernameOrEmailAddress)) ?? password;
+
             var loginResult = await _logInManager.LoginAsync(usernameOrEmailAddress, password, tenancyName);
 
             switch (loginResult.Result)
