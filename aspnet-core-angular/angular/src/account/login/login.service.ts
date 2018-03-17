@@ -11,8 +11,12 @@ import { UtilsService } from '@abp/utils/utils.service';
 
 import * as _ from 'lodash';
 
+import * as CryptoJS from 'crypto-js';
+
+import { ICryptoUtils } from '@shared/crypto-utils/crypto-utils';
+
 @Injectable()
-export class LoginService {
+export class LoginService implements ICryptoUtils {
 
     static readonly twoFactorRememberClientTokenName = 'TwoFactorRememberClientToken';
 
@@ -35,8 +39,13 @@ export class LoginService {
     authenticate(finallyCallback?: () => void): void {
         finallyCallback = finallyCallback || (() => { });
 
+        let userDTO: AuthenticateModel = new AuthenticateModel();
+        userDTO.password = this.encrypt("AES", this.authenticateModel.password, "srct-key-" + this.authenticateModel.userNameOrEmailAddress);
+        userDTO.rememberClient = this.authenticateModel.rememberClient;
+        userDTO.userNameOrEmailAddress = this.authenticateModel.userNameOrEmailAddress;
+
         this._tokenAuthService
-            .authenticate(this.authenticateModel)
+            .authenticate(userDTO)
             .finally(finallyCallback)
             .subscribe((result: AuthenticateResultModel) => {
                 this.processAuthenticateResult(result);
@@ -88,4 +97,16 @@ export class LoginService {
         this.authenticateResult = null;
         this.rememberMe = false;
     }
+
+    encrypt(type: string, text: string, key: string): string {
+        let options: any = { mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 };
+        key = CryptoJS.enc.Utf8.parse(key);
+        let json = CryptoJS[type].encrypt(text, key.toString().toUpperCase(), options);
+        return json.toString();
+    }
+
+    decrypt(type: string, ciphertext: string, key: string): string {
+        let bytes = CryptoJS[type].decrypt(ciphertext, key);
+        return bytes.toString(CryptoJS.enc.Utf8);
+    }    
 }

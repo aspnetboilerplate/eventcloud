@@ -67,7 +67,8 @@
         "ts-helpers": "^1.1.2",
         "web-animations-js": "^2.3.1",
         "zone.js": "0.8.18",
-        "eonasdan-bootstrap-datetimepicker": "4.17.47"
+        "eonasdan-bootstrap-datetimepicker": "4.17.47",
+        "crypto-js": "3.1.9-1"
     },
     "devDependencies": {
         "@angular/cli": "^1.5.4",
@@ -88,6 +89,7 @@
         "protractor": "^5.1.1",
         "ts-node": "^3.3.0",
         "tslint": "^5.7.0",
+        "@types/crypto-js": "^3.1.38",        
         "typescript": "2.4.2"
     }
 }
