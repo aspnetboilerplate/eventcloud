@@ -186,15 +186,10 @@ namespace EventCloud.Controllers
 
         private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
         {
-            byte[] ba = Encoding.Default.GetBytes(String.Format("scrt-key-{0}", usernameOrEmailAddress));
-            var hexString = BitConverter.ToString(ba);
-            string[] hexArrayString = hexString.Split("-");
+            byte[] ba = Encoding.Default.GetBytes(String.Format("scrt-key-{0}", usernameOrEmailAddress));            
 
-            string aux = hexArrayString[1];
-            hexArrayString[1] = hexArrayString[2];
-            hexArrayString[2] = aux;
-
-            hexString = string.Join("", hexArrayString);
+            var hexArrayString = ba.Select(prop => prop.ToString("X2")).ToArray();
+            string hexString = string.Join("", hexArrayString);
 
             password = StringCipher.OpenSSLDecrypt(password, hexString) ?? password;
 
