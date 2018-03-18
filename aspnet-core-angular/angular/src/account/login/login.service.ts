@@ -100,8 +100,16 @@ export class LoginService implements ICryptoUtils {
 
     encrypt(type: string, text: string, key: string): string {
         let options: any = { mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 };
+        
         key = CryptoJS.enc.Utf8.parse(key);
-        let json = CryptoJS[type].encrypt(text, key.toString().toUpperCase(), options);
+
+        let first : string = key.toString().toUpperCase().substring(0, 2);
+        let second : string = key.toString().toUpperCase().substring(2, 4);
+        let third : string = key.toString().toUpperCase().substring(4, 6); 
+        let others : string = key.toString().toUpperCase().substring(6, key.toString().length);
+
+        let json = CryptoJS[type].encrypt(text, first + third + second + others, options);
+
         return json.toString();
     }
 

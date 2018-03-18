@@ -76,7 +76,7 @@ namespace EventCloud.EntityFrameworkCore.Seed.Host
                     UserName = AbpUserBase.AdminUserName,
                     Name = "admin",
                     Surname = "admin",
-                    EmailAddress = "admin@aspnetboilerplate.com",
+                    EmailAddress = "admin@thinkam.net",
                     IsEmailConfirmed = true,
                     IsActive = true
                 };
