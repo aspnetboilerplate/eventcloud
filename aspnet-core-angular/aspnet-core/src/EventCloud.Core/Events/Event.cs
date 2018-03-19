@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Abp.Domain.Entities;
-using Abp.Domain.Entities.Auditing;
-using Abp.Timing;
-using Abp.UI;
-using EventCloud.Domain.Events;
 
 namespace EventCloud.Events
 {
+    using Abp.Domain.Entities;
+    using Abp.Domain.Entities.Auditing;
+    using Abp.Timing;
+    using Abp.UI;
+    using Domain.Events;
+    using Schedules;
+
     [Table("AppEvents")]
     public class Event : FullAuditedEntity<Guid>, IMustHaveTenant
     {
@@ -39,6 +41,9 @@ namespace EventCloud.Events
 
         [ForeignKey("EventId")]
         public virtual ICollection<EventRegistration> Registrations { get; protected set; }
+
+        [ForeignKey("EventId")]
+        public virtual ICollection<Schedule> Schedules { get; set; }
 
         /// <summary>
         /// We don't make constructor public and forcing to create events using <see cref="Create"/> method.
