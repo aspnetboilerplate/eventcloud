@@ -8,10 +8,10 @@ namespace EventCloud.Schedules.Dto
     using Groups.Dto;
 
     [AutoMapFrom(typeof(Schedule))]
-    public class ScheduleListDto : FullAuditedEntityDto<Guid>
+    public class ScheduleDetailOutput : FullAuditedEntityDto<Guid>
     {
         public DateTime Date { get; set; }
 
-        public IEnumerable<GroupDto> Groups { get; set; }
+        public ICollection<GroupDto> Groups { get; set; }
     }
 }
