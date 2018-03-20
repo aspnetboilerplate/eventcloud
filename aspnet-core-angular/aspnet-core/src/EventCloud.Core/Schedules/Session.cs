@@ -15,7 +15,7 @@ namespace EventCloud.Schedules
         public string TimeStart { get; set; }
         public string TimeEnd { get; set; }
         public string Location { get; set; }
-
+        
         public IEnumerable<Track> Tracks { get; set; }
     }
 }
