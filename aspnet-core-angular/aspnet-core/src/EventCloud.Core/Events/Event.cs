@@ -107,12 +107,12 @@ namespace EventCloud.Events
 
             if (date < Clock.Now)
             {
-                throw new UserFriendlyException("Can not set an event's date in the past!");
+                throw new UserFriendlyException("Não é possível definir a data de um evento no passado!");
             }
 
             if (date <= Clock.Now.AddHours(3)) //3 can be configurable per tenant
             {
-                throw new UserFriendlyException("Should set an event's date 3 hours before at least!");
+                throw new UserFriendlyException("Deve definir a data de um evento pelo menos 3 horas antes!");
             }
 
             Date = date;
