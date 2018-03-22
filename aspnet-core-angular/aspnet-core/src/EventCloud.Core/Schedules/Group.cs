@@ -19,5 +19,26 @@ namespace EventCloud.Schedules
         public string Time { get; set; }
 
         public IEnumerable<Session> Sessions { get; set; }
+
+        /// <summary>
+        /// We don't make constructor public and forcing to create events using <see cref="Create"/> method.
+        /// But constructor can not be private since it's used by EntityFramework.
+        /// Thats why we did it protected.
+        /// </summary>
+        protected Group()
+        {
+
+        }
+
+        public static Group Create(Guid scheduleId, string time)
+        {
+            var @group = new Group
+            {
+                ScheduleId = scheduleId,
+                Time = time
+            };
+
+            return @group;
+        }
     }
 }

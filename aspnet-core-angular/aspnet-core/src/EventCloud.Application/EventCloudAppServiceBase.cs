@@ -28,7 +28,7 @@ namespace EventCloud
             var user = UserManager.FindByIdAsync(AbpSession.GetUserId().ToString());
             if (user == null)
             {
-                throw new Exception("There is no current user!");
+                throw new Exception("Não há usuário atual!");
             }
 
             return user;
