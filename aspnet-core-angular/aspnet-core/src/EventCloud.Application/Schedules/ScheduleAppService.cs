@@ -10,6 +10,7 @@ namespace EventCloud.Schedules
     using Abp.Authorization;
     using Abp.AutoMapper;
     using Abp.Domain.Repositories;
+    using Abp.UI;
     using Dto;
 
     [AbpAuthorize]
@@ -32,9 +33,21 @@ namespace EventCloud.Schedules
             await _scheduleManager.CreateAsync(@schedule);
         }
 
-        public Task<ScheduleDetailOutput> GetDetailAsync(EntityDto<Guid> input)
+        public async Task<ScheduleDetailOutput> GetDetailAsync(EntityDto<Guid> input)
         {
-            throw new NotImplementedException();
+            var @schedule = await _scheduleRepository
+                .GetAll()
+                .Include(e => e.Groups)
+                .ThenInclude(r => r.Sessions)
+                .Where(e => e.Id == input.Id)
+                .FirstOrDefaultAsync();
+
+            if (@schedule == null)
+            {
+                throw new UserFriendlyException("Não foi possível encontrar a programação, talvez ele tenha sido excluída.");
+            }
+
+            return @schedule.MapTo<ScheduleDetailOutput>();
         }
 
         public async Task<ListResultDto<ScheduleListDto>> GetListAsync()
