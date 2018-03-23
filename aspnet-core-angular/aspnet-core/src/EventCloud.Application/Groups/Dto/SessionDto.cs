@@ -16,6 +16,6 @@ namespace EventCloud.Groups.Dto
         public string TimeEnd { get; set; }
         public string Location { get; set; }
 
-        public IEnumerable<TrackDto> Tracks { get; set; }
+        public ICollection<TrackDto> Tracks { get; set; }
     }
 }

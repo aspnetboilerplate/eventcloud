@@ -12,6 +12,6 @@ namespace EventCloud.Schedules.Dto
     {
         public DateTime Date { get; set; }
 
-        public IEnumerable<GroupDto> Groups { get; set; }
+        public ICollection<GroupDto> Groups { get; set; }
     }
 }

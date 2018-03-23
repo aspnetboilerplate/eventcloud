@@ -19,7 +19,7 @@ namespace EventCloud.Schedules
 
         public virtual DateTime Date { get; set; }
 
-        public IEnumerable<Group> Groups { get; set; }
+        public virtual ICollection<Group> Groups { get; set; }
 
         /// <summary>
         /// We don't make constructor public and forcing to create events using <see cref="Create"/> method.

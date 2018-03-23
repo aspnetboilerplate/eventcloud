@@ -18,13 +18,19 @@ namespace EventCloud.Schedules
     {
         private readonly IScheduleManager _scheduleManager;
         private readonly IRepository<Schedule, Guid> _scheduleRepository;
+        private readonly IRepository<Group, Guid> _groupRepository;
+        private readonly IRepository<Session, Guid> _sessionRepository;
 
         public ScheduleAppService(
             IScheduleManager scheduleManager,
-            IRepository<Schedule, Guid> scheduleRepository)
+            IRepository<Schedule, Guid> scheduleRepository,
+            IRepository<Group, Guid> groupRepository,
+            IRepository<Session, Guid> sessionRepository)
         {
             _scheduleManager = scheduleManager;
             _scheduleRepository = scheduleRepository;
+            _groupRepository = groupRepository;
+            _sessionRepository = sessionRepository;
         }
 
         public async Task CreateAsync(CreateScheduleInput input)
@@ -50,16 +56,31 @@ namespace EventCloud.Schedules
             return @schedule.MapTo<ScheduleDetailOutput>();
         }
 
-        public async Task<ListResultDto<ScheduleListDto>> GetListAsync()
+        public ListResultDto<ScheduleListDto> GetListAsync()
         {
-            var schedules = await _scheduleRepository
-                .GetAll()
-                .Include(e => e.Groups)
-                .OrderByDescending(e => e.Date)
-                .Take(64)
-                .ToListAsync();
+            try
+            {
+                var schedules = _scheduleRepository
+                    .GetAllIncluding(prop => prop.Groups)
+                    .ToList();
 
-            return new ListResultDto<ScheduleListDto>(schedules.MapTo<List<ScheduleListDto>>());
+                schedules.ForEach(prop => prop.Groups = _groupRepository
+                                                            .GetAllIncluding(g => g.Sessions)
+                                                            .Where(g => g.ScheduleId == prop.Id)
+                                                            .ToList());
+
+                schedules.ForEach(prop => prop.Groups.ToList()
+                                                     .ForEach(g => g.Sessions = _sessionRepository
+                                                                                      .GetAllIncluding(s => s.Tracks)
+                                                                                      .Where(s => s.GroupId == g.Id)
+                                                                                      .ToList()));
+
+                return new ListResultDto<ScheduleListDto>(schedules.MapTo<List<ScheduleListDto>>());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

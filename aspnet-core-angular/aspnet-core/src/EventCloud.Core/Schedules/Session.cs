@@ -16,7 +16,7 @@ namespace EventCloud.Schedules
         public string TimeEnd { get; set; }
         public string Location { get; set; }
         
-        public IEnumerable<Track> Tracks { get; set; }
+        public virtual ICollection<Track> Tracks { get; set; }
 
         /// <summary>
         /// We don't make constructor public and forcing to create events using <see cref="Create"/> method.

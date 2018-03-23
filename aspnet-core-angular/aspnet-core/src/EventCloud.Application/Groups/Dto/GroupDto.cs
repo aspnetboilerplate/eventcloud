@@ -16,6 +16,6 @@ namespace EventCloud.Groups.Dto
         [StringLength(Schedules.Group.MaxTimeLength)]
         public string Time { get; set; }
 
-        public IEnumerable<SessionDto> Sessions { get; set; }
+        public ICollection<SessionDto> Sessions { get; set; }
     }
 }

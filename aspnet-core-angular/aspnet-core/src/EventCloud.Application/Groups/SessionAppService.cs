@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Abp.Domain.Repositories;
-using EventCloud.Groups.Dto;
-using EventCloud.Schedules;
 
 namespace EventCloud.Groups
 {
+    using Abp.Authorization;
+    using Abp.Domain.Repositories;
+    using Dto;
+    using Schedules;
+
+    [AbpAuthorize]
     public class SessionAppService : EventCloudAppServiceBase, ISessionAppService
     {
         private readonly ISessionManager _sessionManager;

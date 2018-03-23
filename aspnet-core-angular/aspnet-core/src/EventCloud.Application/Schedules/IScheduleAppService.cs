@@ -9,7 +9,7 @@ namespace EventCloud.Schedules
 
     public interface IScheduleAppService : IApplicationService
     {
-        Task<ListResultDto<ScheduleListDto>> GetListAsync();
+        ListResultDto<ScheduleListDto> GetListAsync();
 
         Task<ScheduleDetailOutput> GetDetailAsync(EntityDto<Guid> input);
 

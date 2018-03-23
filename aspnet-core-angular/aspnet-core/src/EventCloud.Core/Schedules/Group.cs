@@ -18,7 +18,7 @@ namespace EventCloud.Schedules
         [StringLength(MaxTimeLength)]
         public string Time { get; set; }
 
-        public IEnumerable<Session> Sessions { get; set; }
+        public virtual ICollection<Session> Sessions { get; set; }
 
         /// <summary>
         /// We don't make constructor public and forcing to create events using <see cref="Create"/> method.
