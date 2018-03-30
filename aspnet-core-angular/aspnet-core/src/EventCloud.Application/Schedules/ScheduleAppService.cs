@@ -60,22 +60,44 @@ namespace EventCloud.Schedules
         {
             try
             {
-                var schedules = _scheduleRepository
+                var @schedules = _scheduleRepository
                     .GetAllIncluding(prop => prop.Groups)
                     .ToList();
 
-                schedules.ForEach(prop => prop.Groups = _groupRepository
+                @schedules.ForEach(prop => prop.Groups = _groupRepository
                                                             .GetAllIncluding(g => g.Sessions)
                                                             .Where(g => g.ScheduleId == prop.Id)
                                                             .ToList());
 
-                schedules.ForEach(prop => prop.Groups.ToList()
+                @schedules.ForEach(prop => prop.Groups.ToList()
                                                      .ForEach(g => g.Sessions = _sessionRepository
                                                                                       .GetAllIncluding(s => s.Tracks)
                                                                                       .Where(s => s.GroupId == g.Id)
                                                                                       .ToList()));
 
-                return new ListResultDto<ScheduleListDto>(schedules.MapTo<List<ScheduleListDto>>());
+                return new ListResultDto<ScheduleListDto>(@schedules.MapTo<List<ScheduleListDto>>());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string GetVersion()
+        {
+            try
+            {
+                var @lastSchedule = _scheduleRepository
+                                            .GetAll()
+                                            .OrderByDescending(prop => prop.CreationTime)
+                                            .FirstOrDefault().CreationTime;
+
+                return string.Format("{0}{1}{2}{3}{4}{5}", @lastSchedule.Year, 
+                                                           @lastSchedule.Month.ToString().PadLeft(2, '0'), 
+                                                           @lastSchedule.Day.ToString().PadLeft(2, '0'), 
+                                                           @lastSchedule.Hour, 
+                                                           @lastSchedule.Minute, 
+                                                           @lastSchedule.Second);
             }
             catch (Exception ex)
             {

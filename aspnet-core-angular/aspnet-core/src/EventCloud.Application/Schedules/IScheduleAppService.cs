@@ -14,5 +14,7 @@ namespace EventCloud.Schedules
         Task<ScheduleDetailOutput> GetDetailAsync(EntityDto<Guid> input);
 
         Task CreateAsync(CreateScheduleInput input);
+
+        string GetVersion();
     }
 }
