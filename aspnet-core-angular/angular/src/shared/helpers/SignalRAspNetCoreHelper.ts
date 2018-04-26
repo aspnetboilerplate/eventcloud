@@ -13,7 +13,7 @@ export class SignalRAspNetCoreHelper {
             qs: AppConsts.authorization.encrptedAuthTokenName + "=" + encodeURIComponent(encryptedAuthToken),
             remoteServiceBaseUrl: AppConsts.remoteServiceBaseUrl,
             startConnection: undefined,
-            url: AppConsts.remoteServiceBaseUrl + '/signalr'
+            url: '/signalr'
         };
 
         jQuery.getScript(AppConsts.appBaseUrl + '/assets/abp/abp.signalr-client.js');
