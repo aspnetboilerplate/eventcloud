@@ -13,7 +13,9 @@ namespace EventCloud.Models.TokenAuth
         [Required]
         [Display(Name = "Senha", Description = "Senha do Usuário")]
         public string Password { get; set; }
-        
+
+        public int? TenantId { get; set; }
+
         public bool RememberClient { get; set; }
     }
 }

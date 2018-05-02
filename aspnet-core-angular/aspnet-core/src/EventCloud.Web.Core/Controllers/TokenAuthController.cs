@@ -59,7 +59,7 @@ namespace EventCloud.Controllers
             var loginResult = await GetLoginResultAsync(
                 model.UserNameOrEmailAddress,
                 model.Password,
-                GetTenancyNameOrNull()
+                GetTenancyNameOrNull(model.TenantId)
             );
 
             var accessToken = CreateAccessToken(CreateJwtClaims(loginResult.Identity));
@@ -174,14 +174,17 @@ namespace EventCloud.Controllers
             return userInfo;
         }
 
-        private string GetTenancyNameOrNull()
+        private string GetTenancyNameOrNull(int? tenantId = null)
         {
             if (!AbpSession.TenantId.HasValue)
             {
-                return null;
+                if (!tenantId.HasValue)
+                    return null;
             }
 
-            return _tenantCache.GetOrNull(AbpSession.TenantId.Value)?.TenancyName;
+            return _tenantCache.GetOrNull(AbpSession.TenantId.HasValue ?
+                                          AbpSession.TenantId.Value :
+                                          tenantId.Value)?.TenancyName;
         }
 
         private async Task<AbpLoginResult<Tenant, User>> GetLoginResultAsync(string usernameOrEmailAddress, string password, string tenancyName)
