@@ -87,17 +87,31 @@ namespace EventCloud.Schedules
         {
             try
             {
+                var @lastGroup = _groupRepository
+                                        .GetAll()
+                                        .OrderByDescending(prop => prop.CreationTime)
+                                        .FirstOrDefault().CreationTime;
+
                 var @lastSchedule = _scheduleRepository
                                             .GetAll()
                                             .OrderByDescending(prop => prop.CreationTime)
                                             .FirstOrDefault().CreationTime;
 
-                return string.Format("{0}{1}{2}{3}{4}{5}", @lastSchedule.Year, 
-                                                           @lastSchedule.Month.ToString().PadLeft(2, '0'), 
-                                                           @lastSchedule.Day.ToString().PadLeft(2, '0'), 
-                                                           @lastSchedule.Hour, 
-                                                           @lastSchedule.Minute, 
-                                                           @lastSchedule.Second);
+                var date = @lastGroup > @lastSchedule ? @lastGroup : @lastSchedule;
+
+                var @lastSession = _sessionRepository
+                                        .GetAll()
+                                        .OrderByDescending(prop => prop.CreationTime)
+                                        .FirstOrDefault().CreationTime;
+
+                date = date > @lastSession ? date : @lastSession;
+
+                return string.Format("{0}{1}{2}{3}{4}{5}", date.Year,
+                                                           date.Month.ToString().PadLeft(2, '0'),
+                                                           date.Day.ToString().PadLeft(2, '0'),
+                                                           date.Hour,
+                                                           date.Minute,
+                                                           date.Second);
             }
             catch (Exception ex)
             {
