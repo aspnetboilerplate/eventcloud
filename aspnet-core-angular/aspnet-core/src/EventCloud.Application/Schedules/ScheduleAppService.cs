@@ -67,6 +67,7 @@ namespace EventCloud.Schedules
                 @schedules.ForEach(prop => prop.Groups = _groupRepository
                                                             .GetAllIncluding(g => g.Sessions)
                                                             .Where(g => g.ScheduleId == prop.Id)
+                                                            .Distinct()
                                                             .ToList());
 
                 @schedules.ForEach(prop => prop.Groups.ToList()
