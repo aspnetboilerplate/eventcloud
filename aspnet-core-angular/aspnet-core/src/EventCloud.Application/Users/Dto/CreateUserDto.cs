@@ -32,7 +32,6 @@ namespace EventCloud.Users.Dto
         public string[] RoleNames { get; set; }
 
         [Required]
-        [StringLength(AbpUserBase.MaxPlainPasswordLength)]
         [DisableAuditing]
         public string Password { get; set; }
 
