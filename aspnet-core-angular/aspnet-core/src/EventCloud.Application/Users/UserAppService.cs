@@ -46,7 +46,7 @@ namespace EventCloud.Users
 
             var user = ObjectMapper.Map<User>(input);
 
-            user.TenantId = AbpSession.TenantId;
+            user.TenantId = input.TenantId ?? AbpSession.TenantId;
             user.Password = _passwordHasher.HashPassword(user, input.Password);
             user.IsEmailConfirmed = true;
 

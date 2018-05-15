@@ -35,6 +35,8 @@ namespace EventCloud.Users.Dto
         [DisableAuditing]
         public string Password { get; set; }
 
+        public int? TenantId { get; set; }
+
         public void Normalize()
         {
             if (RoleNames == null)
