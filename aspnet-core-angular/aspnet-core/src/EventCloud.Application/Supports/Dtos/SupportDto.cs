@@ -12,6 +12,9 @@ namespace EventCloud.Supports.Dtos
         public const int MaxDescriptionLength = 2048;
 
         [Required]
+        public virtual Guid EventId { get; set; }
+
+        [Required]
         [StringLength(MaxDescriptionLength)]
         public virtual string Message { get; set; }
 

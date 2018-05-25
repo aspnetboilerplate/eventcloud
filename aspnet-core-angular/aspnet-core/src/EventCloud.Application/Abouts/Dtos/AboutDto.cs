@@ -11,6 +11,9 @@ namespace EventCloud.Abouts.Dtos
     {
         public const int MaxKeyLength = 128;
 
+        [Required]
+        public virtual Guid EventId { get; set; }
+
         [StringLength(MaxKeyLength)]
         [Required]
         public virtual string Key { get; set; }

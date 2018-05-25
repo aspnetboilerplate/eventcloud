@@ -5,12 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EventCloud.Speakers
 {
     using Abp.Domain.Entities.Auditing;
+    using Events;
 
     [Table("AppSpeakers")]
     public class Speaker : FullAuditedEntity<Guid>
     {
         public const int MaxTitleLength = 128;
         public const int MaxDescriptionLength = 2048;
+
+        [ForeignKey("EventId")]
+        public virtual Event Event { get; set; }
+        public virtual Guid EventId { get; set; }
 
         public virtual string profilePic { get; set; }
 

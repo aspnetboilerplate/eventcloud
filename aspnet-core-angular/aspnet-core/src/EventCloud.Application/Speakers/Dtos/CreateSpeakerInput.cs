@@ -3,12 +3,16 @@
 namespace EventCloud.Speakers.Dtos
 {
     using Abp.AutoMapper;
+    using System;
 
     [AutoMapTo(typeof(Speaker))]
     public class CreateSpeakerInput
     {
         public const int MaxTitleLength = 128;
         public const int MaxDescriptionLength = 2048;
+
+        [Required]
+        public virtual Guid EventId { get; set; }
 
         public virtual string profilePic { get; set; }
 

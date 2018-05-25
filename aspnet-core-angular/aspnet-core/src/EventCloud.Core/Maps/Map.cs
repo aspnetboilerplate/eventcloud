@@ -5,11 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EventCloud.Maps
 {
     using Abp.Domain.Entities.Auditing;
+    using Events;
 
     [Table("AppMaps")]
     public class Map : FullAuditedEntity<Guid>
     {
         public const int MaxTitleLength = 128;
+
+        [ForeignKey("EventId")]
+        public virtual Event Event { get; set; }
+        public virtual Guid EventId { get; set; }
 
         [Required]
         [StringLength(MaxTitleLength)]

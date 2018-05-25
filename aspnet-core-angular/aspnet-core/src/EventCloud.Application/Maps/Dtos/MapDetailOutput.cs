@@ -6,6 +6,8 @@ namespace EventCloud.Maps.Dtos
 
     public class MapDetailOutput : FullAuditedEntityDto<Guid>
     {
+        public virtual Guid EventId { get; set; }
+
         public virtual string Name { get; set; }
 
         public virtual Decimal Lat { get; set; }

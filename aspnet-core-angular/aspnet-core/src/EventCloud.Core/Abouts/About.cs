@@ -5,11 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EventCloud.Abouts
 {
     using Abp.Domain.Entities.Auditing;
+    using Events;
 
     [Table("AppAbouts")]
     public class About : FullAuditedEntity<Guid>
     {
         public const int MaxKeyLength = 128;
+
+        [ForeignKey("EventId")]
+        public virtual Event Event { get; set; }
+        public virtual Guid EventId { get; set; }
 
         [StringLength(MaxKeyLength)]
         [Required]

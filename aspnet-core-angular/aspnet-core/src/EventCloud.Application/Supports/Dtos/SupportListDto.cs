@@ -6,6 +6,8 @@ namespace EventCloud.Supports.Dtos
 
     public class SupportListDto : FullAuditedEntityDto<Guid>
     {
+        public virtual Guid EventId { get; set; }
+
         public virtual string Message { get; set; }
 
         public virtual bool IsActive { get; set; }

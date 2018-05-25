@@ -1,10 +1,13 @@
 ﻿using Abp.AutoMapper;
+using System;
 
 namespace EventCloud.Speakers.Dtos
 {
     [AutoMapFrom(typeof(Speaker))]
     public class SpeakerListDto
     {
+        public virtual Guid EventId { get; set; }
+
         public virtual string profilePic { get; set; }
 
         public virtual string Name { get; set; }

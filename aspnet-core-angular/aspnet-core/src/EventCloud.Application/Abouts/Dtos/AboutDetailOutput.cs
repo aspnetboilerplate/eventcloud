@@ -8,6 +8,8 @@ namespace EventCloud.Abouts.Dtos
     {
         public const int MaxKeyLength = 128;
 
+        public virtual Guid EventId { get; set; }
+
         public virtual string Key { get; set; }
 
         public virtual string Value { get; set; }

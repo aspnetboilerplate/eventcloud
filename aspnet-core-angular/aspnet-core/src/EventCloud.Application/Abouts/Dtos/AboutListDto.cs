@@ -6,6 +6,8 @@ namespace EventCloud.Abouts.Dtos
 
     public class AboutListDto : FullAuditedEntityDto<Guid>
     {
+        public virtual Guid EventId { get; set; }
+
         public virtual string Key { get; set; }
 
         public virtual string Value { get; set; }

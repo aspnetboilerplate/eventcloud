@@ -7,6 +7,8 @@ namespace EventCloud.Maps.Dtos
     [AutoMapTo(typeof(Map))]
     public class MapListDto
     {
+        public virtual Guid EventId { get; set; }
+
         public virtual string Name { get; set; }
 
         public virtual Decimal Lat { get; set; }

@@ -12,6 +12,9 @@ namespace EventCloud.Speakers.Dtos
         public const int MaxTitleLength = 128;
         public const int MaxDescriptionLength = 2048;
 
+        [Required]
+        public virtual Guid EventId { get; set; }
+
         public virtual string profilePic { get; set; }
 
         [Required]

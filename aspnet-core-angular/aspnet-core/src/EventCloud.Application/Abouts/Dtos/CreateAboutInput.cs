@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace EventCloud.Abouts.Dtos
 {
@@ -8,6 +9,9 @@ namespace EventCloud.Abouts.Dtos
     public class CreateAboutInput 
     {
         public const int MaxKeyLength = 128;
+
+        [Required]
+        public virtual Guid EventId { get; set; }
 
         [Required]
         [StringLength(MaxKeyLength)]

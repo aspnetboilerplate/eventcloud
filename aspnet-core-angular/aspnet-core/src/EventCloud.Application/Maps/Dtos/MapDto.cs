@@ -12,6 +12,9 @@ namespace EventCloud.Maps.Dtos
         public const int MaxTitleLength = 128;
 
         [Required]
+        public virtual Guid EventId { get; set; }
+
+        [Required]
         [StringLength(MaxTitleLength)]
         public virtual string Name { get; set; }
 

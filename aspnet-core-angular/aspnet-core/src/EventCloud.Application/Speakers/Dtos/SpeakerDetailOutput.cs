@@ -6,6 +6,8 @@ namespace EventCloud.Speakers.Dtos
 
     public class SpeakerDetailOutput : FullAuditedEntityDto<Guid>
     {
+        public virtual Guid EventId { get; set; }
+
         public virtual string profilePic { get; set; }
 
         public virtual string Name { get; set; }
