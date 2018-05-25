@@ -10,6 +10,7 @@ namespace EventCloud.EntityFrameworkCore
     using Events;
     using MultiTenancy;
     using Schedules;
+    using Supports;
 
     public class EventCloudDbContext : AbpZeroDbContext<Tenant, Role, User, EventCloudDbContext>
     {
@@ -28,6 +29,8 @@ namespace EventCloud.EntityFrameworkCore
         public virtual DbSet<Speaker> Speakers { get; set; }
 
         public virtual DbSet<Map> Maps { get; set; }
+
+        public virtual DbSet<Support> Supports { get; set; }
 
         public EventCloudDbContext(DbContextOptions<EventCloudDbContext> options)
             : base(options)
