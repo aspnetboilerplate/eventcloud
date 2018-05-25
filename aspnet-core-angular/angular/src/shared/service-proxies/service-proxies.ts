@@ -18,8 +18,12 @@ import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
 import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
 import { Http, Headers, ResponseContentType, Response } from '@angular/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpResponseBase, HttpErrorResponse } from '@angular/common/http';
 
 import * as moment from 'moment';
+import { SpeakerDto } from '@shared/service-proxies/speakers/speaker-dto';
+import { PagedResultDtoOfSpeakerDto } from '@shared/service-proxies/speakers/pagedresult-dto-of-speaker-dto';
+import { CreateSpeakerDto } from '@shared/service-proxies/speakers/create-speaker-dto';
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
@@ -44,16 +48,16 @@ export class AccountServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processIsTenantAvailable(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -68,7 +72,7 @@ export class AccountServiceProxy {
     }
 
     protected processIsTenantAvailable(response: Response): Observable<IsTenantAvailableOutput> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -94,16 +98,16 @@ export class AccountServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processRegister(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -118,7 +122,7 @@ export class AccountServiceProxy {
     }
 
     protected processRegister(response: Response): Observable<RegisterOutput> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -156,15 +160,15 @@ export class ConfigurationServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processChangeUiTheme(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -179,7 +183,7 @@ export class ConfigurationServiceProxy {
     }
 
     protected processChangeUiTheme(response: Response): Observable<void> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -212,18 +216,18 @@ export class EventServiceProxy {
         if (includeCanceledEvents === undefined || includeCanceledEvents === null)
             throw new Error("The parameter 'includeCanceledEvents' must be defined and cannot be null.");
         else
-            url_ += "IncludeCanceledEvents=" + encodeURIComponent("" + includeCanceledEvents) + "&"; 
+            url_ += "IncludeCanceledEvents=" + encodeURIComponent("" + includeCanceledEvents) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetListAsync(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -238,7 +242,7 @@ export class EventServiceProxy {
     }
 
     protected processGetListAsync(response: Response): Observable<ListResultDtoOfEventListDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -262,18 +266,18 @@ export class EventServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetDetailAsync(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -288,7 +292,7 @@ export class EventServiceProxy {
     }
 
     protected processGetDetailAsync(response: Response): Observable<EventDetailOutput> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -314,15 +318,15 @@ export class EventServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCreateAsync(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -337,7 +341,7 @@ export class EventServiceProxy {
     }
 
     protected processCreateAsync(response: Response): Observable<void> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -360,15 +364,15 @@ export class EventServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCancelAsync(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -383,7 +387,7 @@ export class EventServiceProxy {
     }
 
     protected processCancelAsync(response: Response): Observable<void> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -406,16 +410,16 @@ export class EventServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processRegisterAsync(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -430,7 +434,7 @@ export class EventServiceProxy {
     }
 
     protected processRegisterAsync(response: Response): Observable<EventRegisterOutput> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -456,15 +460,15 @@ export class EventServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCancelRegistrationAsync(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -479,7 +483,7 @@ export class EventServiceProxy {
     }
 
     protected processCancelRegistrationAsync(response: Response): Observable<void> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -490,6 +494,371 @@ export class EventServiceProxy {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
         return Observable.of<void>(<any>null);
+    }
+}
+
+@Injectable()
+export class SpeakerServiceProxy {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    /**
+    * @input (optional) 
+    * @return Success
+    */
+    create(input: CreateSpeakerDto | null | undefined): Observable<SpeakerDto> {
+        let url_ = this.baseUrl + "/api/services/app/Speaker/Create";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(input);
+
+        let options_: any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).flatMap((response_: any) => {
+            return this.processCreate(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreate(<any>response_);
+                } catch (e) {
+                    return <Observable<SpeakerDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<SpeakerDto>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processCreate(response: HttpResponseBase): Observable<SpeakerDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+                (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); } };
+        if (status === 200) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                let result200: any = null;
+                let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 ? SpeakerDto.fromJS(resultData200) : new SpeakerDto();
+                return Observable.of(result200);
+            });
+        } else if (status === 401) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return throwException("A server error occurred.", status, _responseText, _headers);
+            });
+        } else if (status === 403) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return throwException("A server error occurred.", status, _responseText, _headers);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Observable.of<SpeakerDto>(<any>null);
+    }
+
+    /**
+    * @input (optional) 
+    * @return Success
+    */
+    update(input: SpeakerDto | null | undefined): Observable<SpeakerDto> {
+        let url_ = this.baseUrl + "/api/services/app/Speaker/Update";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(input);
+
+        let options_: any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("put", url_, options_).flatMap((response_: any) => {
+            return this.processUpdate(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdate(<any>response_);
+                } catch (e) {
+                    return <Observable<SpeakerDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<SpeakerDto>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processUpdate(response: HttpResponseBase): Observable<SpeakerDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+                (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); } };
+        if (status === 200) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                let result200: any = null;
+                let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 ? SpeakerDto.fromJS(resultData200) : new SpeakerDto();
+                return Observable.of(result200);
+            });
+        } else if (status === 401) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return throwException("A server error occurred.", status, _responseText, _headers);
+            });
+        } else if (status === 403) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return throwException("A server error occurred.", status, _responseText, _headers);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Observable.of<SpeakerDto>(<any>null);
+    }
+
+    /**
+    * @return Success
+    */
+    delete(id: number): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Speaker/Delete?";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined and cannot be null.");
+        else
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+            })
+        };
+
+        return this.http.request("delete", url_, options_).flatMap((response_: any) => {
+            return this.processDelete(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDelete(<any>response_);
+                } catch (e) {
+                    return <Observable<void>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<void>><any>Observable.throw(response_);
+        });
+    }
+
+    /**
+    * @return Success
+    */
+    remove(id: string): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Speaker/Delete?";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined and cannot be null.");
+        else
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+            })
+        };
+
+        return this.http.request("delete", url_, options_).flatMap((response_: any) => {
+            return this.processDelete(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDelete(<any>response_);
+                } catch (e) {
+                    return <Observable<void>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<void>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processDelete(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+                (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); } };
+        if (status === 200) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return Observable.of<void>(<any>null);
+            });
+        } else if (status === 401) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return throwException("A server error occurred.", status, _responseText, _headers);
+            });
+        } else if (status === 403) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return throwException("A server error occurred.", status, _responseText, _headers);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Observable.of<void>(<any>null);
+    }
+
+    /**
+    * @return Success
+    */
+    get(id: string): Observable<SpeakerDto> {
+        let url_ = this.baseUrl + "/api/services/app/Speaker/Get?";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined and cannot be null.");
+        else
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).flatMap((response_: any) => {
+            return this.processGet(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGet(<any>response_);
+                } catch (e) {
+                    return <Observable<SpeakerDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<SpeakerDto>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGet(response: HttpResponseBase): Observable<SpeakerDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+                (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); } };
+        if (status === 200) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                let result200: any = null;
+                let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 ? SpeakerDto.fromJS(resultData200) : new SpeakerDto();
+                return Observable.of(result200);
+            });
+        } else if (status === 401) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return throwException("A server error occurred.", status, _responseText, _headers);
+            });
+        } else if (status === 403) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return throwException("A server error occurred.", status, _responseText, _headers);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Observable.of<SpeakerDto>(<any>null);
+    }
+
+    /**
+    * @return Success
+    */
+    getAll(skipCount: number, maxResultCount: number): Observable<PagedResultDtoOfSpeakerDto> {
+        let url_ = this.baseUrl + "/api/services/app/Speaker/GetAll?";
+        if (skipCount === undefined || skipCount === null)
+            throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
+        else
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
+        if (maxResultCount === undefined || maxResultCount === null)
+            throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
+        else
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("get", url_, options_).flatMap((response_: any) => {
+            return this.processGetAll(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAll(<any>response_);
+                } catch (e) {
+                    return <Observable<PagedResultDtoOfSpeakerDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<PagedResultDtoOfSpeakerDto>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetAll(response: HttpResponseBase): Observable<PagedResultDtoOfSpeakerDto> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+                (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); } };
+        if (status === 200) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                let result200: any = null;
+                let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = resultData200 ? PagedResultDtoOfSpeakerDto.fromJS(resultData200) : new PagedResultDtoOfSpeakerDto();
+                return Observable.of(result200);
+            });
+        } else if (status === 401) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return throwException("A server error occurred.", status, _responseText, _headers);
+            });
+        } else if (status === 403) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return throwException("A server error occurred.", status, _responseText, _headers);
+            });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).flatMap(_responseText => {
+                return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Observable.of<PagedResultDtoOfSpeakerDto>(<any>null);
     }
 }
 
@@ -514,16 +883,16 @@ export class RoleServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCreate(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -538,7 +907,7 @@ export class RoleServiceProxy {
     }
 
     protected processCreate(response: Response): Observable<RoleDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -570,16 +939,16 @@ export class RoleServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdate(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -594,7 +963,7 @@ export class RoleServiceProxy {
     }
 
     protected processUpdate(response: Response): Observable<RoleDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -624,17 +993,17 @@ export class RoleServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "delete",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processDelete(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -649,7 +1018,7 @@ export class RoleServiceProxy {
     }
 
     protected processDelete(response: Response): Observable<void> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -675,15 +1044,15 @@ export class RoleServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Role/GetAllPermissions";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetAllPermissions(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -698,7 +1067,7 @@ export class RoleServiceProxy {
     }
 
     protected processGetAllPermissions(response: Response): Observable<ListResultDtoOfPermissionDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -728,18 +1097,18 @@ export class RoleServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGet(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -754,7 +1123,7 @@ export class RoleServiceProxy {
     }
 
     protected processGet(response: Response): Observable<RoleDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -784,22 +1153,22 @@ export class RoleServiceProxy {
         if (skipCount === undefined || skipCount === null)
             throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
         else
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
         if (maxResultCount === undefined || maxResultCount === null)
             throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
         else
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetAll(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -814,7 +1183,7 @@ export class RoleServiceProxy {
     }
 
     protected processGetAll(response: Response): Observable<PagedResultDtoOfRoleDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -855,15 +1224,15 @@ export class SessionServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Session/GetCurrentLoginInformations";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetCurrentLoginInformations(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -878,7 +1247,7 @@ export class SessionServiceProxy {
     }
 
     protected processGetCurrentLoginInformations(response: Response): Observable<GetCurrentLoginInformationsOutput> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -916,16 +1285,16 @@ export class TenantServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCreate(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -940,7 +1309,7 @@ export class TenantServiceProxy {
     }
 
     protected processCreate(response: Response): Observable<TenantDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -970,17 +1339,17 @@ export class TenantServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "delete",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processDelete(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -995,7 +1364,7 @@ export class TenantServiceProxy {
     }
 
     protected processDelete(response: Response): Observable<void> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1022,18 +1391,18 @@ export class TenantServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGet(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1048,7 +1417,7 @@ export class TenantServiceProxy {
     }
 
     protected processGet(response: Response): Observable<TenantDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1078,22 +1447,22 @@ export class TenantServiceProxy {
         if (skipCount === undefined || skipCount === null)
             throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
         else
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
         if (maxResultCount === undefined || maxResultCount === null)
             throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
         else
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetAll(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1108,7 +1477,7 @@ export class TenantServiceProxy {
     }
 
     protected processGetAll(response: Response): Observable<PagedResultDtoOfTenantDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1140,16 +1509,16 @@ export class TenantServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdate(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1164,7 +1533,7 @@ export class TenantServiceProxy {
     }
 
     protected processUpdate(response: Response): Observable<TenantDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1208,16 +1577,16 @@ export class TenantRegistrationServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processRegisterTenantAsync(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1232,7 +1601,7 @@ export class TenantRegistrationServiceProxy {
     }
 
     protected processRegisterTenantAsync(response: Response): Observable<TenantDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1256,18 +1625,18 @@ export class TenantRegistrationServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGet(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1282,7 +1651,7 @@ export class TenantRegistrationServiceProxy {
     }
 
     protected processGet(response: Response): Observable<TenantDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1306,22 +1675,22 @@ export class TenantRegistrationServiceProxy {
         if (skipCount === undefined || skipCount === null)
             throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
         else
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
         if (maxResultCount === undefined || maxResultCount === null)
             throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
         else
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetAll(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1336,7 +1705,7 @@ export class TenantRegistrationServiceProxy {
     }
 
     protected processGetAll(response: Response): Observable<PagedResultDtoOfTenantDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1362,16 +1731,16 @@ export class TenantRegistrationServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCreate(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1386,7 +1755,7 @@ export class TenantRegistrationServiceProxy {
     }
 
     protected processCreate(response: Response): Observable<TenantDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1412,16 +1781,16 @@ export class TenantRegistrationServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdate(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1436,7 +1805,7 @@ export class TenantRegistrationServiceProxy {
     }
 
     protected processUpdate(response: Response): Observable<TenantDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1460,17 +1829,17 @@ export class TenantRegistrationServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "delete",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processDelete(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1485,7 +1854,7 @@ export class TenantRegistrationServiceProxy {
     }
 
     protected processDelete(response: Response): Observable<void> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1520,16 +1889,16 @@ export class TokenAuthServiceProxy {
 
         const content_ = JSON.stringify(model);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processAuthenticate(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1544,7 +1913,7 @@ export class TokenAuthServiceProxy {
     }
 
     protected processAuthenticate(response: Response): Observable<AuthenticateResultModel> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1567,15 +1936,15 @@ export class TokenAuthServiceProxy {
         let url_ = this.baseUrl + "/api/TokenAuth/GetExternalAuthenticationProviders";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetExternalAuthenticationProviders(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1590,7 +1959,7 @@ export class TokenAuthServiceProxy {
     }
 
     protected processGetExternalAuthenticationProviders(response: Response): Observable<ExternalLoginProviderInfoModel[]> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1620,16 +1989,16 @@ export class TokenAuthServiceProxy {
 
         const content_ = JSON.stringify(model);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processExternalAuthenticate(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1644,7 +2013,7 @@ export class TokenAuthServiceProxy {
     }
 
     protected processExternalAuthenticate(response: Response): Observable<ExternalAuthenticateResultModel> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1682,16 +2051,16 @@ export class UserServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCreate(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1706,7 +2075,7 @@ export class UserServiceProxy {
     }
 
     protected processCreate(response: Response): Observable<UserDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1738,16 +2107,16 @@ export class UserServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdate(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1762,7 +2131,7 @@ export class UserServiceProxy {
     }
 
     protected processUpdate(response: Response): Observable<UserDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1792,17 +2161,17 @@ export class UserServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "delete",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processDelete(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1817,7 +2186,7 @@ export class UserServiceProxy {
     }
 
     protected processDelete(response: Response): Observable<void> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1843,15 +2212,15 @@ export class UserServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/User/GetRoles";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetRoles(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1866,7 +2235,7 @@ export class UserServiceProxy {
     }
 
     protected processGetRoles(response: Response): Observable<ListResultDtoOfRoleDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1898,15 +2267,15 @@ export class UserServiceProxy {
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processChangeLanguage(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1921,7 +2290,7 @@ export class UserServiceProxy {
     }
 
     protected processChangeLanguage(response: Response): Observable<void> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -1948,18 +2317,18 @@ export class UserServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGet(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1974,7 +2343,7 @@ export class UserServiceProxy {
     }
 
     protected processGet(response: Response): Observable<UserDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -2004,22 +2373,22 @@ export class UserServiceProxy {
         if (skipCount === undefined || skipCount === null)
             throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
         else
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
         if (maxResultCount === undefined || maxResultCount === null)
             throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
         else
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetAll(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2034,7 +2403,7 @@ export class UserServiceProxy {
     }
 
     protected processGetAll(response: Response): Observable<PagedResultDtoOfUserDto> {
-        const status = response.status; 
+        const status = response.status;
 
         let _headers: any = response.headers ? response.headers.toJSON() : {};
         if (status === 200) {
@@ -2084,7 +2453,7 @@ export class IsTenantAvailableInput implements IIsTenantAvailableInput {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["tenancyName"] = this.tenancyName;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -2129,7 +2498,7 @@ export class IsTenantAvailableOutput implements IIsTenantAvailableOutput {
         data = typeof data === 'object' ? data : {};
         data["state"] = this.state;
         data["tenantId"] = this.tenantId;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -2187,7 +2556,7 @@ export class RegisterInput implements IRegisterInput {
         data["emailAddress"] = this.emailAddress;
         data["password"] = this.password;
         data["captchaResponse"] = this.captchaResponse;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -2234,7 +2603,7 @@ export class RegisterOutput implements IRegisterOutput {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["canLogin"] = this.canLogin;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -2276,7 +2645,7 @@ export class ChangeUiThemeInput implements IChangeUiThemeInput {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["theme"] = this.theme;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -2326,7 +2695,7 @@ export class ListResultDtoOfEventListDto implements IListResultDtoOfEventListDto
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 
     clone() {
@@ -2407,7 +2776,7 @@ export class EventListDto implements IEventListDto {
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
         data["creatorUserId"] = this.creatorUserId;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -2512,7 +2881,7 @@ export class EventDetailOutput implements IEventDetailOutput {
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
         data["creatorUserId"] = this.creatorUserId;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -2586,7 +2955,7 @@ export class EventRegistrationDto implements IEventRegistrationDto {
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
         data["creatorUserId"] = this.creatorUserId;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -2643,7 +3012,7 @@ export class CreateEventInput implements ICreateEventInput {
         data["description"] = this.description;
         data["date"] = this.date ? this.date.toISOString() : <any>undefined;
         data["maxRegistrationCount"] = this.maxRegistrationCount;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -2688,7 +3057,7 @@ export class EntityDtoOfGuid implements IEntityDtoOfGuid {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -2730,7 +3099,7 @@ export class EventRegisterOutput implements IEventRegisterOutput {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["registrationId"] = this.registrationId;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -2795,7 +3164,7 @@ export class CreateRoleDto implements ICreateRoleDto {
             for (let item of this.permissions)
                 data["permissions"].push(item);
         }
-        return data; 
+        return data;
     }
 
     clone() {
@@ -2868,7 +3237,7 @@ export class RoleDto implements IRoleDto {
                 data["permissions"].push(item);
         }
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -2924,7 +3293,7 @@ export class ListResultDtoOfPermissionDto implements IListResultDtoOfPermissionD
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 
     clone() {
@@ -2975,7 +3344,7 @@ export class PermissionDto implements IPermissionDto {
         data["displayName"] = this.displayName;
         data["description"] = this.description;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3031,7 +3400,7 @@ export class PagedResultDtoOfRoleDto implements IPagedResultDtoOfRoleDto {
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3080,7 +3449,7 @@ export class GetCurrentLoginInformationsOutput implements IGetCurrentLoginInform
         data["application"] = this.application ? this.application.toJSON() : <any>undefined;
         data["user"] = this.user ? this.user.toJSON() : <any>undefined;
         data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3100,7 +3469,7 @@ export interface IGetCurrentLoginInformationsOutput {
 export class ApplicationInfoDto implements IApplicationInfoDto {
     version: string;
     releaseDate: moment.Moment;
-    features: { [key: string] : boolean; };
+    features: { [key: string]: boolean; };
 
     constructor(data?: IApplicationInfoDto) {
         if (data) {
@@ -3142,7 +3511,7 @@ export class ApplicationInfoDto implements IApplicationInfoDto {
                     data["features"][key] = this.features[key];
             }
         }
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3156,7 +3525,7 @@ export class ApplicationInfoDto implements IApplicationInfoDto {
 export interface IApplicationInfoDto {
     version: string;
     releaseDate: moment.Moment;
-    features: { [key: string] : boolean; };
+    features: { [key: string]: boolean; };
 }
 
 export class UserLoginInfoDto implements IUserLoginInfoDto {
@@ -3198,7 +3567,7 @@ export class UserLoginInfoDto implements IUserLoginInfoDto {
         data["userName"] = this.userName;
         data["emailAddress"] = this.emailAddress;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3250,7 +3619,7 @@ export class TenantLoginInfoDto implements ITenantLoginInfoDto {
         data["tenancyName"] = this.tenancyName;
         data["name"] = this.name;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3309,7 +3678,7 @@ export class CreateTenantDto implements ICreateTenantDto {
         data["connectionString"] = this.connectionString;
         data["isActive"] = this.isActive;
         data["password"] = this.password;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3365,7 +3734,7 @@ export class TenantDto implements ITenantDto {
         data["name"] = this.name;
         data["isActive"] = this.isActive;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3421,7 +3790,7 @@ export class PagedResultDtoOfTenantDto implements IPagedResultDtoOfTenantDto {
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3470,7 +3839,7 @@ export class AuthenticateModel implements IAuthenticateModel {
         data["userNameOrEmailAddress"] = this.userNameOrEmailAddress;
         data["password"] = this.password;
         data["rememberClient"] = this.rememberClient;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3523,7 +3892,7 @@ export class AuthenticateResultModel implements IAuthenticateResultModel {
         data["encryptedAccessToken"] = this.encryptedAccessToken;
         data["expireInSeconds"] = this.expireInSeconds;
         data["userId"] = this.userId;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3571,7 +3940,7 @@ export class ExternalLoginProviderInfoModel implements IExternalLoginProviderInf
         data = typeof data === 'object' ? data : {};
         data["name"] = this.name;
         data["clientId"] = this.clientId;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3620,7 +3989,7 @@ export class ExternalAuthenticateModel implements IExternalAuthenticateModel {
         data["authProvider"] = this.authProvider;
         data["providerKey"] = this.providerKey;
         data["providerAccessCode"] = this.providerAccessCode;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3673,7 +4042,7 @@ export class ExternalAuthenticateResultModel implements IExternalAuthenticateRes
         data["encryptedAccessToken"] = this.encryptedAccessToken;
         data["expireInSeconds"] = this.expireInSeconds;
         data["waitingForActivation"] = this.waitingForActivation;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3744,7 +4113,7 @@ export class CreateUserDto implements ICreateUserDto {
                 data["roleNames"].push(item);
         }
         data["password"] = this.password;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3827,7 +4196,7 @@ export class UserDto implements IUserDto {
                 data["roleNames"].push(item);
         }
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3886,7 +4255,7 @@ export class ListResultDtoOfRoleDto implements IListResultDtoOfRoleDto {
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3928,7 +4297,7 @@ export class ChangeUserLanguageDto implements IChangeUserLanguageDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["languageName"] = this.languageName;
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3981,7 +4350,7 @@ export class PagedResultDtoOfUserDto implements IPagedResultDtoOfUserDto {
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 
     clone() {
@@ -3998,17 +4367,17 @@ export interface IPagedResultDtoOfUserDto {
 }
 
 export enum IsTenantAvailableOutputState {
-    _1 = 1, 
-    _2 = 2, 
-    _3 = 3, 
+    _1 = 1,
+    _2 = 2,
+    _3 = 3,
 }
 
 export class SwaggerException extends Error {
     message: string;
-    status: number; 
-    response: string; 
+    status: number;
+    response: string;
     headers: { [key: string]: any; };
-    result: any; 
+    result: any;
 
     constructor(message: string, status: number, response: string, headers: { [key: string]: any; }, result: any) {
         super();
@@ -4028,7 +4397,7 @@ export class SwaggerException extends Error {
 }
 
 function throwException(message: string, status: number, response: string, headers: { [key: string]: any; }, result?: any): Observable<any> {
-    if(result !== null && result !== undefined)
+    if (result !== null && result !== undefined)
         return Observable.throw(result);
     else
         return Observable.throw(new SwaggerException(message, status, response, headers, null));
@@ -4040,12 +4409,12 @@ function blobToText(blob: any): Observable<string> {
             observer.next("");
             observer.complete();
         } else {
-            let reader = new FileReader(); 
-            reader.onload = function() { 
+            let reader = new FileReader();
+            reader.onload = function () {
                 observer.next(this.result);
                 observer.complete();
             }
-            reader.readAsText(blob); 
+            reader.readAsText(blob);
         }
     });
 }

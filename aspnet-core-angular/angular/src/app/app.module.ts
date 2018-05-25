@@ -35,6 +35,9 @@ import { MaterialInput } from '@shared/directives/material-input.directive';
 import { EventsComponent } from '@app/events/events.component';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { EventDetailComponent } from './events/event-detail/event-detail.component';
+import { CreateSpeakerComponent } from '@app/speakers/create-speaker/create-speaker.component';
+import { EditSpeakerComponent } from '@app/speakers/edit-speaker/edit-speaker.component';
+import { SpeakersComponent } from '@app/speakers/speakers.component';
 
 @NgModule({
     declarations: [
@@ -58,7 +61,10 @@ import { EventDetailComponent } from './events/event-detail/event-detail.compone
         RightSideBarComponent,
         EventsComponent,
         CreateEventComponent,
-        EventDetailComponent
+        EventDetailComponent,
+        SpeakersComponent,
+        CreateSpeakerComponent,
+        EditSpeakerComponent
     ],
     imports: [
         CommonModule,
