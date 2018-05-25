@@ -16,9 +16,10 @@ using System;
 namespace EventCloud.Migrations
 {
     [DbContext(typeof(EventCloudDbContext))]
-    partial class EventCloudDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180525035404_Added_About")]
+    partial class Added_About
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
