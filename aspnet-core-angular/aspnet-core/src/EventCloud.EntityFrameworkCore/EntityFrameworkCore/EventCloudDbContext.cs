@@ -5,7 +5,8 @@ namespace EventCloud.EntityFrameworkCore
 {
     using Authorization.Roles;
     using Authorization.Users;
-    using EventCloud.Speakers;
+    using Maps;
+    using Speakers;
     using Events;
     using MultiTenancy;
     using Schedules;
@@ -25,6 +26,8 @@ namespace EventCloud.EntityFrameworkCore
         public virtual DbSet<Track> Tracks { get; set; }
 
         public virtual DbSet<Speaker> Speakers { get; set; }
+
+        public virtual DbSet<Map> Maps { get; set; }
 
         public EventCloudDbContext(DbContextOptions<EventCloudDbContext> options)
             : base(options)

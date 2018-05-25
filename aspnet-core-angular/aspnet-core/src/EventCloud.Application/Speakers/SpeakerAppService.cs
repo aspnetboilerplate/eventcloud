@@ -1,8 +1,8 @@
-﻿using Abp.Domain.Repositories;
-using System;
+﻿using System;
 
 namespace EventCloud.Speakers
 {
+    using Abp.Domain.Repositories;
     using Abp.Application.Services;
     using Abp.Application.Services.Dto;
     using Abp.Authorization;
