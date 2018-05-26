@@ -66,15 +66,19 @@ namespace EventCloud.Schedules
 
                 @schedules.ForEach(prop => prop.Groups = _groupRepository
                                                             .GetAllIncluding(g => g.Sessions)
+                                                            .OrderBy(g => g.Time)
                                                             .Where(g => g.ScheduleId == prop.Id)
                                                             .Distinct()
                                                             .ToList());
 
-                @schedules.ForEach(prop => prop.Groups.ToList()
-                                                     .ForEach(g => g.Sessions = _sessionRepository
-                                                                                      .GetAllIncluding(s => s.Tracks)
-                                                                                      .Where(s => s.GroupId == g.Id)
-                                                                                      .ToList()));
+                @schedules.ForEach(prop => prop.Groups
+                                                  .OrderBy(g => g.Time)
+                                                  .ToList()                                                    
+                                                     .ForEach(g => g.Sessions = 
+                                                                    _sessionRepository
+                                                                            .GetAllIncluding(s => s.Tracks)
+                                                                            .Where(s => s.GroupId == g.Id)                                                                                      
+                                                                            .ToList()));
 
                 return new ListResultDto<ScheduleListDto>(@schedules.MapTo<List<ScheduleListDto>>());
             }
