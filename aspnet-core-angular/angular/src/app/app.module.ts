@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpClientModule, HttpResponse } from '@angular/common/http';
 
 import { ModalModule } from 'ngx-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -70,6 +71,7 @@ import { SpeakersComponent } from '@app/speakers/speakers.component';
         CommonModule,
         FormsModule,
         HttpModule,
+        HttpClientModule,
         JsonpModule,
         ModalModule.forRoot(),
         AbpModule,

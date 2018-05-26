@@ -1,9 +1,25 @@
 export interface ICreateSpeakerDto {
-    //attributes
+    eventId: string,
+    profilePic: string,
+    name: string,
+    title: string,
+    about: string,
+    twitter: string,
+    gitHub: string,
+    instagram: string,
+    isActive: boolean
 }
 
 export class CreateSpeakerDto implements ICreateSpeakerDto {
-    //attributes
+    eventId: string;
+    profilePic: string;
+    name: string;
+    title: string;
+    about: string;
+    twitter: string;
+    gitHub: string;
+    instagram: string;
+    isActive: boolean;
 
     constructor(data?: ICreateSpeakerDto) {
         if (data) {
@@ -16,7 +32,15 @@ export class CreateSpeakerDto implements ICreateSpeakerDto {
 
     init(data?: any) {
         if (data) {
-            //this.attribute = data["attribute"];
+            this.eventId = data["eventId"];
+            this.profilePic = data["profilePic"];
+            this.name = data["name"];
+            this.title = data["title"];
+            this.about = data["about"]; 
+            this.twitter = data["twitter"];
+            this.gitHub = data["gitHub"];
+            this.instagram = data["instagram"];
+            this.isActive = data["isActive"];
         }
     }
 
@@ -29,7 +53,15 @@ export class CreateSpeakerDto implements ICreateSpeakerDto {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        //data["attribute"] = this.attribute;
+        data["eventId"] = this.eventId;
+        data["profilePic"] = this.profilePic;
+        data["name"] = this.name;
+        data["title"] = this.title;
+        data["about"] = this.about;
+        data["twitter"] = this.twitter;
+        data["gitHub"] = this.gitHub;
+        data["instagram"] = this.instagram;
+        data["isActive"] = this.isActive;
         return data;
     }
 

@@ -9,5 +9,7 @@
         public const string Pages_Roles = "Pages.Roles";
 
         public const string Pages_Events = "Pages.Events";
+
+        public const string Pages_Speakers = "Pages.Speakers";
     }
 }

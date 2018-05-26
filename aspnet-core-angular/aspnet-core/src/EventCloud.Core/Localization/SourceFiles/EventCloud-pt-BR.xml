@@ -28,6 +28,10 @@
     <text name="Surname" value="Sobrenome" />
     <text name="EmailAddress" value="Endereço de e-mail" />
     
+    <text name="Speakers" value="Feed" />
+    <text name="Speaker" value="Feed" />
+    <text name="EditSpeaker" value="Editar Feed" />
+    
     <text name="EventId" value="Evento" />
     <text name="ProfilePic" value="Foto" />
     <text name="Title" value="Título" />
@@ -36,6 +40,17 @@
     <text name="Instagram" value="Instagram" />
     
     <text name="Actions" value="Ações" />
+    
+    <text name="ShowCanceledEvents" value="Mostrar eventos cancelados" />
+    <text name="XofYregistered" value="{0} de {1} registrado" />
+    <text name="XregisteredNoNewRegistrationAvailable" value="{0} registrado(s). Nenhum novo registro disponível." />
+    <text name="XregisteredUnlimitedRegistrations" value="{0} registrado(s). Registros Ilimitados." />    
+    <text name="BackToEvents" value="Voltar para os eventos" />
+    <text name="CancelRegistration" value="Cancelar registro" />
+    <text name="CancelTheEvent" value="Cancelar o evento" />
+    <text name="XregisteredOfYAvailableRegistration" value="{0} usuário(s) registrado(s) (de {1} registro(s) disponível(is))" />
+    <text name="MaxRegistrationCount" value="Quantidade máxima de registros" />
+    <text name="Unlimited" value="Ilimitado" />    
     
     <text name="Tenants" value="Tenants" />
     <text name="SavedSuccessfully" value="Salvo com sucesso" />

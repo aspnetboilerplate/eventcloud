@@ -1,4 +1,4 @@
 {
-  "remoteServiceBaseUrl": "http://localhost:5000",
+  "remoteServiceBaseUrl": "https://api-thinkevent.azurewebsites.net",
   "appBaseUrl": "http://localhost:4200"
 }

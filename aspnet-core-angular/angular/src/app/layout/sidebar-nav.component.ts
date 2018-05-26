@@ -16,22 +16,15 @@ export class SideBarNavComponent extends AppComponentBase {
         new MenuItem(this.l("Users"), "Pages.Users", "people", "/app/users"),
         new MenuItem(this.l("Roles"), "Pages.Roles", "local_offer", "/app/roles"),
         new MenuItem(this.l("Events"), "Pages.Events", "event", "/app/events"),
+        new MenuItem(this.l("Speakers"), "Pages.Speakers", "assignment_ind", "/app/speakers"),
         new MenuItem(this.l("About"), "", "info", "/app/about"),
 
-        new MenuItem(this.l("MultiLevelMenu"), "", "menu", "", [
-            new MenuItem("ASP.NET Boilerplate", "", "", "", [
-                new MenuItem("Home", "", "", "https://aspnetboilerplate.com/?ref=abptmpl"),
-                new MenuItem("Templates", "", "", "https://aspnetboilerplate.com/Templates?ref=abptmpl"),
-                new MenuItem("Samples", "", "", "https://aspnetboilerplate.com/Samples?ref=abptmpl"),
-                new MenuItem("Documents", "", "", "https://aspnetboilerplate.com/Pages/Documents?ref=abptmpl")
-            ]),
-            new MenuItem("ASP.NET Zero", "", "", "", [
-                new MenuItem("Home", "", "", "https://aspnetzero.com?ref=abptmpl"),
-                new MenuItem("Description", "", "", "https://aspnetzero.com/?ref=abptmpl#description"),
-                new MenuItem("Features", "", "", "https://aspnetzero.com/?ref=abptmpl#features"),
-                new MenuItem("Pricing", "", "", "https://aspnetzero.com/?ref=abptmpl#pricing"),
-                new MenuItem("Faq", "", "", "https://aspnetzero.com/Faq?ref=abptmpl"),
-                new MenuItem("Documents", "", "", "https://aspnetzero.com/Documents?ref=abptmpl")
+        new MenuItem(this.l("Referência"), "", "menu", "", [
+            new MenuItem("Think A.M.", "", "", "", [
+                new MenuItem("Home", "", "", "http://thinkam.net"),
+                new MenuItem("Facebook", "", "", "https://fb.com/thinkam.net"),
+                new MenuItem("Twitter", "", "", "https://twitter.com/thinkambr"),
+                new MenuItem("Youtube", "", "", "https://www.youtube.com/channel/UCb23pO8PReqkJpixm1t6ycA")
             ])
         ])
     ];

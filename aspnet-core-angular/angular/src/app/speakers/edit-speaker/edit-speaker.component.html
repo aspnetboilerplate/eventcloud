@@ -14,7 +14,7 @@
                 <div class="modal-body">
                     <ul class="nav nav-tabs tab-nav-right" role="tablist">
                         <li role="presentation" class="active">
-                            <a href="#edit-speaker-details" data-toggle="tab">Detalhes do {{l('Plan')}}</a>
+                            <a href="#edit-speaker-details" data-toggle="tab">Detalhes do {{l('Speaker')}}</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -23,12 +23,89 @@
                                 <div class="col-sm-12">
                                     <div class="form-group form-float">
                                         <div class="form-line">
-                                            <input id="attr" type="text" name="Attr" [(ngModel)]="speaker.attr" required maxlength="32" minlength="2" class="validate form-control">
-                                            <label for="attr" class="form-label">{{l("Attr")}}</label>
+                                            <input id="eventId" type="text" name="EventId" [(ngModel)]="speaker.eventId" required class="validate form-control">
+                                            <label for="eventId" class="form-label">{{l("EventId")}}</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row clearfix" style="margin-top:10px;">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="profilePic" type="text" name="ProfilePic" [(ngModel)]="speaker.profilePic" required class="validate form-control">
+                                            <label for="profilePic" class="form-label">{{l("ProfilePic")}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row clearfix" style="margin-top:10px;">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="name" type="text" name="Name" [(ngModel)]="speaker.name" required class="validate form-control">
+                                            <label for="name" class="form-label">{{l("Name")}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row clearfix" style="margin-top:10px;">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="title" type="text" name="Title" [(ngModel)]="speaker.title" required maxlength="128" minlength="2" class="validate form-control">
+                                            <label for="title" class="form-label">{{l("Title")}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row clearfix" style="margin-top:10px;">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="about" type="text" name="About" [(ngModel)]="speaker.about" required maxlength="2048" minlength="2" class="validate form-control">
+                                            <label for="attr" class="form-label">{{l("About")}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row clearfix" style="margin-top:10px;">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="twitter" type="text" name="Twitter" [(ngModel)]="speaker.twitter" class="validate form-control">
+                                            <label for="twitter" class="form-label">{{l("Twitter")}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>          
+
+                            <div class="row clearfix" style="margin-top:10px;">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="github" type="text" name="GitHub" [(ngModel)]="speaker.gitHub" class="validate form-control">
+                                            <label for="github" class="form-label">{{l("GitHub")}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            
+
+                            <div class="row clearfix" style="margin-top:10px;">
+                                <div class="col-sm-12">
+                                    <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <input id="instagram" type="text" name="Instagram" [(ngModel)]="speaker.instagram" class="validate form-control">
+                                            <label for="instagram" class="form-label">{{l("Instagram")}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            
 
                             <div class="row clearfix">
                                 <div class="col-sm-12">

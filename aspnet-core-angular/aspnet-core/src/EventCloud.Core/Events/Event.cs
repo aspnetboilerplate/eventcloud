@@ -11,6 +11,7 @@ namespace EventCloud.Events
     using Abp.Timing;
     using Abp.UI;
     using Domain.Events;
+    using Speakers;
     using Schedules;
 
     [Table("AppEvents")]
@@ -44,6 +45,9 @@ namespace EventCloud.Events
 
         [ForeignKey("EventId")]
         public virtual ICollection<Schedule> Schedules { get; set; }
+
+        [ForeignKey("EventId")]
+        public virtual ICollection<Speaker> Speakers { get; set; }
 
         /// <summary>
         /// We don't make constructor public and forcing to create events using <see cref="Create"/> method.

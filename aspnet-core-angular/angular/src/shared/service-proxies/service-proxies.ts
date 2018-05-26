@@ -774,7 +774,7 @@ export class SpeakerServiceProxy {
             return blobToText(responseBlob).flatMap(_responseText => {
                 let result200: any = null;
                 let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-                result200 = resultData200 ? SpeakerDto.fromJS(resultData200) : new SpeakerDto();
+                result200 = resultData200 ? SpeakerDto.fromJS(resultData200.result) : new SpeakerDto();
                 return Observable.of(result200);
             });
         } else if (status === 401) {
@@ -842,7 +842,7 @@ export class SpeakerServiceProxy {
             return blobToText(responseBlob).flatMap(_responseText => {
                 let result200: any = null;
                 let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-                result200 = resultData200 ? PagedResultDtoOfSpeakerDto.fromJS(resultData200) : new PagedResultDtoOfSpeakerDto();
+                result200 = resultData200 ? PagedResultDtoOfSpeakerDto.fromJS(resultData200.result) : new PagedResultDtoOfSpeakerDto();
                 return Observable.of(result200);
             });
         } else if (status === 401) {

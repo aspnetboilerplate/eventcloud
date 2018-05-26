@@ -7,8 +7,8 @@ namespace EventCloud.Speakers
     using Abp.Application.Services.Dto;
     using Abp.Authorization;
     using Dtos;
+    using Authorization;
 
-    [AbpAuthorize]
     public class SpeakerAppService : AsyncCrudAppService<Speaker, SpeakerDto, Guid, PagedResultRequestDto, CreateSpeakerInput, SpeakerDto>, ISpeakerAppService
     {
         private IRepository<Speaker, Guid> _speakerRepository;

@@ -5,6 +5,7 @@ namespace EventCloud.Speakers.Dtos
 {
     using Abp.Application.Services.Dto;
     using Abp.AutoMapper;
+    using EventCloud.Events.Dtos;
 
     [AutoMapFrom(typeof(Speaker))]
     public class SpeakerDto : FullAuditedEntityDto<Guid>
@@ -14,6 +15,7 @@ namespace EventCloud.Speakers.Dtos
 
         [Required]
         public virtual Guid EventId { get; set; }
+        public virtual EventDetailOutput Event { get; set; }
 
         public virtual string profilePic { get; set; }
 
@@ -40,5 +42,10 @@ namespace EventCloud.Speakers.Dtos
 
         [Required]
         public virtual bool IsActive { get; set; }
+
+        public SpeakerDto()
+        {
+
+        }
     }
 }

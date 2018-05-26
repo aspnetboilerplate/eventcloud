@@ -1,8 +1,6 @@
 import { AppConsts } from '@shared/AppConsts';
 import { UtilsService } from '@abp/utils/utils.service';
 
-var abp;
-
 export class SignalRAspNetCoreHelper {
     static initSignalR(): void {
 

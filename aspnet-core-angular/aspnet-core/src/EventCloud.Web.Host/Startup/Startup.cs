@@ -29,12 +29,6 @@ namespace EventCloud.Web.Host.Startup
 {
     public class Startup
     {
-#if DEBUG
-        private const string _defaultCorsPolicyName = "localhost";
-#else
-        private const string _defaultCorsPolicyName = "thinkevent.azurewebsites.net";
-#endif
-
         private readonly IConfigurationRoot _appConfiguration;
 
         public Startup(IHostingEnvironment env)
@@ -45,9 +39,7 @@ namespace EventCloud.Web.Host.Startup
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             // MVC
-            services.AddMvc(
-                options => options.Filters.Add(new CorsAuthorizationFilterFactory(_defaultCorsPolicyName))
-            );
+            services.AddMvc();
 
             IdentityRegistrar.Register(services);
             AuthConfigurer.Configure(services, _appConfiguration);
@@ -59,15 +51,9 @@ namespace EventCloud.Web.Host.Startup
             // Configure CORS for angular2 UI
             services.AddCors(
                 options => options.AddPolicy(
-                    _defaultCorsPolicyName,
+                    "AllowAllOrigins",
                     builder => builder
-                        .WithOrigins(
-                            // App:CorsOrigins in appsettings.json can contain more than one address separated by comma.
-                            _appConfiguration["App:CorsOrigins"]
-                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                                .Select(o => o.RemovePostFix("/"))
-                                .ToArray()
-                        )
+                        .AllowAnyOrigin()
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                 )
@@ -104,7 +90,7 @@ namespace EventCloud.Web.Host.Startup
         {
             app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
 
-            app.UseCors(_defaultCorsPolicyName); // Enable CORS!
+            app.UseCors("AllowAllOrigins"); // Enable CORS!
 
             app.UseStaticFiles();
 
