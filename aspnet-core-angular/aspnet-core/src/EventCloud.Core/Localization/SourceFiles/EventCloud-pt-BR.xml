@@ -23,10 +23,20 @@
 
     <text name="NameSurname" value="Nome sobrenome" />
     <text name="UserName" value="Nome de usuário" />
+    <text name="FullName" value="Nome completo" />
     <text name="Name" value="Nome" />
     <text name="Surname" value="Sobrenome" />
     <text name="EmailAddress" value="Endereço de e-mail" />
-
+    
+    <text name="EventId" value="Evento" />
+    <text name="ProfilePic" value="Foto" />
+    <text name="Title" value="Título" />
+    <text name="Twitter" value="Twitter" />
+    <text name="GitHub" value="GitHub" />
+    <text name="Instagram" value="Instagram" />
+    
+    <text name="Actions" value="Ações" />
+    
     <text name="Tenants" value="Tenants" />
     <text name="SavedSuccessfully" value="Salvo com sucesso" />
     <text name="CreateNewTenant" value="Crie um novo tenant" />
