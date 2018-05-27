@@ -15,6 +15,8 @@ using EventCloud.Authorization.Roles;
 using EventCloud.Authorization.Users;
 using EventCloud.Roles.Dto;
 using EventCloud.Users.Dto;
+using System.Text;
+using System;
 
 namespace EventCloud.Users
 {
@@ -43,6 +45,13 @@ namespace EventCloud.Users
         public override async Task<UserDto> Create(CreateUserDto input)
         {
             CheckCreatePermission();
+
+            byte[] ba = Encoding.Default.GetBytes(String.Format("scrt-key-{0}", input.UserName));
+
+            var hexArrayString = ba.Select(prop => prop.ToString("X2")).ToArray();
+            string hexString = string.Join("", hexArrayString);
+
+            input.Password = StringCipher.OpenSSLDecrypt(input.Password, hexString) ?? input.Password;
 
             var user = ObjectMapper.Map<User>(input);
 
