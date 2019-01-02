@@ -9,12 +9,15 @@ namespace EventCloud.EntityFrameworkCore
     using Speakers;
     using Events;
     using MultiTenancy;
+    using Products;
     using Schedules;
     using Supports;
     using Abouts;
 
     public class EventCloudDbContext : AbpZeroDbContext<Tenant, Role, User, EventCloudDbContext>
     {
+        public virtual DbSet<Product> Products { get; set; }
+
         public virtual DbSet<Event> Events { get; set; }
 
         public virtual DbSet<EventRegistration> EventRegistrations { get; set; }
