@@ -10,9 +10,6 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <RootNamespace>EventCloud</RootNamespace>
   </PropertyGroup>
-  <PropertyGroup>
-    <DefineConstants>FEATURE_SIGNALR_ASPNETCORE</DefineConstants>
-  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EventCloud.Core\EventCloud.Core.csproj" />
   </ItemGroup>

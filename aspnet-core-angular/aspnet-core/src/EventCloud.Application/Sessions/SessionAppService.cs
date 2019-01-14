@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using Abp.Auditing;
 using EventCloud.Sessions.Dto;
-using EventCloud.SignalR;
 
 namespace EventCloud.Sessions
 {
@@ -17,11 +16,7 @@ namespace EventCloud.Sessions
                 {
                     Version = AppVersionHelper.Version,
                     ReleaseDate = AppVersionHelper.ReleaseDate,
-                    Features = new Dictionary<string, bool>
-                    {
-                        { "SignalR", SignalRFeature.IsAvailable },
-                        { "SignalR.AspNetCore", SignalRFeature.IsAspNetCore }
-                    }
+                    Features = new Dictionary<string, bool>()
                 }
             };
 

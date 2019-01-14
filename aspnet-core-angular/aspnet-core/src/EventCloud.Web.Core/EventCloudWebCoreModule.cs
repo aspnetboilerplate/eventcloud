@@ -11,24 +11,16 @@ using Abp.Zero.Configuration;
 using EventCloud.Authentication.JwtBearer;
 using EventCloud.Configuration;
 using EventCloud.EntityFrameworkCore;
-
-#if FEATURE_SIGNALR
-using Abp.Web.SignalR;
-#elif FEATURE_SIGNALR_ASPNETCORE
 using Abp.AspNetCore.SignalR;
-#endif
+
 
 namespace EventCloud
 {
     [DependsOn(
          typeof(EventCloudApplicationModule),
          typeof(EventCloudEntityFrameworkModule),
-         typeof(AbpAspNetCoreModule)
-#if FEATURE_SIGNALR 
-        ,typeof(AbpWebSignalRModule)
-#elif FEATURE_SIGNALR_ASPNETCORE
-        ,typeof(AbpAspNetCoreSignalRModule)
-#endif
+         typeof(AbpAspNetCoreModule),
+         typeof(AbpAspNetCoreSignalRModule)
      )]
     public class EventCloudWebCoreModule : AbpModule
     {
