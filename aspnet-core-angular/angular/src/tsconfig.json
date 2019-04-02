@@ -1,11 +1,11 @@
-﻿{
+{
   "compilerOptions": {
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": [ "es6", "dom" ],
     "mapRoot": "./",
-    "module": "es6",
+    "module": "esnext",
     "moduleResolution": "node",
     "outDir": "../dist/out-tsc",
     "sourceMap": true,

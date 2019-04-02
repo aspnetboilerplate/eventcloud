@@ -1,4 +1,4 @@
-﻿import * as moment from 'moment';
+import * as moment from 'moment-timezone';
 import { AppConsts } from '@shared/AppConsts';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Type, CompilerOptions, NgModuleRef } from '@angular/core';

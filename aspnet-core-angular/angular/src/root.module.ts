@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, Injector, APP_INITIALIZER, LOCALE_ID } from '@angular/core';
 
-import { AbpModule, ABP_HTTP_PROVIDER } from '@abp/abp.module';
+import { AbpModule } from '@abp/abp.module';
 
 import { SharedModule } from '@shared/shared.module';
 import { ServiceProxyModule } from '@shared/service-proxies/service-proxy.module';
@@ -95,7 +95,6 @@ export function getCurrentLanguage(): string {
         RootComponent
     ],
     providers: [
-        ABP_HTTP_PROVIDER,
         { provide: API_BASE_URL, useFactory: getRemoteServiceBaseUrl },
         {
             provide: APP_INITIALIZER,
