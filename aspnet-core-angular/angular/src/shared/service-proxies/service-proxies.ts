@@ -205,13 +205,12 @@ export class EventServiceProxy {
     }
 
     /**
+     * @includeCanceledEvents (optional) 
      * @return Success
      */
     getListAsync(includeCanceledEvents: boolean): Observable<ListResultDtoOfEventListDto> {
         let url_ = this.baseUrl + "/api/services/app/Event/GetListAsync?";
-        if (includeCanceledEvents === undefined || includeCanceledEvents === null)
-            throw new Error("The parameter 'includeCanceledEvents' must be defined and cannot be null.");
-        else
+        if (includeCanceledEvents !== undefined)
             url_ += "IncludeCanceledEvents=" + encodeURIComponent("" + includeCanceledEvents) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
@@ -255,13 +254,12 @@ export class EventServiceProxy {
     }
 
     /**
+     * @id (optional) 
      * @return Success
      */
     getDetailAsync(id: string): Observable<EventDetailOutput> {
         let url_ = this.baseUrl + "/api/services/app/Event/GetDetailAsync?";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined and cannot be null.");
-        else
+        if (id !== undefined)
             url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
@@ -617,13 +615,12 @@ export class RoleServiceProxy {
     }
 
     /**
+     * @id (optional) 
      * @return Success
      */
     delete(id: number): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Role/Delete?";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined and cannot be null.");
-        else
+        if (id !== undefined)
             url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
@@ -721,13 +718,12 @@ export class RoleServiceProxy {
     }
 
     /**
+     * @id (optional) 
      * @return Success
      */
     get(id: number): Observable<RoleDto> {
         let url_ = this.baseUrl + "/api/services/app/Role/Get?";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined and cannot be null.");
-        else
+        if (id !== undefined)
             url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
@@ -777,17 +773,15 @@ export class RoleServiceProxy {
     }
 
     /**
+     * @skipCount (optional) 
+     * @maxResultCount (optional) 
      * @return Success
      */
     getAll(skipCount: number, maxResultCount: number): Observable<PagedResultDtoOfRoleDto> {
         let url_ = this.baseUrl + "/api/services/app/Role/GetAll?";
-        if (skipCount === undefined || skipCount === null)
-            throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
-        else
+        if (skipCount !== undefined)
             url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
-        if (maxResultCount === undefined || maxResultCount === null)
-            throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
-        else
+        if (maxResultCount !== undefined)
             url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
@@ -963,13 +957,12 @@ export class TenantServiceProxy {
     }
 
     /**
+     * @id (optional) 
      * @return Success
      */
     delete(id: number): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/Delete?";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined and cannot be null.");
-        else
+        if (id !== undefined)
             url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1015,13 +1008,12 @@ export class TenantServiceProxy {
     }
 
     /**
+     * @id (optional) 
      * @return Success
      */
     get(id: number): Observable<TenantDto> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/Get?";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined and cannot be null.");
-        else
+        if (id !== undefined)
             url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1071,17 +1063,15 @@ export class TenantServiceProxy {
     }
 
     /**
+     * @skipCount (optional) 
+     * @maxResultCount (optional) 
      * @return Success
      */
     getAll(skipCount: number, maxResultCount: number): Observable<PagedResultDtoOfTenantDto> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/GetAll?";
-        if (skipCount === undefined || skipCount === null)
-            throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
-        else
+        if (skipCount !== undefined)
             url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
-        if (maxResultCount === undefined || maxResultCount === null)
-            throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
-        else
+        if (maxResultCount !== undefined)
             url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1249,13 +1239,12 @@ export class TenantRegistrationServiceProxy {
     }
 
     /**
+     * @id (optional) 
      * @return Success
      */
     get(id: number): Observable<TenantDto> {
         let url_ = this.baseUrl + "/api/services/app/TenantRegistration/Get?";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined and cannot be null.");
-        else
+        if (id !== undefined)
             url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1299,17 +1288,15 @@ export class TenantRegistrationServiceProxy {
     }
 
     /**
+     * @skipCount (optional) 
+     * @maxResultCount (optional) 
      * @return Success
      */
     getAll(skipCount: number, maxResultCount: number): Observable<PagedResultDtoOfTenantDto> {
         let url_ = this.baseUrl + "/api/services/app/TenantRegistration/GetAll?";
-        if (skipCount === undefined || skipCount === null)
-            throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
-        else
+        if (skipCount !== undefined)
             url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
-        if (maxResultCount === undefined || maxResultCount === null)
-            throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
-        else
+        if (maxResultCount !== undefined)
             url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1453,13 +1440,12 @@ export class TenantRegistrationServiceProxy {
     }
 
     /**
+     * @id (optional) 
      * @return Success
      */
     delete(id: number): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/TenantRegistration/Delete?";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined and cannot be null.");
-        else
+        if (id !== undefined)
             url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1785,13 +1771,12 @@ export class UserServiceProxy {
     }
 
     /**
+     * @id (optional) 
      * @return Success
      */
     delete(id: number): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/User/Delete?";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined and cannot be null.");
-        else
+        if (id !== undefined)
             url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1941,13 +1926,12 @@ export class UserServiceProxy {
     }
 
     /**
+     * @id (optional) 
      * @return Success
      */
     get(id: number): Observable<UserDto> {
         let url_ = this.baseUrl + "/api/services/app/User/Get?";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined and cannot be null.");
-        else
+        if (id !== undefined)
             url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1997,17 +1981,15 @@ export class UserServiceProxy {
     }
 
     /**
+     * @skipCount (optional) 
+     * @maxResultCount (optional) 
      * @return Success
      */
     getAll(skipCount: number, maxResultCount: number): Observable<PagedResultDtoOfUserDto> {
         let url_ = this.baseUrl + "/api/services/app/User/GetAll?";
-        if (skipCount === undefined || skipCount === null)
-            throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
-        else
+        if (skipCount !== undefined)
             url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
-        if (maxResultCount === undefined || maxResultCount === null)
-            throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
-        else
+        if (maxResultCount !== undefined)
             url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
         url_ = url_.replace(/[?&]$/, "");
 
