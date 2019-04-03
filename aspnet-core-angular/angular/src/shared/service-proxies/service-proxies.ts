@@ -7,7 +7,6 @@
 //----------------------
 // ReSharper disable InconsistentNaming
 
-import 'rxjs/add/operator/finally';
 import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 'rxjs/operators';
 import { Observable, throwError as _observableThrow, of as _observableOf } from 'rxjs';
 import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';

@@ -1,11 +1,11 @@
-import * as moment from 'moment-timezone';
+import * as moment from 'moment';
 import { AppConsts } from '@shared/AppConsts';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Type, CompilerOptions, NgModuleRef } from '@angular/core';
 
 export class AppPreBootstrap {
 
-    static run(callback: () => void): void {
+    static run(callback: () => void, resolve: any, reject: any): void {
         AppPreBootstrap.getApplicationConfig(() => {
             AppPreBootstrap.getUserConfiguration(callback);
         });
@@ -59,7 +59,7 @@ export class AppPreBootstrap {
             moment.locale(abp.localization.currentLanguage.name);
 
             if (abp.clock.provider.supportsMultipleTimezone) {
-                moment.tz.setDefault(abp.timing.timeZoneInfo.iana.timeZoneId);
+                (window as any).moment.tz.setDefault(abp.timing.timeZoneInfo.iana.timeZoneId);
             }
 
             callback();

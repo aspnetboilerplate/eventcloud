@@ -4,8 +4,6 @@ import { environment } from './environments/environment';
 import { RootModule } from './root.module';
 import { hmrBootstrap } from './hmr';
 
-import * as moment from 'moment';
-
 import 'moment/min/locales.min';
 import 'moment-timezone';
 

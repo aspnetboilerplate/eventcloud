@@ -1,4 +1,4 @@
-﻿import { Component, ViewContainerRef, OnInit, ViewEncapsulation, Injector } from '@angular/core';
+import { Component, ViewContainerRef, OnInit, ViewEncapsulation, Injector } from '@angular/core';
 import { LoginService } from './login/login.service';
 import { AppComponentBase } from '@shared/app-component-base';
 
@@ -21,9 +21,6 @@ export class AccountComponent extends AppComponentBase implements OnInit {
         private _loginService: LoginService
     ) {
         super(injector);
-
-        this.currentYear = new Date().getFullYear();
-        this.versionText = this.appSession.application.version + ' [' + this.appSession.application.releaseDate.format('YYYYDDMM') + ']';
     }
 
     showTenantChange(): boolean {
@@ -32,5 +29,8 @@ export class AccountComponent extends AppComponentBase implements OnInit {
 
     ngOnInit(): void {
         $('body').attr('class', 'login-page');
+
+        this.currentYear = new Date().getFullYear();
+        this.versionText = this.appSession.application.version + ' [' + this.appSession.application.releaseDate.format('YYYYDDMM') + ']';
     }
 }

@@ -37,7 +37,7 @@
     "bootstrap": "^4.3.1",
     "bootstrap-select": "^1.13.9",
     "chart.js": "^2.8.0",
-    "core-js": "^2.4.1",
+    "core-js": "^2.6.5",
     "eonasdan-bootstrap-datetimepicker": "4.17.47",
     "famfamfam-flags": "^1.0.0",
     "flot": "^0.8.0-alpha",
