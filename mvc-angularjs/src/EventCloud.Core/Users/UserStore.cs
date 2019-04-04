@@ -1,6 +1,7 @@
 using Abp.Authorization.Users;
 using Abp.Domain.Repositories;
 using Abp.Domain.Uow;
+using Abp.Organizations;
 using EventCloud.Authorization.Roles;
 
 namespace EventCloud.Users
@@ -14,7 +15,9 @@ namespace EventCloud.Users
        IRepository<Role> roleRepository,
        IRepository<UserPermissionSetting, long> userPermissionSettingRepository,
        IUnitOfWorkManager unitOfWorkManager,
-       IRepository<UserClaim, long> userClaimStore)
+       IRepository<UserClaim, long> userClaimStore,
+       IRepository<UserOrganizationUnit, long> userOrganizationUnitRepository,
+       IRepository<OrganizationUnitRole, long> organizationUnitRoleRepository)
        : base(
          userRepository,
          userLoginRepository,
@@ -22,7 +25,9 @@ namespace EventCloud.Users
          roleRepository,
          userPermissionSettingRepository,
          unitOfWorkManager,
-         userClaimStore)
+         userClaimStore,
+         userOrganizationUnitRepository,
+         organizationUnitRoleRepository)
         {
         }
     }
