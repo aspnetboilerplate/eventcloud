@@ -5,6 +5,7 @@ using System.Web.Routing;
 using Abp.Configuration.Startup;
 using Abp.Localization;
 using Abp.Modules;
+using Abp.Web;
 using Abp.Web.Mvc;
 using Abp.Web.Mvc.Configuration;
 using EventCloud.Api;
@@ -16,6 +17,7 @@ namespace EventCloud.Web
         typeof(EventCloudDataModule), 
         typeof(EventCloudApplicationModule), 
         typeof(EventCloudWebApiModule),
+        typeof(AbpWebModule),
         typeof(AbpWebMvcModule)
         )]
     public class EventCloudWebModule : AbpModule

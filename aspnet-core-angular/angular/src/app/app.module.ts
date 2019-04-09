@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
-
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -63,8 +62,8 @@ import { EventDetailComponent } from './events/event-detail/event-detail.compone
     imports: [
         CommonModule,
         FormsModule,
-        HttpModule,
-        JsonpModule,
+        HttpClientModule,
+        HttpClientJsonpModule,
         ModalModule.forRoot(),
         AbpModule,
         AppRoutingModule,

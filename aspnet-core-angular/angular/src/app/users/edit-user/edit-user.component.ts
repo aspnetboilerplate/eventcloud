@@ -1,7 +1,8 @@
-﻿import { Component, ViewChild, Injector, Output, EventEmitter, ElementRef } from '@angular/core';
+import { Component, ViewChild, Injector, Output, EventEmitter, ElementRef } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
 import { UserServiceProxy, UserDto, RoleDto } from '@shared/service-proxies/service-proxies';
 import { AppComponentBase } from '@shared/app-component-base';
+import { finalize } from 'rxjs/operators';
 
 import * as _ from "lodash";
 
@@ -70,7 +71,7 @@ export class EditUserComponent extends AppComponentBase {
 
         this.saving = true;
         this._userService.update(this.user)
-            .finally(() => { this.saving = false; })
+            .pipe(finalize(() => { this.saving = false; }))
             .subscribe(() => {
                 this.notify.info(this.l('SavedSuccessfully'));
                 this.close();

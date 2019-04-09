@@ -4,6 +4,7 @@ import { UserServiceProxy, UserDto, PagedResultDtoOfUserDto } from '@shared/serv
 import { PagedListingComponentBase, PagedRequestDto } from "shared/paged-listing-component-base";
 import { CreateUserComponent } from "app/users/create-user/create-user.component";
 import { EditUserComponent } from "app/users/edit-user/edit-user.component";
+import { finalize } from 'rxjs/operators';
 
 @Component({
     templateUrl: './users.component.html',
@@ -26,9 +27,9 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
 
     protected list(request: PagedRequestDto, pageNumber: number, finishedCallback: Function): void {
         this._userService.getAll(request.skipCount, request.maxResultCount)
-            .finally(() => {
+            .pipe(finalize(() => {
                 finishedCallback();
-            })
+            }))
             .subscribe((result: PagedResultDtoOfUserDto) => {
                 this.users = result.items;
                 this.showPaging(result, pageNumber);

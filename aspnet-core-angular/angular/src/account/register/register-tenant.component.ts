@@ -4,6 +4,7 @@ import { AppComponentBase } from '@shared/app-component-base';
 import { Router } from '@angular/router';
 import { LoginService } from 'account/login/login.service';
 import { accountModuleAnimation } from '@shared/animations/routerTransition';
+import { finalize } from 'rxjs/operators';
 
 import * as _ from "lodash";
 
@@ -35,7 +36,7 @@ export class RegisterTenantComponent extends AppComponentBase implements AfterVi
     save(): void {
         this.saving = true;
         this._tenantRegistrationService.registerTenantAsync(this.tenant)
-            .finally(() => { this.saving = false; })
+            .pipe(finalize(() => { this.saving = false; }))
             .subscribe((result: TenantDto) => {
                 this.notify.info(this.l('SavedSuccessfully'));
 

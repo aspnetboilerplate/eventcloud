@@ -1,15 +1,16 @@
-﻿import { Component, ViewChild, Injector, Output, EventEmitter, ElementRef} from '@angular/core';
+import { Component, ViewChild, Injector, Output, EventEmitter, ElementRef } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap';
 import { TenantServiceProxy, TenantDto } from '@shared/service-proxies/service-proxies';
 import { AppComponentBase } from '@shared/app-component-base';
+import { finalize } from 'rxjs/operators';
 
 import * as _ from "lodash";
 
 @Component({
-  selector: 'edit-tenant-modal',
-  templateUrl: './edit-tenant.component.html'
+    selector: 'edit-tenant-modal',
+    templateUrl: './edit-tenant.component.html'
 })
-export class EditTenantComponent extends AppComponentBase{
+export class EditTenantComponent extends AppComponentBase {
 
     @ViewChild('editTenantModal') modal: ModalDirective;
     @ViewChild('modalContent') modalContent: ElementRef;
@@ -27,15 +28,15 @@ export class EditTenantComponent extends AppComponentBase{
         super(injector);
     }
 
-    show(id:number): void {
-		this._tenantService.get(id)
-			.finally(()=>{
-				this.active = true;
-				this.modal.show();
-			})
-			.subscribe((result: TenantDto)=>{
-				this.tenant = result;
-			});
+    show(id: number): void {
+        this._tenantService.get(id)
+            .pipe(finalize(() => {
+                this.active = true;
+                this.modal.show();
+            }))
+            .subscribe((result: TenantDto) => {
+                this.tenant = result;
+            });
     }
 
     onShown(): void {
@@ -45,7 +46,7 @@ export class EditTenantComponent extends AppComponentBase{
     save(): void {
         this.saving = true;
         this._tenantService.update(this.tenant)
-            .finally(() => { this.saving = false; })
+            .pipe(finalize(() => { this.saving = false; }))
             .subscribe(() => {
                 this.notify.info(this.l('SavedSuccessfully'));
                 this.close();

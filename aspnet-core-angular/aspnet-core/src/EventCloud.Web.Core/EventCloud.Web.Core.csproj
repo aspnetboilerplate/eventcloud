@@ -24,11 +24,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
-    <PackageReference Include="Abp.AspNetCore" Version="4.1.0" />
-    <PackageReference Include="Abp.ZeroCore" Version="4.1.0" />
+    <PackageReference Include="Abp.AspNetCore" Version="4.5.0" />
+    <PackageReference Include="Abp.ZeroCore" Version="4.5.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Abp.AspNetCore.SignalR" Version="4.1.0" />
+    <PackageReference Include="Abp.AspNetCore.SignalR" Version="4.5.0" />
   </ItemGroup>
 </Project>

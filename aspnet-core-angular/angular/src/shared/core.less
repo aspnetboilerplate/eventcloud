@@ -20,7 +20,7 @@
     overflow: hidden;
     font-size: 14px !important;
     margin-top: 15px !important;
-    line-height:18px !important;
+    line-height: 18px !important;
 }
 
 /* Portlet */
@@ -66,4 +66,11 @@ topbar-languageswitch {
 .login-box {
     background-color: #673AB7;
     padding: 20px 0;
+}
+
+.form-actions {
+    .btn + .btn {
+        margin-bottom: 0; // account for input[type="submit"] which gets the bottom margin like all other inputs
+        margin-left: 5px;
+    }
 }

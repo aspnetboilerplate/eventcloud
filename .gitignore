@@ -194,4 +194,5 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
-src/EventCloud.Web/Logs/Logs.txt
+/src/EventCloud.Web/Logs
+/mvc-angularjs/src/EventCloud.Web/App_Data/Logs

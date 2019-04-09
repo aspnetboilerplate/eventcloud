@@ -49,6 +49,8 @@ namespace EventCloud.Migrations.SeedData
                         Password = "AM4OLBpptxBYmM79lGOX9egzZk3vIQU3d/gFCJzaBjAPXzYIK3tQ2N7X4fcrHtElTw==", //123qwe
                     });
 
+                adminUserForTenancyOwner.SetNormalizedNames();
+
                 _context.SaveChanges();
 
                 _context.UserRoles.Add(new UserRole(null, adminUserForTenancyOwner.Id, adminRoleForTenancyOwner.Id));
@@ -98,6 +100,7 @@ namespace EventCloud.Migrations.SeedData
                         IsEmailConfirmed = true,
                         Password = "AM4OLBpptxBYmM79lGOX9egzZk3vIQU3d/gFCJzaBjAPXzYIK3tQ2N7X4fcrHtElTw==", //123qwe
                     });
+                adminUserForDefaultTenant.SetNormalizedNames();
                 _context.SaveChanges();
 
                 _context.UserRoles.Add(new UserRole(defaultTenant.Id, adminUserForDefaultTenant.Id, adminRoleForDefaultTenant.Id));
