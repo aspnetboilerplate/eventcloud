@@ -48,7 +48,6 @@ export class LoginComponent extends AppComponentBase implements OnInit {
 
     redirectToRegisterTenant(): void {
         var tenantId = abp.multiTenancy.getTenantIdCookie();
-        debugger;
         if (tenantId) {
             window.location.href = "account/register-tenant?TenantId=0";
         } else {
