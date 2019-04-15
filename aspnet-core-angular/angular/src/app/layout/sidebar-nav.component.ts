@@ -27,9 +27,8 @@ export class SideBarNavComponent extends AppComponentBase {
             ]),
             new MenuItem("ASP.NET Zero", "", "", "", [
                 new MenuItem("Home", "", "", "https://aspnetzero.com?ref=abptmpl"),
-                new MenuItem("Description", "", "", "https://aspnetzero.com/?ref=abptmpl#description"),
-                new MenuItem("Features", "", "", "https://aspnetzero.com/?ref=abptmpl#features"),
-                new MenuItem("Pricing", "", "", "https://aspnetzero.com/?ref=abptmpl#pricing"),
+                new MenuItem("Features", "", "", "https://aspnetzero.com/Features?ref=abptmpl"),
+                new MenuItem("Pricing", "", "", "https://aspnetzero.com/Pricing?ref=abptmpl"),
                 new MenuItem("Faq", "", "", "https://aspnetzero.com/Faq?ref=abptmpl"),
                 new MenuItem("Documents", "", "", "https://aspnetzero.com/Documents?ref=abptmpl")
             ])
