@@ -1,3 +1,7 @@
+# Important
+
+Issues of this repository are tracked on https://github.com/aspnetboilerplate/aspnetboilerplate. Please create your issues on https://github.com/aspnetboilerplate/aspnetboilerplate/issues.
+
 # Event Cloud
  
 This is a sample Multi-Tenant application built using ASP.NET Boilerplate and module-zero. 
