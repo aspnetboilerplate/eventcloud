@@ -10,10 +10,11 @@ namespace EventCloud.Editions
 
         public EditionManager(
             IRepository<Edition> editionRepository, 
-            IAbpZeroFeatureValueStore featureValueStore)
+            IAbpZeroFeatureValueStore featureValueStore,
+            Abp.Domain.Uow.IUnitOfWorkManager unitOfWorkManager)
             : base(
                 editionRepository,
-                featureValueStore)
+                featureValueStore,unitOfWorkManager)
         {
         }
     }

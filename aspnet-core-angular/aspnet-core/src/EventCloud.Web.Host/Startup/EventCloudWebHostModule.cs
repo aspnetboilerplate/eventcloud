@@ -10,10 +10,10 @@ namespace EventCloud.Web.Host.Startup
        typeof(EventCloudWebCoreModule))]
     public class EventCloudWebHostModule: AbpModule
     {
-        private readonly IHostingEnvironment _env;
+        private readonly IWebHostEnvironment _env;
         private readonly IConfigurationRoot _appConfiguration;
 
-        public EventCloudWebHostModule(IHostingEnvironment env)
+        public EventCloudWebHostModule(IWebHostEnvironment env)
         {
             _env = env;
             _appConfiguration = env.GetAppConfiguration();

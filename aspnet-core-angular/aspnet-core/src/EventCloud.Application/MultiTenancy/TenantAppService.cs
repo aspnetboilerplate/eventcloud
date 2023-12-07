@@ -45,7 +45,7 @@ namespace EventCloud.MultiTenancy
             _passwordHasher = passwordHasher;
         }
         
-        public override async Task<TenantDto> Create(CreateTenantDto input)
+        public override async Task<TenantDto> CreateAsync(CreateTenantDto input)
         {
             CheckCreatePermission();
 
@@ -101,7 +101,7 @@ namespace EventCloud.MultiTenancy
             entity.IsActive = updateInput.IsActive;
         }
 
-        public override async Task Delete(EntityDto<int> input)
+        public override async Task DeleteAsync(EntityDto<int> input)
         {
             CheckDeletePermission();
 

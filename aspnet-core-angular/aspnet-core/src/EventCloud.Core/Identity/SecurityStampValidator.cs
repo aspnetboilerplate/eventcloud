@@ -13,11 +13,13 @@ namespace EventCloud.Identity
         public SecurityStampValidator(
             IOptions<SecurityStampValidatorOptions> options, 
             SignInManager signInManager,
-            ISystemClock systemClock) 
+            ISystemClock systemClock,
+            Microsoft.Extensions.Logging.ILoggerFactory loggerFactory,
+            Abp.Domain.Uow.IUnitOfWorkManager unitOfWorkManager) 
             : base(
                   options, 
                   signInManager, 
-                  systemClock)
+                  systemClock,loggerFactory,unitOfWorkManager)
         {
         }
     }

@@ -40,7 +40,7 @@ namespace EventCloud.Users
             _passwordHasher = passwordHasher;
         }
 
-        public override async Task<UserDto> Create(CreateUserDto input)
+        public override async Task<UserDto> CreateAsync(CreateUserDto input)
         {
             CheckCreatePermission();
 
@@ -54,7 +54,7 @@ namespace EventCloud.Users
 
             if (input.RoleNames != null)
             {
-                CheckErrors(await _userManager.SetRoles(user, input.RoleNames));
+                CheckErrors(await _userManager.SetRolesAsync(user, input.RoleNames));
             }
 
             CurrentUnitOfWork.SaveChanges();
@@ -62,7 +62,7 @@ namespace EventCloud.Users
             return MapToEntityDto(user);
         }
 
-        public override async Task<UserDto> Update(UserDto input)
+        public override async Task<UserDto> UpdateAsync(UserDto input)
         {
             CheckUpdatePermission();
 
@@ -74,13 +74,13 @@ namespace EventCloud.Users
 
             if (input.RoleNames != null)
             {
-                CheckErrors(await _userManager.SetRoles(user, input.RoleNames));
+                CheckErrors(await _userManager.SetRolesAsync(user, input.RoleNames));
             }
 
-            return await Get(input);
+            return await GetAsync(input);
         }
 
-        public override async Task Delete(EntityDto<long> input)
+        public override async Task DeleteAsync(EntityDto<long> input)
         {
             var user = await _userManager.GetUserByIdAsync(input.Id);
             await _userManager.DeleteAsync(user);
