@@ -22,16 +22,9 @@ namespace EventCloud.Identity
             ILogger<SignInManager<User>> logger,
             IUnitOfWorkManager unitOfWorkManager,
             ISettingManager settingManager,
-            IAuthenticationSchemeProvider schemes) 
-            : base(
-                userManager, 
-                contextAccessor, 
-                claimsFactory, 
-                optionsAccessor, 
-                logger,
-                unitOfWorkManager,
-                settingManager,
-                schemes)
+            IAuthenticationSchemeProvider schemes,
+            IUserConfirmation<User> userConfirmation) 
+            :base(userManager,contextAccessor,claimsFactory,optionsAccessor,logger,unitOfWorkManager,settingManager,schemes,userConfirmation)
         {
         }
     }

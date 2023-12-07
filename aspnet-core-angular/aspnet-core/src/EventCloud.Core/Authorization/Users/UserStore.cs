@@ -19,18 +19,18 @@ namespace EventCloud.Authorization.Users
             IRepository<UserClaim, long> userClaimRepository,
             IRepository<UserPermissionSetting, long> userPermissionSettingRepository,
             IRepository<UserOrganizationUnit, long> userOrganizationUnitRepository,
-            IRepository<OrganizationUnitRole, long> organizationUnitRoleRepository)
+            IRepository<OrganizationUnitRole, long> organizationUnitRoleRepository,
+            IRepository<UserToken, long> userTokenRepository)
             : base(
                   unitOfWorkManager,
                   userRepository,
                   roleRepository,
-                  asyncQueryableExecuter,
                   userRoleRepository,
                   userLoginRepository,
                   userClaimRepository,
                   userPermissionSettingRepository,
                   userOrganizationUnitRepository,
-                  organizationUnitRoleRepository)
+                  organizationUnitRoleRepository,userTokenRepository)
         {
         }
     }

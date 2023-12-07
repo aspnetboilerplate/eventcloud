@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <VersionPrefix>1.0.0.0</VersionPrefix>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <AssemblyName>EventCloud.Web.Core</AssemblyName>
     <PackageId>EventCloud.Web.Core</PackageId>
@@ -20,15 +20,14 @@
     <ProjectReference Include="..\EventCloud.EntityFrameworkCore\EventCloud.EntityFrameworkCore.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.2.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
-    <PackageReference Include="Abp.AspNetCore" Version="4.5.0" />
-    <PackageReference Include="Abp.ZeroCore" Version="4.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Abp.AspNetCore" Version="9.0.0" />
+    <PackageReference Include="Abp.ZeroCore" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Abp.AspNetCore.SignalR" Version="4.5.0" />
+    <PackageReference Include="Abp.AspNetCore.SignalR" Version="9.0.0" />
   </ItemGroup>
 </Project>

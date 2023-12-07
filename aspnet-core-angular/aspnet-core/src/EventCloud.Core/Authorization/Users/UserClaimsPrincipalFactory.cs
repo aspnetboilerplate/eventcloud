@@ -10,11 +10,12 @@ namespace EventCloud.Authorization.Users
         public UserClaimsPrincipalFactory(
             UserManager userManager,
             RoleManager roleManager,
-            IOptions<IdentityOptions> optionsAccessor)
+            IOptions<IdentityOptions> optionsAccessor,
+            Abp.Domain.Uow.IUnitOfWorkManager unitOfWorkManager )
             : base(
                   userManager,
                   roleManager,
-                  optionsAccessor)
+                  optionsAccessor, unitOfWorkManager)
         {
         }
     }
