@@ -1,0 +1,105 @@
+<div [@routerTransition]>
+  <section class="content px-2 pt-5">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card main-content p-3">
+            <div class="header">
+              <div class="row">
+                <div class="col-md-4">
+                  <h4>
+                    {{ event.title }}
+                  </h4>
+                </div>
+                <div class="col-md-2">
+                  <h4>
+                    <span class="event-detail-header"
+                      ><i class="fa fa-calendar mr-1"></i>
+                      <span>{{
+                        event.date.format("YYYY-MM-DD HH:mm")
+                      }}</span></span
+                    >
+                  </h4>
+                </div>
+                <div class="col-md-6">
+                  <ul class="header-dropdown m-r--5">
+                    <li>
+                      <div class="form-actions">
+                        <button
+                          type="button"
+                          [routerLink]="['/app/events']"
+                          class="btn bg-black waves-effect waves-light"
+                        >
+                          <i class="fa fa-arrow-circle-left"></i>
+                          {{ "BackToEvents" | localize }}
+                        </button>
+                        <button
+                          *ngIf="!isRegistered() && !event.isCancelled"
+                          type="button"
+                          class="btn bg-green waves-effect waves-light"
+                          (click)="registerToEvent()"
+                        >
+                          <i class="fa fa-star"></i> {{ "Register" | localize }}
+                        </button>
+                        <button
+                          *ngIf="isRegistered() && !event.isCancelled"
+                          type="button"
+                          class="btn bg-orange waves-effect waves-light"
+                          (click)="cancelRegistrationFromEvent()"
+                        >
+                          <i class="fa fa-remove"></i>
+                          {{ "CancelRegistration" | localize }}
+                        </button>
+                        <button
+                          *ngIf="isEventCreator() && !event.isCancelled"
+                          type="button"
+                          class="btn bg-red waves-effect waves-light"
+                          (click)="cancelEvent()"
+                        >
+                          <i class="fa fa-remove"></i>
+                          {{ "CancelTheEvent" | localize }}
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="body table-responsive">
+              <hr />
+              <div>
+                {{ event.description }}
+              </div>
+              <h6 class="mt-3 mb-3 text-gray text-bold">
+                {{
+                  "XofYregistered"
+                    | localize
+                      : event.registrationsCount
+                      : event.maxRegistrationCount
+                }}
+              </h6>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>{{ "Name" | localize }}</th>
+                    <th>{{ "Surname" | localize }}</th>
+                    <th>{{ "CreationTime" | localize }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let registration of event.registrations">
+                    <td>{{ registration.userName }}</td>
+                    <td>{{ registration.userSurname }}</td>
+                    <td>
+                      {{ registration.creationTime | date : "short" }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

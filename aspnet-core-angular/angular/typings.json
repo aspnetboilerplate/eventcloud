@@ -1,5 +1,0 @@
-{
-  "globalDependencies": {
-    "moment-timezone": "registry:dt/moment-timezone#0.2.5+20160329220348"
-  }
-}
