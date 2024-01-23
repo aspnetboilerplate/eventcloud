@@ -4,23 +4,25 @@ import {
   OnInit,
   EventEmitter,
   Output,
-} from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
-import { AppComponentBase } from '@shared/app-component-base';
+} from "@angular/core";
+import { BsModalRef } from "ngx-bootstrap/modal";
+import { AppComponentBase } from "@shared/app-component-base";
 import {
   RoleServiceProxy,
   RoleDto,
   PermissionDto,
   CreateRoleDto,
-  PermissionDtoListResultDto
-} from '@shared/service-proxies/service-proxies';
-import { forEach as _forEach, map as _map } from 'lodash-es';
+  PermissionDtoListResultDto,
+} from "@shared/service-proxies/service-proxies";
+import { forEach as _forEach, map as _map } from "lodash-es";
 
 @Component({
-  templateUrl: 'create-role-dialog.component.html'
+  templateUrl: "create-role-dialog.component.html",
 })
-export class CreateRoleDialogComponent extends AppComponentBase
-  implements OnInit {
+export class CreateRoleDialogComponent
+  extends AppComponentBase
+  implements OnInit
+{
   saving = false;
   role = new RoleDto();
   permissions: PermissionDto[] = [];
@@ -81,17 +83,15 @@ export class CreateRoleDialogComponent extends AppComponentBase
     role.init(this.role);
     role.grantedPermissions = this.getCheckedPermissions();
 
-    this._roleService
-      .create(role)
-      .subscribe(
-        () => {
-          this.notify.info(this.l('SavedSuccessfully'));
-          this.bsModalRef.hide();
-          this.onSave.emit();
-        },
-        () => {
-          this.saving = false;
-        }
-      );
+    this._roleService.create(role).subscribe(
+      () => {
+        this.notify.info(this.l("SavedSuccessfully"));
+        this.bsModalRef.hide();
+        this.onSave.emit();
+      },
+      () => {
+        this.saving = false;
+      }
+    );
   }
 }
