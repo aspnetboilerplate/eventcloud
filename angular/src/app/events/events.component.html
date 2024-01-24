@@ -9,14 +9,15 @@
             </div>
             <div class="col-6 text-right">
               <input
+                class="mr-2"
                 type="checkbox"
                 id="includeCanceledEvents"
                 [(ngModel)]="includeCanceledEvents"
                 (change)="includeCanceledEventsCheckboxChanged()"
               />
-              <label for="includeCanceledEvents">{{
-                l("ShowCanceledEvents")
-              }}</label>
+              <label for="includeCanceledEvents">
+                {{ "ShowCanceledEvents" | localize }}</label
+              >
               <a
                 href="javascript:;"
                 class="btn bg-blue ml-3"
@@ -100,8 +101,8 @@
                             class="btn bg-purple waves-effect btn-sm text-white"
                             [routerLink]="['/app/events', event.id]"
                           >
-                            <span class="">{{ "Details " | localize }}</span>
-                            <i class="fa fa-arrow-circle-right"></i>
+                            <span class="">{{ "Details" | localize }}</span>
+                            <i class="fa fa-arrow-circle-right ml-2"></i>
                           </button>
                         </div>
                       </div>

@@ -14,23 +14,17 @@ import {
 } from "@shared/service-proxies/service-proxies";
 import { AppComponentBase } from "@shared/app-component-base";
 import { BsModalRef } from "ngx-bootstrap/modal";
-import { ModalDirective } from "ngx-bootstrap/modal";
 import * as moment from "moment";
 
 @Component({
-  selector: "create-event-modal",
   templateUrl: "./create-event.component.html",
 })
 export class CreateEventComponent extends AppComponentBase implements OnInit {
-  @ViewChild("createEventModal") modal: ModalDirective;
-  @ViewChild("modalContent") modalContent: ElementRef;
-  @ViewChild("eventDate") eventDate: ElementRef;
-
-  @Output() onSave = new EventEmitter<any>();
-
-  active: boolean = false;
-  saving: boolean = false;
+  saving = false;
   event = new CreateEventInput();
+
+  @ViewChild("eventDate") eventDate: ElementRef;
+  @Output() onSave = new EventEmitter<any>();
 
   constructor(
     injector: Injector,
@@ -40,9 +34,7 @@ export class CreateEventComponent extends AppComponentBase implements OnInit {
   ) {
     super(injector);
   }
-  ngOnInit(): void {
-    throw new Error("Method not implemented.");
-  }
+  ngOnInit(): void {}
 
   save(): void {
     this.saving = true;
@@ -65,7 +57,6 @@ export class CreateEventComponent extends AppComponentBase implements OnInit {
         this.notify.info(this.l("SavedSuccessfully"));
         this.bsModalRef.hide();
         this.onSave.emit();
-        
       },
       () => {
         this.saving = false;
