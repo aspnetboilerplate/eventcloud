@@ -61,7 +61,7 @@ namespace EventCloud.Events
 
         public async Task CreateAsync(CreateEventInput input)
         {
-            var tenantId = (int)AbpSession.UserId.Value;
+            var tenantId = (int)AbpSession.TenantId.Value;
             var @event = Event.Create(tenantId, input.Title, input.Date, input.Description, input.MaxRegistrationCount);
             await _eventManager.CreateAsync(@event);
         }
