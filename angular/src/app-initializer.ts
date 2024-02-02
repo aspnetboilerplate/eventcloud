@@ -8,6 +8,7 @@ import { AppSessionService } from '@shared/session/app-session.service';
 import { environment } from './environments/environment';
 import { AccountServiceProxy, IsTenantAvailableInput, IsTenantAvailableOutput, TenantAvailabilityState } from '@shared/service-proxies/service-proxies';
 import { SubdomainTenantResolver } from '@shared/multi-tenancy/tenant-resolvers/subdomain-tenant-resolver';
+import { QueryStringTenantResolver } from '@shared/multi-tenancy/tenant-resolvers/query-string-tenant-resolver';
 
 @Injectable({
   providedIn: 'root',
@@ -168,7 +169,6 @@ export class AppInitializer {
 
         // Find tenant from subdomain
         var tenancyName = this.resolveTenancyName(response.appBaseUrl);
-
         if (tenancyName == null) {
           callback();
         } else {
@@ -199,6 +199,11 @@ export class AppInitializer {
     }
 
     // add other tenancy resolvers here, ex: CookieTenantResolver, QueryStringTenantResolver etc...
+    var queryStirngTenantResolver = new QueryStringTenantResolver();
+    var tenancyName = queryStirngTenantResolver.resolve(appBaseUrl);
+    if (tenancyName) {
+      return tenancyName;
+    }
 
     return null;
   }
