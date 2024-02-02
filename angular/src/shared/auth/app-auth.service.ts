@@ -92,7 +92,7 @@ export class AppAuthService {
 
         let initialUrl = UrlHelper.initialUrl;
         if (initialUrl.indexOf('/login') > 0) {
-            initialUrl = AppConsts.appBaseUrl;
+            initialUrl = AppConsts.appBaseUrl + 'index.html';
         }
 
         location.href = initialUrl;
