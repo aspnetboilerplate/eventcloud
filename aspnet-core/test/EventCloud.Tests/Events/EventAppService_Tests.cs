@@ -24,6 +24,7 @@ namespace EventCloud.Tests.Events
         public EventAppService_Tests()
         {
             _eventAppService = Resolve<IEventAppService>();
+            CreateTestEvent();
         }
 
         [Fact]
@@ -73,6 +74,8 @@ namespace EventCloud.Tests.Events
         [Fact]
         public async Task Should_Cancel_Event()
         {
+            LoginAsDefaultTenantAdmin();
+            
             //Act
             await _eventAppService.CancelAsync(new EntityDto<Guid>(GetTestEvent().Id));
 
@@ -138,6 +141,20 @@ namespace EventCloud.Tests.Events
         private static Event GetTestEvent(EventCloudDbContext context)
         {
             return context.Events.Single(e => e.Title == TestEventTitle);
+        }
+        
+        private void CreateTestEvent()
+        {
+            UsingDbContext(context =>
+            {
+                context.Events.Add(
+                    Event.Create(
+                        1,
+                        TestEventTitle,
+                        Clock.Now.AddDays(1))
+                );
+                context.SaveChanges();
+            });
         }
     }
 }
