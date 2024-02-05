@@ -9,10 +9,12 @@ using Abp.Events.Bus.Entities;
 using Abp.MultiTenancy;
 using Abp.Runtime.Session;
 using Abp.TestBase;
+using Abp.Timing;
 using EventCloud.Authorization.Users;
 using EventCloud.EntityFrameworkCore;
 using EventCloud.EntityFrameworkCore.Seed.Host;
 using EventCloud.EntityFrameworkCore.Seed.Tenants;
+using EventCloud.Events;
 using EventCloud.MultiTenancy;
 
 namespace EventCloud.Tests
