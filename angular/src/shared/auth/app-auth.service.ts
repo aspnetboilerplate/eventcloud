@@ -31,7 +31,7 @@ export class AppAuthService {
         abp.utils.deleteCookie(AppConsts.authorization.encryptedAuthTokenName);
         
         if (reload !== false) {
-            location.href = AppConsts.appBaseUrl + 'index.html';
+            location.href = AppConsts.appBaseUrl + '/index.html';
         }
     }
 
@@ -92,7 +92,7 @@ export class AppAuthService {
 
         let initialUrl = UrlHelper.initialUrl;
         if (initialUrl.indexOf('/login') > 0) {
-            initialUrl = AppConsts.appBaseUrl + 'index.html';
+            initialUrl = AppConsts.appBaseUrl + '/index.html';
         }
 
         location.href = initialUrl;
